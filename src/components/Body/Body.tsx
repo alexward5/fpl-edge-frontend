@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import "./Body.css";
 
 function Body() {
   const { loading, data } = useQuery(
@@ -17,7 +18,11 @@ function Body() {
 
   console.log(`LOADING: ${loading}`);
   console.log("DATA", data);
-  return <div>IM A BODY</div>;
+  return (
+    <div className="bodyContainer">
+      <div>IM A BODY</div>;
+    </div>
+  );
 }
 
 export default Body;

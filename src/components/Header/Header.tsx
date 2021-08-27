@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 
 function Header() {
   return (
-    <div className="navContainer">
+    <div className="headerContainer">
       <div className="navButtonsContainer">
         <Button size="large">Line Chart</Button>
         <Button size="large">Radar Chart</Button>
