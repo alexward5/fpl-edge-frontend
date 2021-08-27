@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import "./Body.css";
+import PlayerLineChart from "../PlayerLineChart/PlayerLineChart";
 
 function Body() {
   const { loading, data } = useQuery(
@@ -20,7 +21,7 @@ function Body() {
   console.log("DATA", data);
   return (
     <div className="bodyContainer">
-      <div>IM A BODY</div>;
+      <PlayerLineChart />
     </div>
   );
 }
