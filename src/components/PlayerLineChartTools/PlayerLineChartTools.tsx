@@ -3,9 +3,9 @@ import { useQuery, gql } from "@apollo/client";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import PlayerListSelect from "../PlayerListDropdown/PlayerListSelect";
 import PlayerLineChart from "../PlayerLineChart/PlayerLineChart";
 import compareNames from "../../helpers/compareNames";
-import type Player from "../../types/Player";
 
 const top10Films = [
   { title: "The Shawshank Redemption", year: 1994 },
@@ -42,17 +42,7 @@ function PlayerLineChartTools() {
 
   return (
     <div className="playerLineChartTools">
-      <Autocomplete
-        id="player-list-autocomplete"
-        options={sortedPlayers}
-        getOptionLabel={(option: Player) =>
-          `${option.first_name} ${option.second_name}`
-        }
-        style={{ width: 250 }}
-        renderInput={(params) => (
-          <TextField {...params} label="Select Player" variant="outlined" />
-        )}
-      />
+      <PlayerListSelect sortedPlayers={sortedPlayers} />
       <PlayerLineChart />
       <Autocomplete
         id="data-fields-autocomplete"
