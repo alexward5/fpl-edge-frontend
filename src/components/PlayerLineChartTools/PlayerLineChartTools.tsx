@@ -35,7 +35,7 @@ function PlayerLineChartTools() {
     { variables: { ids: [] } }
   );
 
-  if (loading || !data.players.length) return <CircularProgress size={50} />;
+  if (loading) return <CircularProgress size={50} />;
 
   const sortedPlayers = data.players.slice().sort(compareNames);
 
