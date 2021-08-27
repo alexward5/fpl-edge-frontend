@@ -1,27 +1,11 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
 import "./Body.css";
-import PlayerLineChart from "../PlayerLineChart/PlayerLineChart";
+import PlayerLineChartTools from "../PlayerLineChartTools/PlayerLineChartTools";
 
 function Body() {
-  const { loading, data } = useQuery(
-    gql`
-      query GetPlayerList {
-        players {
-          id
-          first_name
-          second_name
-        }
-      }
-    `,
-    { variables: { ids: [] } }
-  );
-
-  console.log(`LOADING: ${loading}`);
-  console.log("DATA", data);
   return (
     <div className="bodyContainer">
-      <PlayerLineChart />
+      <PlayerLineChartTools />
     </div>
   );
 }

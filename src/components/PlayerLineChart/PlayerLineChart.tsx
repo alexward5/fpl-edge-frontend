@@ -45,8 +45,8 @@ const data = [
 function PlayerLineChart() {
   return (
     <LineChart
-      width={800}
-      height={500}
+      width={700}
+      height={450}
       data={data}
       margin={{
         top: 10,
