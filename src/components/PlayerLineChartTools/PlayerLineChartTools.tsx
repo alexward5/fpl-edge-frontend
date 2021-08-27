@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./PlayerLineChartTools.css";
 import { useQuery, gql } from "@apollo/client";
 import TextField from "@material-ui/core/TextField";
@@ -6,6 +7,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import PlayerListSelect from "../PlayerListDropdown/PlayerListSelect";
 import PlayerLineChart from "../PlayerLineChart/PlayerLineChart";
 import compareNames from "../../helpers/compareNames";
+import type Player from "../../types/Player";
 
 const top10Films = [
   { title: "The Shawshank Redemption", year: 1994 },
@@ -22,6 +24,10 @@ const top10Films = [
 ];
 
 function PlayerLineChartTools() {
+  const [selectedPlayers, setSelectedPlayers] = useState<Player[] | []>([]);
+
+  console.log("SELECTED PLAYERS", selectedPlayers);
+
   const { loading, data } = useQuery(
     gql`
       query GetPlayerList {
@@ -42,7 +48,10 @@ function PlayerLineChartTools() {
 
   return (
     <div className="playerLineChartTools">
-      <PlayerListSelect sortedPlayers={sortedPlayers} />
+      <PlayerListSelect
+        sortedPlayers={sortedPlayers}
+        setSelectedPlayers={setSelectedPlayers}
+      />
       <PlayerLineChart />
       <Autocomplete
         id="data-fields-autocomplete"
