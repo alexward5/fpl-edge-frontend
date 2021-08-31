@@ -33,7 +33,11 @@ function PlayerListSelect({
       }
       style={{ width: 250 }}
       renderInput={(params) => (
-        <TextField {...params} label="Select Player" variant="outlined" />
+        <TextField
+          {...params}
+          label="Select Player to Add"
+          variant="outlined"
+        />
       )}
     />
   );
