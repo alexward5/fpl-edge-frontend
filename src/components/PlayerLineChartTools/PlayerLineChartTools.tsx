@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./PlayerLineChartTools.css";
 import PlayerListSelect from "../PlayerListDropdown/PlayerListSelect";
+import DataTypeSelect from "../../components/DataTypeSelect/DataTypeSelect";
 import PlayerLineChart from "../PlayerLineChart/PlayerLineChart";
 import compareNames from "../../helpers/compareNames";
 import lineChartDataTypes from "../../templates/lineChartDataTypes";
@@ -43,17 +42,10 @@ function PlayerLineChartTools() {
           selectedPlayers={selectedPlayers}
           setSelectedPlayers={setSelectedPlayers}
         />
-        <Autocomplete
-          onChange={(event, newValue: DataType | null) => {
-            if (newValue) setDataType(newValue);
-          }}
-          id="data-fields-autocomplete"
-          options={lineChartDataTypes}
-          getOptionLabel={(option) => option.displayName}
-          style={{ width: 250 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Data Type" variant="outlined" />
-          )}
+        <DataTypeSelect
+          dataType={dataType}
+          setDataType={setDataType}
+          lineChartDataTypes={lineChartDataTypes}
         />
       </div>
       <PlayerLineChart
