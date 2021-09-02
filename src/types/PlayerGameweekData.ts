@@ -1,4 +1,6 @@
-interface PlayerGameweekData {
+import type IObjectKeys from "./IObjectKeys";
+
+interface PlayerGameweekData extends IObjectKeys {
   position: string;
   xp: number;
   assists: number;
@@ -27,7 +29,7 @@ interface PlayerGameweekData {
   team_h_score: string;
   total_ponumbers: number;
   value: number;
-  was_home: Boolean;
+  was_home: boolean;
 }
 
 export default PlayerGameweekData;
