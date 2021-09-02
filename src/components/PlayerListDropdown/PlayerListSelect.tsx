@@ -1,30 +1,30 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import type Player from "../../types/Player";
 
+// Temporary max number of players to display on chart, to be removed after further development
+const MAX_PLAYERS = 3;
+
 function PlayerListSelect({
   sortedPlayers,
+  selectedPlayers,
   setSelectedPlayers,
 }: {
   sortedPlayers: Player[];
+  selectedPlayers: Player[] | [];
   setSelectedPlayers: Dispatch<SetStateAction<Player[] | []>>;
 }) {
-  const [inputValue, setInputValue] = useState("");
-
   return (
     <Autocomplete
       onChange={(event, newValue: Player | null) => {
         if (newValue) {
+          // When player is selected, add them to the parent component's selectedPlayers state
           setSelectedPlayers((prevSelectedPlayers: Player[]) => [
             ...prevSelectedPlayers,
             newValue,
           ]);
         }
-      }}
-      inputValue={inputValue}
-      onInputChange={(event, newInputValue: string) => {
-        setInputValue(newInputValue);
       }}
       id="player-list-autocomplete"
       options={sortedPlayers}
@@ -39,6 +39,7 @@ function PlayerListSelect({
           variant="outlined"
         />
       )}
+      disabled={selectedPlayers.length === MAX_PLAYERS}
     />
   );
 }

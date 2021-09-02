@@ -1,32 +1,22 @@
 import { useState } from "react";
-import "./PlayerLineChartTools.css";
 import { useQuery, gql } from "@apollo/client";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import "./PlayerLineChartTools.css";
 import PlayerListSelect from "../PlayerListDropdown/PlayerListSelect";
 import PlayerLineChart from "../PlayerLineChart/PlayerLineChart";
 import compareNames from "../../helpers/compareNames";
+import lineChartDataTypes from "../../templates/lineChartDataTypes";
 import type Player from "../../types/Player";
+import type DataType from "../../types/DataType";
 
-const top10Films = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-  { title: "The Lord of the Rings: The Return of the King", year: 2003 },
-  { title: "The Good, the Bad and the Ugly", year: 1966 },
-  { title: "Fight Club", year: 1999 },
-  { title: "The Lord of the Rings: The Fellowship of the Ring", year: 2001 },
-];
+const gameweekStart = 1;
+const gameweekEnd = 38;
 
 function PlayerLineChartTools() {
   const [selectedPlayers, setSelectedPlayers] = useState<Player[] | []>([]);
-
-  console.log("SELECTED PLAYERS", selectedPlayers);
+  const [dataType, setDataType] = useState<DataType>(lineChartDataTypes[0]);
 
   const { loading, data } = useQuery(
     gql`
@@ -37,8 +27,7 @@ function PlayerLineChartTools() {
           second_name
         }
       }
-    `,
-    { variables: { ids: [] } }
+    `
   );
 
   if (loading) return <CircularProgress size={50} />;
@@ -48,19 +37,30 @@ function PlayerLineChartTools() {
 
   return (
     <div className="playerLineChartTools">
-      <PlayerListSelect
-        sortedPlayers={sortedPlayers}
-        setSelectedPlayers={setSelectedPlayers}
-      />
-      <PlayerLineChart />
-      <Autocomplete
-        id="data-fields-autocomplete"
-        options={top10Films}
-        getOptionLabel={(option) => option.title}
-        style={{ width: 250 }}
-        renderInput={(params) => (
-          <TextField {...params} label="Select Data Type" variant="outlined" />
-        )}
+      <div className="playerLineChartOptions">
+        <PlayerListSelect
+          sortedPlayers={sortedPlayers}
+          selectedPlayers={selectedPlayers}
+          setSelectedPlayers={setSelectedPlayers}
+        />
+        <Autocomplete
+          onChange={(event, newValue: DataType | null) => {
+            if (newValue) setDataType(newValue);
+          }}
+          id="data-fields-autocomplete"
+          options={lineChartDataTypes}
+          getOptionLabel={(option) => option.displayName}
+          style={{ width: 250 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Data Type" variant="outlined" />
+          )}
+        />
+      </div>
+      <PlayerLineChart
+        selectedPlayers={selectedPlayers}
+        dataType={dataType}
+        gameweekStart={gameweekStart}
+        gameweekEnd={gameweekEnd}
       />
     </div>
   );

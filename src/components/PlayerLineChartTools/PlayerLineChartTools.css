@@ -1,3 +1,10 @@
 .playerLineChartTools {
   display: flex;
+  flex-direction: column;
+}
+
+.playerLineChartOptions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }

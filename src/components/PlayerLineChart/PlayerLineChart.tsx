@@ -8,70 +8,98 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { useQuery, gql } from "@apollo/client";
+import type Player from "../../types/Player";
+import type DataType from "../../types/DataType";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-];
+const lineColors = ["#8884d8", "#10b54d", "#fc5d68"];
 
-function PlayerLineChart() {
+function PlayerLineChart({
+  selectedPlayers,
+  dataType,
+  gameweekStart,
+  gameweekEnd,
+}: {
+  selectedPlayers: Player[] | [];
+  dataType: DataType;
+  gameweekStart: number;
+  gameweekEnd: number;
+}) {
+  // Array to hold data that will be passed into recharts LineChart component
+  const chartDataArray: any[] = [];
+
+  /**
+   * For each selected round/gameweek, e.g. 1..38, create an index in the chart data array
+   * Each index is initialized with an object containing the round/gameweek number
+   */
+  for (let i = gameweekStart; i <= gameweekEnd; i++) {
+    // Gameweek 1 is in index 0, gameweek 2 is in index 1, etc.
+    chartDataArray[i - 1] = { round: i };
+  }
+
+  const { data } = useQuery(
+    gql`
+      query GetSelectedPlayersData($ids: [Int!]!) {
+        players(ids: $ids) {
+          first_name
+          second_name
+          player_gameweek_data {
+            round
+            goals_scored
+            assists
+            bps
+          }
+        }
+      }
+    `,
+    {
+      variables: {
+        // Pass array of ids for the selected players
+        ids: selectedPlayers.map((selectedPlayer) => selectedPlayer.id),
+      },
+      // Only run query when there is at least one player selected
+      skip: !selectedPlayers.length,
+    }
+  );
+
+  // TODO: CLEAN THIS UP
+  if (data?.players?.length) {
+    data.players.forEach((playerData: Player) => {
+      playerData?.player_gameweek_data &&
+        playerData.player_gameweek_data.forEach((gameweekData) => {
+          chartDataArray[gameweekData.round - 1][playerData.second_name] =
+            gameweekData[dataType.dataKey];
+        });
+    });
+  }
+
   return (
     <LineChart
-      width={700}
-      height={450}
-      data={data}
+      width={1100}
+      height={650}
+      data={chartDataArray ?? []}
       margin={{
         top: 10,
-        right: 30,
-        left: 20,
+        right: 40,
+        left: -20,
         bottom: 10,
       }}
     >
-      <CartesianGrid strokeDasharray="5 5" />
-      <XAxis dataKey="name" />
-      <YAxis />
+      <CartesianGrid />
+      <XAxis dataKey="round" />
+      <YAxis allowDecimals={false} />
       <Tooltip />
       <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 5 }}
-      />
-      <Line
-        type="monotone"
-        dataKey="uv"
-        stroke="#82ca9d"
-        activeDot={{ r: 5 }}
-      />
+      {selectedPlayers.map((selectedPlayer, index) => (
+        <Line
+          key={selectedPlayer.id}
+          type="monotone"
+          dataKey={selectedPlayer.second_name}
+          stroke={lineColors[index]}
+          strokeWidth={2}
+          activeDot={{ r: 6 }}
+        />
+      ))}
     </LineChart>
   );
 }
