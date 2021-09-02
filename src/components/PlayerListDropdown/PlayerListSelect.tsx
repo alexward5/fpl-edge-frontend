@@ -18,7 +18,11 @@ function PlayerListSelect({
   return (
     <Autocomplete
       onChange={(event, newValue: Player | null) => {
-        if (newValue) {
+        // Check that a player's name has been selected and the player is not already in selectedPlayers
+        if (
+          newValue &&
+          !selectedPlayers.find((player) => player.id === newValue.id)
+        ) {
           // When player is selected, add them to the parent component's selectedPlayers state
           setSelectedPlayers((prevSelectedPlayers: Player[]) => [
             ...prevSelectedPlayers,
