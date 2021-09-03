@@ -9,6 +9,7 @@ import {
   Legend,
 } from "recharts";
 import { useQuery, gql } from "@apollo/client";
+import formatLineChartData from "../../helpers/formatLineChartData";
 import type Player from "../../types/Player";
 import type DataType from "../../types/DataType";
 
@@ -25,18 +26,6 @@ function PlayerLineChart({
   gameweekStart: number;
   gameweekEnd: number;
 }) {
-  // Array to hold data that will be passed into recharts LineChart component
-  const chartDataArray: any[] = [];
-
-  /**
-   * For each selected round/gameweek, e.g. 1..38, create an index in the chart data array
-   * Each index is initialized with an object containing the round/gameweek number
-   */
-  for (let i = gameweekStart; i <= gameweekEnd; i++) {
-    // Gameweek 1 is in index 0, gameweek 2 is in index 1, etc.
-    chartDataArray[i - 1] = { round: i };
-  }
-
   const { data } = useQuery(
     gql`
       query GetSelectedPlayersData($ids: [Int!]!) {
@@ -62,16 +51,12 @@ function PlayerLineChart({
     }
   );
 
-  // TODO: CLEAN THIS UP
-  if (data?.players?.length) {
-    data.players.forEach((playerData: Player) => {
-      playerData?.player_gameweek_data &&
-        playerData.player_gameweek_data.forEach((gameweekData) => {
-          chartDataArray[gameweekData.round - 1][playerData.second_name] =
-            gameweekData[dataType.dataKey];
-        });
-    });
-  }
+  const chartDataArray = formatLineChartData(
+    gameweekStart,
+    gameweekEnd,
+    data,
+    dataType
+  );
 
   return (
     <LineChart

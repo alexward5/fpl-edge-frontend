@@ -31,7 +31,7 @@ function PlayerLineChartTools() {
 
   if (loading) return <CircularProgress size={50} />;
 
-  // Sort the players list by first name
+  // Sort the players list by first name in ascending order
   const sortedPlayers = data.players.slice().sort(compareNames);
 
   return (
