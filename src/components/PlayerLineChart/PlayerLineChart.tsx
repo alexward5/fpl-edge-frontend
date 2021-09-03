@@ -51,7 +51,7 @@ function PlayerLineChart({
     }
   );
 
-  const chartDataArray = formatLineChartData(
+  const formattedData = formatLineChartData(
     gameweekStart,
     gameweekEnd,
     data,
@@ -62,7 +62,7 @@ function PlayerLineChart({
     <LineChart
       width={1100}
       height={650}
-      data={chartDataArray ?? []}
+      data={formattedData ?? []}
       margin={{
         top: 10,
         right: 40,
