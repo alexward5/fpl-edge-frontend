@@ -64,8 +64,8 @@ function PlayerLineChart({
 
   return (
     <LineChart
-      width={1050}
-      height={650}
+      width={1000}
+      height={600}
       data={formattedData ?? []}
       margin={{
         top: 10,
