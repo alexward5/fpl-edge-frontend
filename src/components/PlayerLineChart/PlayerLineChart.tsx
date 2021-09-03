@@ -36,7 +36,11 @@ function PlayerLineChart({
             round
             goals_scored
             assists
+            influence
+            creativity
+            threat
             bps
+            minutes
           }
         }
       }
@@ -60,7 +64,7 @@ function PlayerLineChart({
 
   return (
     <LineChart
-      width={1100}
+      width={1050}
       height={650}
       data={formattedData ?? []}
       margin={{
