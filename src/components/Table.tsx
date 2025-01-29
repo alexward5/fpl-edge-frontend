@@ -42,5 +42,9 @@ export default function Table() {
         columns,
     });
 
-    return <MaterialReactTable table={table} />;
+    return (
+        <div className="table-container">
+            <MaterialReactTable table={table} />
+        </div>
+    );
 }
