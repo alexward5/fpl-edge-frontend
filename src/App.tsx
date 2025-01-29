@@ -1,11 +1,13 @@
 import "./App.css";
-import TableContainer from "./components/TableContainer.tsx";
+import Body from "./components/Body/Body.tsx";
+import Header from "./components/Header/Header.tsx";
 
 function App() {
     return (
         <>
             <div className="app-contianer">
-                <TableContainer />
+                <Header />
+                <Body />
             </div>
         </>
     );

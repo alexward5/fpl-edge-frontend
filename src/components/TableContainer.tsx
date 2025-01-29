@@ -29,11 +29,9 @@ function TableContainer() {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <>
-            <div className="table-container">
-                <Table data={data.players} />
-            </div>
-        </>
+        <div className="table-container">
+            <Table data={data.players} />
+        </div>
     );
 }
 

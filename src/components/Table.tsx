@@ -33,7 +33,10 @@ export default function DataTable(props: Props) {
     return (
         <Paper
             elevation={5}
-            sx={{ height: "90%", width: "95%", maxWidth: "1000px" }}
+            sx={{
+                height: "100%",
+                width: "100%",
+            }}
         >
             <DataGrid
                 rows={data}
@@ -43,6 +46,7 @@ export default function DataTable(props: Props) {
                 checkboxSelection
                 sx={{ border: 0 }}
                 getRowId={(row) => row.fpl_player_code}
+                rowHeight={38}
             />
         </Paper>
     );
