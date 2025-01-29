@@ -17,7 +17,7 @@ const columns: GridColDef[] = [
     },
     {
         field: "fpl_selected_by_percent",
-        headerName: "% Selected",
+        headerName: "Selected %",
         type: "number",
         width: 100,
     },
@@ -28,7 +28,7 @@ const paginationModel = { page: 0, pageSize: 25 };
 export default function DataTable(props: Props) {
     const { data } = props;
 
-    console.log(data);
+    // console.log(data);
 
     return (
         <Paper

@@ -1,5 +1,7 @@
+import { useState } from "react";
 import "./TableContainer.css";
 import Table from "../Table/Table.tsx";
+import TableControls from "../TableControls/TableControls.tsx";
 import { useQuery, gql } from "@apollo/client";
 
 // import { gql } from "../../src/__generated__/gql";
@@ -26,10 +28,16 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 function TableContainer() {
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
 
-    if (loading) return <p>Loading...</p>;
+    const [gameweekRange, setGameweekRange] = useState<number[]>([1, 24]);
+
+    if (loading) return <h1>Loading...</h1>;
 
     return (
         <div style={{ height: "600px", width: "90%" }}>
+            <TableControls
+                gameweekRange={gameweekRange}
+                setGameweekRange={setGameweekRange}
+            />
             <Table data={data.players} />
         </div>
     );
