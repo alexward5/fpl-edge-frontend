@@ -13,6 +13,12 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
             fpl_player_position
             fpl_player_cost
             fpl_selected_by_percent
+            player_gameweek_data {
+                round
+                calc_fpl_npxp
+                fbref_xg_assist
+                fbref_npxg
+            }
         }
     }
 `);
