@@ -23,7 +23,7 @@ const columns: GridColDef[] = [
     },
 ];
 
-const paginationModel = { page: 0, pageSize: 10 };
+const paginationModel = { page: 0, pageSize: 25 };
 
 export default function DataTable(props: Props) {
     const { data } = props;
@@ -33,13 +33,13 @@ export default function DataTable(props: Props) {
     return (
         <Paper
             elevation={5}
-            sx={{ height: 500, width: "95%", maxWidth: "1000px" }}
+            sx={{ height: "90%", width: "95%", maxWidth: "1000px" }}
         >
             <DataGrid
                 rows={data}
                 columns={columns}
                 initialState={{ pagination: { paginationModel } }}
-                pageSizeOptions={[5, 10, 25, 50]}
+                pageSizeOptions={[25, 50, 100]}
                 checkboxSelection
                 sx={{ border: 0 }}
                 getRowId={(row) => row.fpl_player_code}
