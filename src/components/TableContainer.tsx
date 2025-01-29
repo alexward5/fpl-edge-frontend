@@ -7,9 +7,12 @@ import { useQuery, gql } from "@apollo/client";
 const GET_PLAYER_GAMEWEEK_DATA = gql(`
     query GetPlayerGameweekData {
         players {
+            fpl_player_code
             fpl_web_name
             fbref_team
             fpl_player_position
+            fpl_player_cost
+            fpl_selected_by_percent
         }
     }
 `);
@@ -19,11 +22,11 @@ function TableContainer() {
 
     if (loading) return <p>Loading...</p>;
 
-    console.log(data);
-
     return (
         <>
-            <Table data={data.players} className="table-container" />
+            <div className="table-container">
+                <Table data={data.players} />
+            </div>
         </>
     );
 }
