@@ -9,7 +9,7 @@ function Body() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "violet",
+                backgroundColor: "darkseagreen",
             }}
         >
             <TableContainer />
