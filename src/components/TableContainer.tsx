@@ -1,3 +1,4 @@
+import "./TableContainer.css";
 import Table from "./Table.tsx";
 import { useQuery, gql } from "@apollo/client";
 
@@ -22,7 +23,7 @@ function TableContainer() {
 
     return (
         <>
-            <Table data={data.players} />
+            <Table data={data.players} className="table-container" />
         </>
     );
 }
