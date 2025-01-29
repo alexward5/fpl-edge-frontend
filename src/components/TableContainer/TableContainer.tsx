@@ -1,5 +1,5 @@
 import "./TableContainer.css";
-import Table from "./Table.tsx";
+import Table from "../Table/Table.tsx";
 import { useQuery, gql } from "@apollo/client";
 
 // import { gql } from "../../src/__generated__/gql";
@@ -29,7 +29,7 @@ function TableContainer() {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div className="table-container">
+        <div style={{ height: "600px", width: "90%" }}>
             <Table data={data.players} />
         </div>
     );

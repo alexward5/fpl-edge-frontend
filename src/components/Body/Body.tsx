@@ -1,5 +1,5 @@
 // import "./Body.css";
-import TableContainer from "../TableContainer";
+import TableContainer from "../TableContainer/TableContainer";
 
 function Body() {
     return (
