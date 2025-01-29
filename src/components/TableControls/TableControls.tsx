@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 
 function valuetext(value: number) {
@@ -9,7 +7,7 @@ function valuetext(value: number) {
 export default function RangeSlider(props: any) {
     const { gameweekRange, setGameweekRange } = props;
 
-    const handleChange = (event: Event, newValue: number | number[]) => {
+    const handleChange = (_event: Event, newValue: number | number[]) => {
         setGameweekRange(newValue as number[]);
     };
 
