@@ -5,33 +5,22 @@ import {
     useMaterialReactTable,
 } from "material-react-table";
 
-const data = [
-    {
-        name: "John",
-        age: 30,
-        status: "active",
-    },
-    {
-        name: "Sara",
-        age: 25,
-        status: "inactive",
-    },
-];
+export default function Table(props: any) {
+    const { data } = props;
 
-export default function Table() {
     const columns = useMemo(
         () => [
             {
-                accessorKey: "name",
+                accessorKey: "fpl_web_name",
                 header: "Name",
             },
             {
-                accessorKey: "age",
-                header: "Age",
+                accessorKey: "fbref_team",
+                header: "Team",
             },
             {
-                accessorKey: "status",
-                header: "Status",
+                accessorKey: "fpl_player_position",
+                header: "Position",
             },
         ],
         [],
