@@ -1,7 +1,7 @@
 import Slider from "@mui/material/Slider";
 
 function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}`;
 }
 
 export default function RangeSlider(props: any) {

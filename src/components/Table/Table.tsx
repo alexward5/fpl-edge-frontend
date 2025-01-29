@@ -7,19 +7,37 @@ interface Props {
 
 const columns: GridColDef[] = [
     { field: "fpl_web_name", headerName: "Name", width: 150 },
-    { field: "fbref_team", headerName: "Team", width: 100 },
-    { field: "fpl_player_position", headerName: "Position", width: 100 },
+    { field: "fbref_team", headerName: "Team", width: 120 },
+    { field: "fpl_player_position", headerName: "Position", width: 120 },
     {
         field: "fpl_player_cost",
         headerName: "Price",
         type: "number",
-        width: 100,
+        width: 120,
     },
     {
         field: "fpl_selected_by_percent",
         headerName: "Selected %",
         type: "number",
-        width: 100,
+        width: 120,
+    },
+    {
+        field: "sumNPxG",
+        headerName: "NPxG",
+        type: "number",
+        width: 120,
+    },
+    {
+        field: "sumxA",
+        headerName: "xA",
+        type: "number",
+        width: 120,
+    },
+    {
+        field: "sumNPxP",
+        headerName: "NPxP",
+        type: "number",
+        width: 120,
     },
 ];
 
