@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Slider from "@mui/material/Slider";
 
 function valuetext(value: number) {
@@ -5,7 +6,11 @@ function valuetext(value: number) {
 }
 
 export default function RangeSlider(props: any) {
-    const { gameweekRange, setGameweekRange } = props;
+    const { gameweekRange, setGameweekRange, numGameweeks } = props;
+
+    useEffect(() => {
+        setGameweekRange([1, numGameweeks]);
+    }, [numGameweeks]);
 
     const handleChange = (_event: Event, newValue: number | number[]) => {
         setGameweekRange(newValue as number[]);
@@ -31,7 +36,7 @@ export default function RangeSlider(props: any) {
                 getAriaValueText={valuetext}
                 step={1}
                 min={1}
-                max={24}
+                max={numGameweeks}
             />
             <div style={{ marginLeft: "10px" }}>
                 <h1>{gameweekRange[1]}</h1>

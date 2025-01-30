@@ -40,7 +40,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 function TableContainer() {
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
 
-    const [gameweekRange, setGameweekRange] = useState<number[]>([1, 24]);
+    const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
 
     if (loading) return <h1>Loading...</h1>;
 
@@ -54,7 +54,7 @@ function TableContainer() {
                 data.round >= gameweekRange[0] &&
                 data.round <= gameweekRange[1]
             ) {
-                sumNPxG += data.calc_fpl_npxp;
+                sumNPxG += data.fbref_npxg;
                 sumxA += data.fbref_xg_assist;
                 sumNPxP += data.calc_fpl_npxp;
             }
@@ -73,13 +73,19 @@ function TableContainer() {
         };
     });
 
-    console.log(displayedData);
+    const numGameweeks = Math.max(
+        ...data.players.map(
+            (obj: { player_gameweek_data: any }) =>
+                obj.player_gameweek_data.length,
+        ),
+    );
 
     return (
         <div style={{ height: "600px", width: "90%" }}>
             <TableControls
                 gameweekRange={gameweekRange}
                 setGameweekRange={setGameweekRange}
+                numGameweeks={numGameweeks}
             />
             <Table data={displayedData} />
         </div>
