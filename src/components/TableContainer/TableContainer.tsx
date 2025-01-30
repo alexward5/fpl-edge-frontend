@@ -13,6 +13,7 @@ interface DisplayedData {
     fpl_player_position: string;
     fpl_player_cost: number;
     fpl_selected_by_percent: number;
+    minutes: number;
     sumNPxG: number;
     sumxA: number;
     sumNPxP: number;
@@ -29,6 +30,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
             fpl_selected_by_percent
             player_gameweek_data {
                 round
+                minutes
                 calc_fpl_npxp
                 fbref_xg_assist
                 fbref_npxg
@@ -46,6 +48,7 @@ function TableContainer() {
 
     const displayedData: DisplayedData[] = data.players.map((player: any) => {
         // Sum player expected stats from gameweek range
+        let sumMinutes = 0;
         let sumNPxG = 0;
         let sumxA = 0;
         let sumNPxP = 0;
@@ -54,6 +57,7 @@ function TableContainer() {
                 data.round >= gameweekRange[0] &&
                 data.round <= gameweekRange[1]
             ) {
+                sumMinutes += data.minutes;
                 sumNPxG += data.fbref_npxg;
                 sumxA += data.fbref_xg_assist;
                 sumNPxP += data.calc_fpl_npxp;
@@ -67,6 +71,7 @@ function TableContainer() {
             fpl_player_position: player.fpl_player_position,
             fpl_player_cost: player.fpl_player_cost,
             fpl_selected_by_percent: player.fpl_selected_by_percent,
+            sumMinutes: sumMinutes,
             sumNPxG: sumNPxG,
             sumxA: sumxA,
             sumNPxP: sumNPxP,

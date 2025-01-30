@@ -22,6 +22,12 @@ const columns: GridColDef[] = [
         width: 120,
     },
     {
+        field: "sumMinutes",
+        headerName: "Minutes",
+        type: "number",
+        width: 120,
+    },
+    {
         field: "sumNPxG",
         headerName: "NPxG",
         type: "number",
