@@ -52,23 +52,17 @@ const paginationModel = { page: 0, pageSize: 25 };
 export default function DataTable(props: Props) {
     const { data } = props;
 
-    // console.log(data);
+    console.log(data);
 
     return (
-        <Paper
-            elevation={5}
-            sx={{
-                height: "100%",
-                width: "100%",
-            }}
-        >
+        <Paper elevation={5}>
             <DataGrid
                 rows={data}
                 columns={columns}
                 initialState={{ pagination: { paginationModel } }}
-                pageSizeOptions={[25, 50, 100]}
+                pageSizeOptions={[10, 25, 50, 100]}
                 checkboxSelection
-                sx={{ border: 0 }}
+                sx={{ border: 0, height: "100%" }}
                 getRowId={(row) => row.fpl_player_code}
                 rowHeight={38}
             />
