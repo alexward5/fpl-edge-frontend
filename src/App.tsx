@@ -1,11 +1,11 @@
 import "./App.css";
-import Body from "./components/Body/Body.tsx";
+import PageContent from "./components/PageContent/PageContent.tsx";
 
 function App() {
     return (
         <>
             <div className="app-contianer">
-                <Body />
+                <PageContent />
             </div>
         </>
     );

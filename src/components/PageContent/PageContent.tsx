@@ -2,9 +2,9 @@ import { useState } from "react";
 // import "./Body.css";
 import { useQuery, gql } from "@apollo/client";
 import Box from "@mui/material/Box";
-import MyAppBar from "../AppBar/AppBar";
-import DrawerPartial from "../Drawer/DrawerPartial";
-import BodyPartial from "./BodyPartial";
+import Header from "../Header/Header";
+import Drawer from "../Drawer/Drawer";
+import TableContainer from "../TableContainer/TableContainer";
 
 interface DisplayedData {
     fpl_player_code: string;
@@ -39,7 +39,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
     }
 `);
 
-function Body() {
+function PageContent() {
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
 
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
@@ -104,17 +104,17 @@ function Body() {
 
     return (
         <Box sx={{ display: "flex" }}>
-            <MyAppBar handleDrawerToggle={handleDrawerToggle} />
-            <DrawerPartial
+            <Header handleDrawerToggle={handleDrawerToggle} />
+            <Drawer
                 numGameweeks={numGameweeks}
                 setGameweekRange={setGameweekRange}
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                 handleDrawerClose={handleDrawerClose}
             />
-            <BodyPartial loading={loading} displayedData={displayedData} />
+            <TableContainer loading={loading} displayedData={displayedData} />
         </Box>
     );
 }
 
-export default Body;
+export default PageContent;

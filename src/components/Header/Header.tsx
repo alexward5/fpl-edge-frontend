@@ -1,15 +1,37 @@
-// import "./Header.css";
+import AppBar from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
-function Header() {
+const drawerWidth = 240;
+
+export default function Header(props: any) {
+    const { handleDrawerToggle } = props;
+
     return (
-        <div
-            style={{
-                height: "60px",
-                borderBottom: "2px solid black",
-                backgroundColor: "gainsboro",
+        <AppBar
+            position="fixed"
+            elevation={0}
+            sx={{
+                width: { sm: `calc(100% - ${drawerWidth}px)` },
+                ml: { sm: `${drawerWidth}px` },
             }}
-        ></div>
+        >
+            <Toolbar>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    sx={{ mr: 2, display: { sm: "none" } }}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" noWrap component="div">
+                    Player Gameweek Data
+                </Typography>
+            </Toolbar>
+        </AppBar>
     );
 }
-
-export default Header;
