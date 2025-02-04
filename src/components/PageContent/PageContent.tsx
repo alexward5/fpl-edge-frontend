@@ -63,6 +63,13 @@ function PageContent() {
 
     if (loading) return <h1>Loading...</h1>;
 
+    const numGameweeks = Math.max(
+        ...data.players.map(
+            (obj: { player_gameweek_data: any }) =>
+                obj.player_gameweek_data.length,
+        ),
+    );
+
     const displayedData: DisplayedData[] = data.players.map((player: any) => {
         // Sum player expected stats from gameweek range
         let sumMinutes = 0;
@@ -95,18 +102,12 @@ function PageContent() {
         };
     });
 
-    const numGameweeks = Math.max(
-        ...data.players.map(
-            (obj: { player_gameweek_data: any }) =>
-                obj.player_gameweek_data.length,
-        ),
-    );
-
     return (
         <Box sx={{ display: "flex" }}>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <Drawer
                 numGameweeks={numGameweeks}
+                gameweekRange={gameweekRange}
                 setGameweekRange={setGameweekRange}
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}
