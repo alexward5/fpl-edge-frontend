@@ -39,7 +39,7 @@ export default function RangeSlider(props: any) {
     // Currently selected slider range to be displayed
     const marks = [
         { value: 1, label: gameweekRange[0] },
-        { value: 23, label: gameweekRange[1] },
+        { value: numGameweeks, label: gameweekRange[1] },
     ];
 
     return (
