@@ -52,8 +52,6 @@ const paginationModel = { page: 0, pageSize: 25 };
 export default function DataTable(props: Props) {
     const { data } = props;
 
-    console.log(data);
-
     return (
         <Paper elevation={5}>
             <DataGrid
