@@ -4,7 +4,7 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import GameweekSlider from "../GameweekSlider/GameweekSlider";
-import PositionSelect from "../PositionSelect/PositionSelect";
+import CheckboxSelect from "../CheckboxSelect/CheckboxSelect";
 
 const drawerWidth = 240;
 
@@ -29,8 +29,7 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
+                    padding: "10px 20px 0px 20px",
                 }}
             >
                 <GameweekSlider
@@ -43,11 +42,13 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
+                    padding: "15px 20px 0px 20px",
                 }}
             >
-                <PositionSelect />
+                <CheckboxSelect
+                    listItems={["DEF", "MID", "FWD"]}
+                    label="Position"
+                />
             </Box>
         </div>
     );
