@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -19,7 +19,7 @@ const MenuProps = {
 };
 
 export default function MultipleSelectCheckmarks(props: any) {
-    const { listItems, label } = props;
+    const { listItems, label, selectedList, setSelectedList } = props;
 
     // Track the original order of the list so it can be maintained
     const listOrder: Record<string, number> = {};
@@ -27,11 +27,9 @@ export default function MultipleSelectCheckmarks(props: any) {
         listOrder[listItem] = index;
     });
 
-    const [selectedList, setSelectedList] = useState<string[]>([]);
-
     useEffect(() => {
         setSelectedList(listItems);
-    }, [listItems]);
+    }, []);
 
     const handleChange = (event: SelectChangeEvent<typeof selectedList>) => {
         const value = event.target.value;
@@ -44,10 +42,12 @@ export default function MultipleSelectCheckmarks(props: any) {
     return (
         <div>
             <FormControl sx={{ width: "100%", paddingBottom: "20px" }}>
-                <InputLabel id="multiple-checkbox-label">Position</InputLabel>
+                <InputLabel id={`multiple-checkbox-label-${label}`}>
+                    {label}
+                </InputLabel>
                 <Select
-                    labelId="multiple-checkbox-label"
-                    id="multiple-checkbox"
+                    labelId={`multiple-checkbox-label-${label}`}
+                    id={`multiple-checkbox-${label}`}
                     multiple
                     value={selectedList}
                     onChange={handleChange}
@@ -59,7 +59,7 @@ export default function MultipleSelectCheckmarks(props: any) {
                         }
 
                         return selected
-                            .sort((a, b) => {
+                            .sort((a: string, b: string) => {
                                 return listOrder[a] - listOrder[b];
                             })
                             .join(", ");

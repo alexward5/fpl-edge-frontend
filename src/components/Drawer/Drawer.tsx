@@ -16,6 +16,11 @@ export default function ResponsiveDrawer(props: any) {
         mobileOpen,
         handleDrawerTransitionEnd,
         handleDrawerClose,
+        uniqueTeamNames,
+        displayedTeams,
+        setDisplayedTeams,
+        displayedPositions,
+        setDisplayedPositions,
     } = props;
 
     useEffect(() => {
@@ -29,7 +34,7 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
-                    padding: "10px 20px 0px 20px",
+                    padding: "10px 25px 0px 25px",
                 }}
             >
                 <GameweekSlider
@@ -42,12 +47,20 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
-                    padding: "15px 20px 0px 20px",
+                    padding: "15px 15px 0px 15px",
                 }}
             >
                 <CheckboxSelect
                     listItems={["DEF", "MID", "FWD"]}
                     label="Position"
+                    selectedList={displayedPositions}
+                    setSelectedList={setDisplayedPositions}
+                />
+                <CheckboxSelect
+                    listItems={uniqueTeamNames}
+                    label="Team"
+                    selectedList={displayedTeams}
+                    setSelectedList={setDisplayedTeams}
                 />
             </Box>
         </div>
