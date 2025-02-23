@@ -99,7 +99,7 @@ function PageContent() {
 
     const [selected, setSelected] = useState<readonly number[]>([]);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(25);
     const [order, setOrder] = useState<string>("asc");
     const [orderBy, setOrderBy] = useState<string>("calories");
 
