@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
 
@@ -148,76 +147,70 @@ export default function EnhancedTable(props: any) {
     );
 
     return (
-        <TableContainer>
-            <Table
-                stickyHeader
-                sx={{ minWidth: 750 }}
-                aria-labelledby="tableTitle"
-                size={dense ? "small" : "medium"}
-            >
-                <EnhancedTableHead
-                    numSelected={selected.length}
-                    order={order}
-                    orderBy={orderBy}
-                    onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
-                    rowCount={rows.length}
-                />
-                <TableBody>
-                    {visibleRows.map((row, index) => {
-                        const isItemSelected = selected.includes(row.id);
-                        const labelId = `enhanced-table-checkbox-${index}`;
+        <Table
+            stickyHeader
+            sx={{ minWidth: 750 }}
+            aria-labelledby="tableTitle"
+            size={dense ? "small" : "medium"}
+        >
+            <EnhancedTableHead
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+            />
+            <TableBody>
+                {visibleRows.map((row, index) => {
+                    const isItemSelected = selected.includes(row.id);
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                        return (
-                            <TableRow
-                                hover
-                                onClick={(event) => handleClick(event, row.id)}
-                                role="checkbox"
-                                aria-checked={isItemSelected}
-                                tabIndex={-1}
-                                key={row.id}
-                                selected={isItemSelected}
-                                sx={{ cursor: "pointer" }}
-                            >
-                                <TableCell padding="checkbox">
-                                    <Checkbox
-                                        color="primary"
-                                        checked={isItemSelected}
-                                        inputProps={{
-                                            "aria-labelledby": labelId,
-                                        }}
-                                    />
-                                </TableCell>
-                                <TableCell
-                                    component="th"
-                                    id={labelId}
-                                    scope="row"
-                                    padding="none"
-                                >
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.calories}
-                                </TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">
-                                    {row.protein}
-                                </TableCell>
-                            </TableRow>
-                        );
-                    })}
-                    {emptyRows > 0 && (
+                    return (
                         <TableRow
-                            style={{
-                                height: (dense ? 33 : 53) * emptyRows,
-                            }}
+                            hover
+                            onClick={(event) => handleClick(event, row.id)}
+                            role="checkbox"
+                            aria-checked={isItemSelected}
+                            tabIndex={-1}
+                            key={row.id}
+                            selected={isItemSelected}
+                            sx={{ cursor: "pointer" }}
                         >
-                            <TableCell colSpan={6} />
+                            <TableCell padding="checkbox">
+                                <Checkbox
+                                    color="primary"
+                                    checked={isItemSelected}
+                                    inputProps={{
+                                        "aria-labelledby": labelId,
+                                    }}
+                                />
+                            </TableCell>
+                            <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="none"
+                            >
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.calories}</TableCell>
+                            <TableCell align="right">{row.fat}</TableCell>
+                            <TableCell align="right">{row.carbs}</TableCell>
+                            <TableCell align="right">{row.protein}</TableCell>
                         </TableRow>
-                    )}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    );
+                })}
+                {emptyRows > 0 && (
+                    <TableRow
+                        style={{
+                            height: (dense ? 33 : 53) * emptyRows,
+                        }}
+                    >
+                        <TableCell colSpan={6} />
+                    </TableRow>
+                )}
+            </TableBody>
+        </Table>
     );
 }
