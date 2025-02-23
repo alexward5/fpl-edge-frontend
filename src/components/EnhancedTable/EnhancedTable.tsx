@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,13 +7,17 @@ import Checkbox from "@mui/material/Checkbox";
 
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 
-interface Data {
-    id: number;
-    calories: number;
-    carbs: number;
-    fat: number;
-    name: string;
-    protein: number;
+interface DisplayedData {
+    fplPlayerCode: string;
+    fplWebName: string;
+    fbrefTeam: string;
+    fplPlayerPosition: string;
+    fplPlayerCost: number;
+    fplSelectedByPercent: number;
+    sumMinutes: number;
+    sumNPxG: number;
+    sumxA: number;
+    sumNPxP: number;
 }
 
 type Order = "asc" | "desc";
@@ -43,13 +47,13 @@ function getComparator<Key extends keyof any>(
 export default function EnhancedTable(props: any) {
     const { rows, page, rowsPerPage } = props;
 
-    const [order, setOrder] = useState<Order>("asc");
-    const [orderBy, setOrderBy] = useState<keyof Data>("calories");
+    const [order, setOrder] = useState<Order>("desc");
+    const [orderBy, setOrderBy] = useState<keyof DisplayedData>("sumNPxP");
     const [selected, setSelected] = useState<readonly number[]>([]);
 
     const handleRequestSort = (
         _: React.MouseEvent<unknown>,
-        property: keyof Data,
+        property: keyof DisplayedData,
     ) => {
         const isAsc = orderBy === property && order === "asc";
         setOrder(isAsc ? "desc" : "asc");
@@ -60,7 +64,7 @@ export default function EnhancedTable(props: any) {
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         if (event.target.checked) {
-            const newSelected = rows.map((n: Data) => n.id);
+            const newSelected = rows.map((n: DisplayedData) => n.fplPlayerCode);
             setSelected(newSelected);
             return;
         }
@@ -90,13 +94,9 @@ export default function EnhancedTable(props: any) {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-    const visibleRows = useMemo(
-        () =>
-            [...rows]
-                .sort(getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-        [order, orderBy, page, rowsPerPage],
-    );
+    const visibleRows = [...rows]
+        .sort(getComparator(order, orderBy))
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
     return (
         <Table
@@ -125,7 +125,7 @@ export default function EnhancedTable(props: any) {
                             role="checkbox"
                             aria-checked={isItemSelected}
                             tabIndex={-1}
-                            key={row.id}
+                            key={row.fplPlayerCode}
                             selected={isItemSelected}
                             sx={{ cursor: "pointer" }}
                         >
@@ -144,12 +144,24 @@ export default function EnhancedTable(props: any) {
                                 scope="row"
                                 padding="none"
                             >
-                                {row.name}
+                                {row.fplWebName}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="right">{row.fbrefTeam}</TableCell>
+                            <TableCell align="right">
+                                {row.fplPlayerPosition}
+                            </TableCell>
+                            <TableCell align="right">
+                                {row.fplPlayerCost}
+                            </TableCell>
+                            <TableCell align="right">
+                                {row.fplSelectedByPercent}
+                            </TableCell>
+                            <TableCell align="right">
+                                {row.sumMinutes}
+                            </TableCell>
+                            <TableCell align="right">{row.sumNPxG}</TableCell>
+                            <TableCell align="right">{row.sumxA}</TableCell>
+                            <TableCell align="right">{row.sumNPxP}</TableCell>
                         </TableRow>
                     );
                 })}
@@ -166,3 +178,13 @@ export default function EnhancedTable(props: any) {
         </Table>
     );
 }
+
+// fplWebName: string;
+// fbrefTeam: string;
+// fplPlayerPosition: string;
+// fplPlayerCost: number;
+// fplSelectedByPercent: number;
+// minutes: number;
+// sumNPxG: number;
+// sumxA: number;
+// sumNPxP: number;

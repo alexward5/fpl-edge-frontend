@@ -6,52 +6,80 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { visuallyHidden } from "@mui/utils";
 
-interface Data {
-    id: number;
-    calories: number;
-    carbs: number;
-    fat: number;
-    name: string;
-    protein: number;
+interface DisplayedData {
+    fplPlayerCode: string;
+    fplWebName: string;
+    fbrefTeam: string;
+    fplPlayerPosition: string;
+    fplPlayerCost: number;
+    fplSelectedByPercent: number;
+    sumMinutes: number;
+    sumNPxG: number;
+    sumxA: number;
+    sumNPxP: number;
 }
 
 interface HeadCell {
     disablePadding: boolean;
-    id: keyof Data;
+    id: keyof DisplayedData;
     label: string;
     numeric: boolean;
 }
 
 const headCells: readonly HeadCell[] = [
     {
-        id: "name",
+        id: "fplWebName",
         numeric: false,
         disablePadding: true,
-        label: "Dessert (100g serving)",
+        label: "Name",
     },
     {
-        id: "calories",
+        id: "fbrefTeam",
         numeric: true,
         disablePadding: false,
-        label: "Calories",
+        label: "Team",
     },
     {
-        id: "fat",
+        id: "fplPlayerPosition",
         numeric: true,
         disablePadding: false,
-        label: "Fat (g)",
+        label: "Position",
     },
     {
-        id: "carbs",
+        id: "fplPlayerCost",
         numeric: true,
         disablePadding: false,
-        label: "Carbs (g)",
+        label: "Cost",
     },
     {
-        id: "protein",
+        id: "fplSelectedByPercent",
         numeric: true,
         disablePadding: false,
-        label: "Protein (g)",
+        label: "Selected %",
+    },
+    {
+        id: "sumMinutes",
+        numeric: true,
+        disablePadding: false,
+        label: "Minutes",
+    },
+    {
+        id: "sumNPxG",
+        numeric: true,
+        disablePadding: false,
+        label: "NPxG",
+    },
+    {
+        id: "sumxA",
+        numeric: true,
+        disablePadding: false,
+        label: "xA",
+    },
+    {
+        id: "sumNPxP",
+        numeric: true,
+        disablePadding: false,
+        label: "NPxP",
     },
 ];
 
@@ -59,7 +87,7 @@ interface EnhancedTableProps {
     numSelected: number;
     onRequestSort: (
         event: React.MouseEvent<unknown>,
-        property: keyof Data,
+        property: keyof DisplayedData,
     ) => void;
     onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
     order: "asc" | "desc";
@@ -77,7 +105,8 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
         onRequestSort,
     } = props;
     const createSortHandler =
-        (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+        (property: keyof DisplayedData) =>
+        (event: React.MouseEvent<unknown>) => {
             onRequestSort(event, property);
         };
 
