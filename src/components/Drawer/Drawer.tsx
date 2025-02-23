@@ -29,7 +29,17 @@ export default function ResponsiveDrawer(props: any) {
 
     const drawer = (
         <div>
-            <Toolbar />
+            <Toolbar
+                // sx={{
+                //     minHeight: "56px",
+                //     height: "56px",
+                //     "& .MuiToolbar-root": {
+                //         minHeight: "56px",
+                //         height: "56px",
+                //     },
+                // }}
+                variant="regular"
+            />
             <Divider />
             <Box
                 sx={{
