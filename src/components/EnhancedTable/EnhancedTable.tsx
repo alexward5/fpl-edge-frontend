@@ -75,13 +75,13 @@ const rows = [
     createData(13, "Oreo", 437, 18.0, 63, 4.0),
 ];
 
-export default function EnhancedTable() {
+export default function EnhancedTable(props: any) {
+    const { page, rowsPerPage } = props;
+
     const [order, setOrder] = useState<Order>("asc");
     const [orderBy, setOrderBy] = useState<keyof Data>("calories");
     const [selected, setSelected] = useState<readonly number[]>([]);
-    const [page, setPage] = useState(0);
     const [dense, setDense] = useState(true);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const handleRequestSort = (
         event: React.MouseEvent<unknown>,

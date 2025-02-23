@@ -118,26 +118,6 @@ function PageContent() {
         }
     };
 
-    const handleRequestSort = (
-        event: React.MouseEvent<unknown>,
-        property: keyof Data,
-    ) => {
-        const isAsc = orderBy === property && order === "asc";
-        setOrder(isAsc ? "desc" : "asc");
-        setOrderBy(property);
-    };
-
-    const handleSelectAllClick = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        if (event.target.checked) {
-            const newSelected = rows.map((n) => n.id);
-            setSelected(newSelected);
-            return;
-        }
-        setSelected([]);
-    };
-
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -243,7 +223,7 @@ function PageContent() {
                         overflow: "auto",
                     }}
                 >
-                    <EnhancedTable />
+                    <EnhancedTable page={page} rowsPerPage={rowsPerPage} />
                 </Box>
                 <EnhancedTablePagination
                     rows={rows}
