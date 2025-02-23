@@ -62,7 +62,7 @@ interface EnhancedTableProps {
         property: keyof Data,
     ) => void;
     onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    order: string;
+    order: "asc" | "desc";
     orderBy: string;
     rowCount: number;
 }

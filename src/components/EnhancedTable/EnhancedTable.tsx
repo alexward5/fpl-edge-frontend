@@ -93,10 +93,9 @@ export default function EnhancedTable(props: any) {
     const [order, setOrder] = useState<Order>("asc");
     const [orderBy, setOrderBy] = useState<keyof Data>("calories");
     const [selected, setSelected] = useState<readonly number[]>([]);
-    const [dense, setDense] = useState(true);
 
     const handleRequestSort = (
-        event: React.MouseEvent<unknown>,
+        _: React.MouseEvent<unknown>,
         property: keyof Data,
     ) => {
         const isAsc = orderBy === property && order === "asc";
@@ -115,7 +114,7 @@ export default function EnhancedTable(props: any) {
         setSelected([]);
     };
 
-    const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    const handleClick = (_: React.MouseEvent<unknown>, id: number) => {
         const selectedIndex = selected.indexOf(id);
         let newSelected: readonly number[] = [];
 
@@ -151,7 +150,7 @@ export default function EnhancedTable(props: any) {
             stickyHeader
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}
+            size={"small"}
         >
             <EnhancedTableHead
                 numSelected={selected.length}
@@ -204,7 +203,7 @@ export default function EnhancedTable(props: any) {
                 {emptyRows > 0 && (
                     <TableRow
                         style={{
-                            height: (dense ? 33 : 53) * emptyRows,
+                            height: 33 * emptyRows,
                         }}
                     >
                         <TableCell colSpan={6} />

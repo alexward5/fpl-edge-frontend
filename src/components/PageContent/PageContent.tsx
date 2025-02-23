@@ -7,15 +7,6 @@ import Drawer from "../Drawer/Drawer";
 import EnhancedTable from "../EnhancedTable/EnhancedTable";
 import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
 
-interface Data {
-    id: number;
-    calories: number;
-    carbs: number;
-    fat: number;
-    name: string;
-    protein: number;
-}
-
 interface DisplayedData {
     fpl_player_code: string;
     fpl_web_name: string;
@@ -97,11 +88,8 @@ function PageContent() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
-    const [selected, setSelected] = useState<readonly number[]>([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(25);
-    const [order, setOrder] = useState<string>("asc");
-    const [orderBy, setOrderBy] = useState<string>("calories");
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -118,7 +106,7 @@ function PageContent() {
         }
     };
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 
