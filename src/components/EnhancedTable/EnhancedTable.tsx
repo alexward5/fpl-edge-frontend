@@ -69,7 +69,7 @@ export default function EnhancedTable(props: any) {
         setSelected(newSelected);
     };
 
-    // Avoid a layout jump when reaching the last page with empty rows.
+    // Avoid a layout jump when reaching the last page with empty rows
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -123,6 +123,7 @@ export default function EnhancedTable(props: any) {
                                 />
                             </TableCell>
                             <TableCell
+                                sx={{ width: "100px", minWidth: "100px" }}
                                 component="th"
                                 id={labelId}
                                 scope="row"
@@ -130,7 +131,12 @@ export default function EnhancedTable(props: any) {
                             >
                                 {row.fplWebName}
                             </TableCell>
-                            <TableCell align="right">{row.fbrefTeam}</TableCell>
+                            <TableCell
+                                sx={{ width: "140px", minWidth: "140px" }}
+                                align="right"
+                            >
+                                {row.fbrefTeam}
+                            </TableCell>
                             <TableCell align="right">
                                 {row.fplPlayerPosition}
                             </TableCell>

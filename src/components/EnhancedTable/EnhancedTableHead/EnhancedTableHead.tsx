@@ -128,6 +128,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
+                        sx={{ fontWeight: "bold" }}
                         key={headCell.id}
                         align={headCell.numeric ? "right" : "left"}
                         padding={headCell.disablePadding ? "none" : "normal"}
