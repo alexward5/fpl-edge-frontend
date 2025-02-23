@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { orderBy } from "natural-orderby";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -22,40 +23,18 @@ interface DisplayedData {
 
 type Order = "asc" | "desc";
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator<Key extends keyof any>(
-    order: Order,
-    orderBy: Key,
-): (
-    a: { [key in Key]: number | string },
-    b: { [key in Key]: number | string },
-) => number {
-    return order === "desc"
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
 export default function EnhancedTable(props: any) {
     const { rows, page, rowsPerPage } = props;
 
     const [order, setOrder] = useState<Order>("desc");
-    const [orderBy, setOrderBy] = useState<keyof DisplayedData>("sumNPxP");
+    const [orderColumn, setOrderBy] = useState<keyof DisplayedData>("sumNPxP");
     const [selected, setSelected] = useState<readonly number[]>([]);
 
     const handleRequestSort = (
         _: React.MouseEvent<unknown>,
         property: keyof DisplayedData,
     ) => {
-        const isAsc = orderBy === property && order === "asc";
+        const isAsc = orderColumn === property && order === "asc";
         setOrder(isAsc ? "desc" : "asc");
         setOrderBy(property);
     };
@@ -94,9 +73,12 @@ export default function EnhancedTable(props: any) {
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-    const visibleRows = [...rows]
-        .sort(getComparator(order, orderBy))
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const orderedRows = orderBy(rows, [orderColumn], order);
+
+    const visibleRows = [...orderedRows].slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage,
+    );
 
     return (
         <Table
@@ -108,20 +90,22 @@ export default function EnhancedTable(props: any) {
             <EnhancedTableHead
                 numSelected={selected.length}
                 order={order}
-                orderBy={orderBy}
+                orderBy={orderColumn}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
                 rowCount={rows.length}
             />
             <TableBody>
                 {visibleRows.map((row, index) => {
-                    const isItemSelected = selected.includes(row.id);
+                    const isItemSelected = selected.includes(row.fplPlayerCode);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                         <TableRow
                             hover
-                            onClick={(event) => handleClick(event, row.id)}
+                            onClick={(event) =>
+                                handleClick(event, row.fplPlayerCode)
+                            }
                             role="checkbox"
                             aria-checked={isItemSelected}
                             tabIndex={-1}
@@ -178,13 +162,3 @@ export default function EnhancedTable(props: any) {
         </Table>
     );
 }
-
-// fplWebName: string;
-// fbrefTeam: string;
-// fplPlayerPosition: string;
-// fplPlayerCost: number;
-// fplSelectedByPercent: number;
-// minutes: number;
-// sumNPxG: number;
-// sumxA: number;
-// sumNPxP: number;
