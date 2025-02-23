@@ -8,12 +8,12 @@ import EnhancedTable from "../EnhancedTable/EnhancedTable";
 import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
 
 interface DisplayedData {
-    fpl_player_code: string;
-    fpl_web_name: string;
-    fbref_team: string;
-    fpl_player_position: string;
-    fpl_player_cost: number;
-    fpl_selected_by_percent: number;
+    fplPlayerCode: string;
+    fplWebName: string;
+    fbrefTeam: string;
+    fplPlayerPosition: string;
+    fplPlayerCost: number;
+    fplSelectedByPercent: number;
     minutes: number;
     sumNPxG: number;
     sumxA: number;
@@ -173,12 +173,12 @@ function PageContent() {
             });
 
             return {
-                fpl_player_code: player.fpl_player_code,
-                fpl_web_name: player.fpl_web_name,
-                fbref_team: player.fbref_team,
-                fpl_player_position: player.fpl_player_position,
-                fpl_player_cost: player.fpl_player_cost,
-                fpl_selected_by_percent: player.fpl_selected_by_percent,
+                fplPlayerCode: player.fpl_player_code,
+                fplWebName: player.fpl_web_name,
+                fbrefTeam: player.fbref_team,
+                fplPlayerPosition: player.fpl_player_position,
+                fplPlayerCost: player.fpl_player_cost,
+                fplSelectedByPercent: player.fpl_selected_by_percent,
                 sumMinutes: sumMinutes,
                 sumNPxG: sumNPxG,
                 sumxA: sumxA,
