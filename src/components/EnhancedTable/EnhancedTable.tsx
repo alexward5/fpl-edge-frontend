@@ -73,19 +73,19 @@ const rows = [
     createData(11, "Marshmallow", 318, 0, 81, 2.0),
     createData(12, "Nougat", 360, 19.0, 9, 37.0),
     createData(13, "Oreo", 437, 18.0, 63, 4.0),
-    createData(1, "Cupcakes", 305, 3.7, 67, 4.3),
-    createData(2, "Donuts", 452, 25.0, 51, 4.9),
-    createData(3, "Eclairs", 262, 16.0, 24, 6.0),
-    createData(4, "Frozen yoghurts", 159, 6.0, 24, 4.0),
-    createData(5, "Gingerbreads", 356, 16.0, 49, 3.9),
-    createData(6, "Honeycombs", 408, 3.2, 87, 6.5),
-    createData(7, "Ice cream sandwichs", 237, 9.0, 37, 4.3),
-    createData(8, "Jelly Beans", 375, 0.0, 94, 0.0),
-    createData(9, "KitKats", 518, 26.0, 65, 7.0),
-    createData(10, "Lollipops", 392, 0.2, 98, 0.0),
-    createData(11, "Marshmallows", 318, 0, 81, 2.0),
-    createData(12, "Nougats", 360, 19.0, 9, 37.0),
-    createData(13, "Oreos", 437, 18.0, 63, 4.0),
+    createData(14, "Cupcakes", 305, 3.7, 67, 4.3),
+    createData(22, "Donuts", 452, 25.0, 51, 4.9),
+    createData(23, "Eclairs", 262, 16.0, 24, 6.0),
+    createData(24, "Frozen yoghurts", 159, 6.0, 24, 4.0),
+    createData(25, "Gingerbreads", 356, 16.0, 49, 3.9),
+    createData(26, "Honeycombs", 408, 3.2, 87, 6.5),
+    createData(27, "Ice cream sandwichs", 237, 9.0, 37, 4.3),
+    createData(28, "Jelly Beans", 375, 0.0, 94, 0.0),
+    createData(29, "KitKats", 518, 26.0, 65, 7.0),
+    createData(210, "Lollipops", 392, 0.2, 98, 0.0),
+    createData(211, "Marshmallows", 318, 0, 81, 2.0),
+    createData(212, "Nougats", 360, 19.0, 9, 37.0),
+    createData(213, "Oreos", 437, 18.0, 63, 4.0),
 ];
 
 export default function EnhancedTable(props: any) {
@@ -150,6 +150,7 @@ export default function EnhancedTable(props: any) {
     return (
         <TableContainer>
             <Table
+                stickyHeader
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={dense ? "small" : "medium"}
