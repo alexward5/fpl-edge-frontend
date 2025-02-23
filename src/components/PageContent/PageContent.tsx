@@ -132,7 +132,7 @@ function PageContent() {
                 fplPlayerPosition: player.fpl_player_position,
                 fplPlayerCost: player.fpl_player_cost,
                 fplSelectedByPercent: player.fpl_selected_by_percent,
-                sumMinutes: sumMinutes.toFixed(1),
+                sumMinutes: sumMinutes,
                 sumNPxG: sumNPxG.toFixed(1),
                 sumxA: sumxA.toFixed(1),
                 sumNPxP: sumNPxP.toFixed(1),
