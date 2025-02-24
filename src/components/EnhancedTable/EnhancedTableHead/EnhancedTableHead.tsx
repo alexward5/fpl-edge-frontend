@@ -49,7 +49,7 @@ const headCells: readonly HeadCell[] = [
         id: "fplPlayerCost",
         numeric: true,
         disablePadding: false,
-        label: "Cost",
+        label: "Price",
     },
     {
         id: "fplSelectedByPercent",
