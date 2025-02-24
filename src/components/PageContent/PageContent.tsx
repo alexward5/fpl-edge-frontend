@@ -30,8 +30,8 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
             fpl_player_cost
             fpl_selected_by_percent
             player_gameweek_data {
-                round
-                minutes
+                fbref_round
+                fbref_minutes
                 calc_fpl_npxp
                 fbref_xg_assist
                 fbref_npxg
@@ -115,10 +115,10 @@ function PageContent() {
             let sumNPxP = 0;
             player.player_gameweek_data.forEach((data: any) => {
                 if (
-                    data.round >= gameweekRange[0] &&
-                    data.round <= gameweekRange[1]
+                    data.fbref_round >= gameweekRange[0] &&
+                    data.fbref_round <= gameweekRange[1]
                 ) {
-                    sumMinutes += data.minutes;
+                    sumMinutes += data.fbref_minutes;
                     sumNPxG += data.fbref_npxg;
                     sumxA += data.fbref_xg_assist;
                     sumNPxP += data.calc_fpl_npxp;
@@ -141,8 +141,6 @@ function PageContent() {
     );
 
     const drawerWidth = 240;
-
-    console.log(displayedData);
 
     return (
         <>
