@@ -6,18 +6,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { visuallyHidden } from "@mui/utils";
 
-interface DisplayedData {
-    fplPlayerCode: string;
-    fplWebName: string;
-    fbrefTeam: string;
-    fplPlayerPosition: string;
-    fplPlayerCost: number;
-    fplSelectedByPercent: number;
-    sumMinutes: number;
-    sumNPxG: number;
-    sumxA: number;
-    sumNPxP: number;
-}
+import type DisplayedData from "../../../types/DisplayedData";
 
 interface HeadCell {
     disablePadding: boolean;
@@ -56,6 +45,12 @@ const headCells: readonly HeadCell[] = [
         numeric: true,
         disablePadding: false,
         label: "Selected %",
+    },
+    {
+        id: "gamesPlayed",
+        numeric: true,
+        disablePadding: false,
+        label: "GP",
     },
     {
         id: "sumMinutes",

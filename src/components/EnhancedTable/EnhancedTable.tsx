@@ -5,21 +5,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
-
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 
-interface DisplayedData {
-    fplPlayerCode: string;
-    fplWebName: string;
-    fbrefTeam: string;
-    fplPlayerPosition: string;
-    fplPlayerCost: number;
-    fplSelectedByPercent: number;
-    sumMinutes: number;
-    sumNPxG: number;
-    sumxA: number;
-    sumNPxP: number;
-}
+import type DisplayedData from "../../types/DisplayedData";
 
 type Order = "asc" | "desc";
 
@@ -145,6 +133,9 @@ export default function EnhancedTable(props: any) {
                             </TableCell>
                             <TableCell align="right">
                                 {row.fplSelectedByPercent}
+                            </TableCell>
+                            <TableCell align="right">
+                                {row.gamesPlayed}
                             </TableCell>
                             <TableCell align="right">
                                 {row.sumMinutes}
