@@ -70,7 +70,7 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
-                    height: "92px",
+                    height: "82px",
                     padding: "15px 15px 0px 15px",
                 }}
             >
@@ -81,27 +81,50 @@ export default function ResponsiveDrawer(props: any) {
                     setSelectedList={setDisplayedPositions}
                 />
             </Box>
-            <Typography
-                sx={{
-                    height: "30px",
-                    paddingLeft: "15px",
-                    fontWeight: "bold",
-                    fontSize: "17px",
-                }}
-                variant="body1"
-            >
-                Teams
-            </Typography>
             <Box
                 sx={{
                     width: "100%",
-                    paddingLeft: "25px",
-                    height: `calc(100vh - (64px + 68px + 92px + 30px + 2px))`,
+                    paddingLeft: "15px",
+                    height: `calc(100vh - (64px + 68px + 82px + 2px))`,
                     overflow: "auto",
                 }}
             >
                 <FormControl component="fieldset" variant="standard">
                     <FormGroup>
+                        <FormControlLabel
+                            label={
+                                <span
+                                    style={{
+                                        fontSize: "14px",
+                                        fontWeight: "bold",
+                                    }}
+                                >
+                                    Teams
+                                </span>
+                            }
+                            control={
+                                <Checkbox
+                                    checked={
+                                        uniqueTeamNames.length ===
+                                        displayedTeams.length
+                                    }
+                                    indeterminate={
+                                        uniqueTeamNames.length !==
+                                        displayedTeams.length
+                                    }
+                                    onChange={() => {
+                                        if (
+                                            uniqueTeamNames.length ===
+                                            displayedTeams.length
+                                        ) {
+                                            setDisplayedTeams([]);
+                                        } else {
+                                            setDisplayedTeams(uniqueTeamNames);
+                                        }
+                                    }}
+                                />
+                            }
+                        />
                         {uniqueTeamNames.map((teamName: string) => (
                             <FormControlLabel
                                 control={
@@ -132,7 +155,12 @@ export default function ResponsiveDrawer(props: any) {
                                         }}
                                     />
                                 }
-                                label={teamName}
+                                sx={{ paddingLeft: "15px" }}
+                                label={
+                                    <span style={{ fontSize: "15px" }}>
+                                        {teamName}
+                                    </span>
+                                }
                             />
                         ))}
                     </FormGroup>
