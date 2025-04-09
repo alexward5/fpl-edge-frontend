@@ -9,6 +9,7 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { Typography } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -39,7 +40,7 @@ export default function ResponsiveDrawer(props: any) {
     }, []);
 
     const drawer = (
-        <div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
             <Toolbar
                 // sx={{
                 //     minHeight: "56px",
@@ -55,6 +56,7 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
+                    height: "68px",
                     padding: "10px 25px 0px 25px",
                 }}
             >
@@ -68,6 +70,7 @@ export default function ResponsiveDrawer(props: any) {
             <Box
                 sx={{
                     width: "100%",
+                    height: "92px",
                     padding: "15px 15px 0px 15px",
                 }}
             >
@@ -78,10 +81,23 @@ export default function ResponsiveDrawer(props: any) {
                     setSelectedList={setDisplayedPositions}
                 />
             </Box>
+            <Typography
+                sx={{
+                    height: "30px",
+                    paddingLeft: "15px",
+                    fontWeight: "bold",
+                    fontSize: "17px",
+                }}
+                variant="body1"
+            >
+                Teams
+            </Typography>
             <Box
                 sx={{
                     width: "100%",
-                    paddingLeft: "15px",
+                    paddingLeft: "25px",
+                    height: `calc(100vh - (64px + 68px + 92px + 30px + 2px))`,
+                    overflow: "auto",
                 }}
             >
                 <FormControl component="fieldset" variant="standard">
@@ -110,8 +126,10 @@ export default function ResponsiveDrawer(props: any) {
                                             }
                                         }}
                                         name={teamName}
-                                        size="medium"
-                                        sx={{ height: "32px" }}
+                                        size="small"
+                                        sx={{
+                                            height: "28px",
+                                        }}
                                     />
                                 }
                                 label={teamName}
