@@ -95,7 +95,7 @@ export default function ResponsiveDrawer(props: any) {
                             label={
                                 <span
                                     style={{
-                                        fontSize: "14px",
+                                        fontSize: "15px",
                                         fontWeight: "bold",
                                     }}
                                 >
@@ -121,6 +121,9 @@ export default function ResponsiveDrawer(props: any) {
                                         } else {
                                             setDisplayedTeams(uniqueTeamNames);
                                         }
+                                    }}
+                                    sx={{
+                                        height: "28px",
                                     }}
                                 />
                             }
