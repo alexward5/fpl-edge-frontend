@@ -12,7 +12,21 @@ import Checkbox from "@mui/material/Checkbox";
 
 const drawerWidth = 240;
 
-export default function ResponsiveDrawer(props: any) {
+type Props = {
+    gameweekRange: number[];
+    numGameweeks: number;
+    setGameweekRange: React.Dispatch<React.SetStateAction<number[]>>;
+    mobileOpen: boolean;
+    handleDrawerTransitionEnd: () => void;
+    handleDrawerClose: () => void;
+    uniqueTeamNames: string[];
+    displayedTeams: string[];
+    setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
+    displayedPositions: string[];
+    setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+export default function ResponsiveDrawer(props: Props) {
     const {
         gameweekRange,
         numGameweeks,
@@ -40,17 +54,7 @@ export default function ResponsiveDrawer(props: any) {
 
     const drawer = (
         <div style={{ display: "flex", flexDirection: "column" }}>
-            <Toolbar
-                // sx={{
-                //     minHeight: "56px",
-                //     height: "56px",
-                //     "& .MuiToolbar-root": {
-                //         minHeight: "56px",
-                //         height: "56px",
-                //     },
-                // }}
-                variant="regular"
-            />
+            <Toolbar variant="regular" />
             <Divider />
             <Box
                 sx={{

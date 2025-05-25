@@ -11,7 +11,13 @@ import type DisplayedData from "../../types/DisplayedData";
 
 type Order = "asc" | "desc";
 
-export default function EnhancedTable(props: any) {
+type Props = {
+    rows: DisplayedData[];
+    page: number;
+    rowsPerPage: number;
+};
+
+export default function EnhancedTable(props: Props) {
     const { rows, page, rowsPerPage } = props;
 
     const [order, setOrder] = useState<Order>("desc");

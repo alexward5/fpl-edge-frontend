@@ -18,7 +18,14 @@ const MenuProps = {
     },
 };
 
-export default function MultipleSelectCheckmarks(props: any) {
+type Props = {
+    listItems: string[];
+    label: string;
+    selectedList: string[];
+    setSelectedList: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+export default function MultipleSelectCheckmarks(props: Props) {
     const { listItems, label, selectedList, setSelectedList } = props;
 
     // Track the original order of the list so it can be maintained

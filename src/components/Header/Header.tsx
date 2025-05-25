@@ -6,7 +6,11 @@ import Typography from "@mui/material/Typography";
 
 const drawerWidth = 240;
 
-export default function Header(props: any) {
+type Props = {
+    handleDrawerToggle: () => void;
+};
+
+export default function Header(props: Props) {
     const { handleDrawerToggle } = props;
 
     return (

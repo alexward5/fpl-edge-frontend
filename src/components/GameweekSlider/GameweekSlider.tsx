@@ -5,7 +5,13 @@ function valuetext(value: number) {
     return `${value}`;
 }
 
-export default function RangeSlider(props: any) {
+type Props = {
+    gameweekRange: number[];
+    setGameweekRange: React.Dispatch<React.SetStateAction<number[]>>;
+    numGameweeks: number;
+};
+
+export default function RangeSlider(props: Props) {
     const { gameweekRange, setGameweekRange, numGameweeks } = props;
 
     useEffect(() => {
