@@ -1,5 +1,5 @@
 interface DisplayedData {
-    fplPlayerCode: string;
+    fplPlayerCode: number;
     fplWebName: string;
     fbrefTeam: string;
     fplPlayerPosition: string;
