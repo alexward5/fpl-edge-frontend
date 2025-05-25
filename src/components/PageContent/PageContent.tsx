@@ -51,7 +51,7 @@ function PageContent() {
     const [isClosing, setIsClosing] = useState(false);
 
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(25);
+    const [rowsPerPage, setRowsPerPage] = useState(50);
 
     const handleDrawerClose = () => {
         setIsClosing(true);
