@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { gql } from "../../__generated__/gql";
 import Box from "@mui/material/Box";
 import Header from "../Header/Header";
 import Drawer from "../Drawer/Drawer";
@@ -7,6 +8,7 @@ import EnhancedTable from "../EnhancedTable/EnhancedTable";
 import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
 
 import type DisplayedData from "../../types/DisplayedData";
+import type { PlayerGameweekData } from "../../__generated__/graphql";
 
 const GET_PLAYER_GAMEWEEK_DATA = gql(`
     query GetPlayerGameweekData {
@@ -80,13 +82,19 @@ function PageContent() {
     };
 
     if (loading) return <h1>Loading...</h1>;
+    if (!data) return <h1>Error retrieving data</h1>;
 
     // Create mapping for each team from match round to match number
     // Since the round number is not accurate when matches are rescheduled
-    const matchNumberMapping: any = {};
-    data.teams.forEach((team: any) => {
+    type MatchNumberMapping = {
+        [key: string]: {
+            [key: number]: number;
+        };
+    };
+    const matchNumberMapping: MatchNumberMapping = {};
+    data.teams.forEach((team) => {
         matchNumberMapping[team.fbref_team] = {};
-        team.fbref_team_matchlog.forEach((match: any) => {
+        team.fbref_team_matchlog.forEach((match) => {
             matchNumberMapping[team.fbref_team][match.fbref_round] =
                 match.match_number;
         });
@@ -94,63 +102,65 @@ function PageContent() {
 
     const numGameweeks = Math.max(
         ...data.players.map(
-            (obj: { player_gameweek_data: any }) =>
+            (obj: { player_gameweek_data: PlayerGameweekData[] }) =>
                 obj.player_gameweek_data.length,
         ),
     );
 
-    const teamNames: string[] = data.players.map(
-        (player: any) => player.fbref_team,
-    );
+    const teamNames: string[] = data
+        ? data.players.map((player) => player.fbref_team)
+        : [];
     const uniqueTeamNames = [...new Set(teamNames)].sort(
         (a: string, b: string) => a.localeCompare(b),
     );
 
-    const filteredPlayers = data.players.filter((player: any) => {
+    const filteredPlayers = data.players.filter((player) => {
         return (
             displayedPositions.includes(player.fpl_player_position) &&
             displayedTeams.includes(player.fbref_team)
         );
     });
 
-    const displayedData: DisplayedData[] = filteredPlayers.map(
-        (player: any) => {
-            // Sum player expected stats from gameweek range
-            let gamesPlayed = 0;
-            let sumMinutes = 0;
-            let sumNPxG = 0;
-            let sumxA = 0;
-            let sumNPxP = 0;
-            player.player_gameweek_data.forEach((data: any) => {
-                if (
-                    matchNumberMapping[player.fbref_team][data.fbref_round] >=
-                        gameweekRange[0] &&
-                    matchNumberMapping[player.fbref_team][data.fbref_round] <=
-                        gameweekRange[1]
-                ) {
-                    gamesPlayed++;
-                    sumMinutes += data.fbref_minutes;
-                    sumNPxG += data.fbref_npxg;
-                    sumxA += data.fbref_xg_assist;
-                    sumNPxP += data.calc_fpl_npxp;
-                }
-            });
+    const displayedData: DisplayedData[] = filteredPlayers
+        ? filteredPlayers.map((player) => {
+              // Sum player expected stats from gameweek range
+              let gamesPlayed = 0;
+              let sumMinutes = 0;
+              let sumNPxG = 0;
+              let sumxA = 0;
+              let sumNPxP = 0;
+              player.player_gameweek_data.forEach((data) => {
+                  if (
+                      matchNumberMapping[player.fbref_team][data.fbref_round] >=
+                          gameweekRange[0] &&
+                      matchNumberMapping[player.fbref_team][data.fbref_round] <=
+                          gameweekRange[1]
+                  ) {
+                      gamesPlayed++;
+                      sumMinutes += data.fbref_minutes;
+                      sumNPxG += data.fbref_npxg;
+                      sumxA += data.fbref_xg_assist;
+                      sumNPxP += data.calc_fpl_npxp;
+                  }
+              });
 
-            return {
-                fplPlayerCode: player.fpl_player_code,
-                fplWebName: player.fpl_web_name,
-                fbrefTeam: player.fbref_team,
-                fplPlayerPosition: player.fpl_player_position,
-                fplPlayerCost: player.fpl_player_cost.toFixed(1),
-                fplSelectedByPercent: player.fpl_selected_by_percent.toFixed(1),
-                gamesPlayed: gamesPlayed,
-                sumMinutes: sumMinutes,
-                sumNPxG: sumNPxG.toFixed(1),
-                sumxA: sumxA.toFixed(1),
-                sumNPxP: sumNPxP.toFixed(1),
-            };
-        },
-    );
+              return {
+                  fplPlayerCode: player.fpl_player_code,
+                  fplWebName: player.fpl_web_name,
+                  fbrefTeam: player.fbref_team,
+                  fplPlayerPosition: player.fpl_player_position,
+                  fplPlayerCost: Number(player.fpl_player_cost.toFixed(1)),
+                  fplSelectedByPercent: Number(
+                      player.fpl_selected_by_percent.toFixed(1),
+                  ),
+                  gamesPlayed: gamesPlayed,
+                  sumMinutes: sumMinutes,
+                  sumNPxG: Number(sumNPxG.toFixed(1)),
+                  sumxA: Number(sumxA.toFixed(1)),
+                  sumNPxP: Number(sumNPxP.toFixed(1)),
+              };
+          })
+        : [];
 
     const drawerWidth = 240;
 
