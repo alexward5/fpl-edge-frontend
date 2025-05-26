@@ -41,9 +41,6 @@ export default function ResponsiveDrawer(props: Props) {
         setDisplayedPositions,
     } = props;
 
-    console.log("uniqueTeamNames", uniqueTeamNames);
-    console.log("displayedTeams", displayedTeams);
-
     useEffect(() => {
         setGameweekRange([1, numGameweeks]);
     }, [numGameweeks]);
