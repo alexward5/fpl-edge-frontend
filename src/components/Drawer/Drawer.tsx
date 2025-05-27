@@ -50,7 +50,13 @@ export default function ResponsiveDrawer(props: Props) {
     }, []);
 
     const drawer = (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+            style={{
+                display: "flex",
+                height: "100vh",
+                flexDirection: "column",
+            }}
+        >
             <Toolbar variant="regular" />
             <Divider />
             <Box
@@ -85,8 +91,8 @@ export default function ResponsiveDrawer(props: Props) {
                 sx={{
                     width: "100%",
                     paddingLeft: "15px",
-                    height: `calc(100vh - (64px + 68px + 82px + 2px))`,
-                    overflow: "auto",
+                    flexGrow: 1,
+                    overflowY: "auto",
                 }}
             >
                 <FormControl component="fieldset" variant="standard">
