@@ -77,7 +77,7 @@ export default function ResponsiveDrawer(props: Props) {
                 sx={{
                     width: "100%",
                     height: "82px",
-                    padding: "15px 15px 0px 15px",
+                    padding: "15px 15px 10px 15px",
                 }}
             >
                 <CheckboxSelect
