@@ -162,7 +162,7 @@ function PageContent() {
           })
         : [];
 
-    const drawerWidth = 240;
+    const DRAWER_WIDTH = 240;
 
     return (
         <>
@@ -187,8 +187,8 @@ function PageContent() {
                         sm: `calc(100% - 64px)`,
                     },
                     mt: { xs: "56px", sm: "64px" },
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
+                    ml: { sm: `${DRAWER_WIDTH}px` },
                 }}
             >
                 <Box
