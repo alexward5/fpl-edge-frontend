@@ -9,6 +9,7 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
 
 const drawerWidth = 240;
 
@@ -59,11 +60,18 @@ export default function ResponsiveDrawer(props: Props) {
         >
             <Toolbar variant="regular" />
             <Divider />
+            <Typography
+                variant="subtitle1"
+                fontWeight={"bold"}
+                sx={{ padding: "5px 0px 0px 18px" }}
+            >
+                Gameweeks
+            </Typography>
             <Box
                 sx={{
                     width: "100%",
                     height: "68px",
-                    padding: "10px 25px 0px 25px",
+                    padding: "0px 25px 0px 25px",
                 }}
             >
                 <GameweekSlider
@@ -99,14 +107,12 @@ export default function ResponsiveDrawer(props: Props) {
                     <FormGroup>
                         <FormControlLabel
                             label={
-                                <span
-                                    style={{
-                                        fontSize: "15px",
-                                        fontWeight: "bold",
-                                    }}
+                                <Typography
+                                    variant="subtitle1"
+                                    fontWeight={"bold"}
                                 >
                                     Teams
-                                </span>
+                                </Typography>
                             }
                             control={
                                 <Checkbox
@@ -166,9 +172,9 @@ export default function ResponsiveDrawer(props: Props) {
                                 }
                                 sx={{ paddingLeft: "15px" }}
                                 label={
-                                    <span style={{ fontSize: "15px" }}>
+                                    <Typography variant="subtitle2">
                                         {teamName}
-                                    </span>
+                                    </Typography>
                                 }
                             />
                         ))}
