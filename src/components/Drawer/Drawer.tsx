@@ -10,6 +10,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
 const drawerWidth = 240;
 
@@ -84,7 +85,6 @@ export default function ResponsiveDrawer(props: Props) {
             <Box
                 sx={{
                     width: "100%",
-                    height: "82px",
                     padding: "15px 15px 10px 15px",
                 }}
             >
@@ -93,6 +93,18 @@ export default function ResponsiveDrawer(props: Props) {
                     label="Position"
                     selectedList={displayedPositions}
                     setSelectedList={setDisplayedPositions}
+                />
+                <TextField
+                    label="Maximum Price"
+                    type="number"
+                    defaultValue="14.0"
+                    // value={value}
+                    // onChange={handleChange}
+                    inputMode="numeric"
+                    sx={{
+                        width: "100%",
+                        marginTop: "15px",
+                    }}
                 />
             </Box>
             <Box
