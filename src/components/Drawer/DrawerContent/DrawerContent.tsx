@@ -20,6 +20,7 @@ interface Props {
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
     uniqueTeamNames: string[];
+    maxPlayerPrice: number;
 }
 
 export default function DrawerContent(props: Props) {
@@ -32,6 +33,7 @@ export default function DrawerContent(props: Props) {
         displayedPositions,
         setDisplayedPositions,
         uniqueTeamNames,
+        maxPlayerPrice,
     } = props;
 
     useEffect(() => {
@@ -88,8 +90,7 @@ export default function DrawerContent(props: Props) {
                 <TextField
                     label="Maximum Price"
                     type="number"
-                    defaultValue="14.0"
-                    // value={value}
+                    value={maxPlayerPrice}
                     // onChange={handleChange}
                     inputMode="numeric"
                     sx={{

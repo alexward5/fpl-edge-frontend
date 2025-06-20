@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "../../__generated__/gql";
 import Box from "@mui/material/Box";
@@ -9,6 +9,7 @@ import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/En
 
 import type DisplayedData from "../../types/DisplayedData";
 import type { PlayerGameweekData } from "../../__generated__/graphql";
+import type { Query } from "../../__generated__/graphql";
 
 const GET_PLAYER_GAMEWEEK_DATA = gql(`
     query GetPlayerGameweekData {
@@ -39,6 +40,9 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 `);
 
 function PageContent() {
+    const [dataRes, setDataRes] = useState<Query | undefined>(undefined);
+    const [maxPlayerPrice, setMaxPlayerPrice] = useState<number>(0);
+
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
 
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
@@ -54,6 +58,18 @@ function PageContent() {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(50);
+
+    useEffect(() => {
+        if (data) {
+            const queryRes = data as Query;
+            setDataRes(queryRes);
+            setMaxPlayerPrice(
+                Math.max(
+                    ...data.players.map((player) => player.fpl_player_cost),
+                ),
+            );
+        }
+    }, [data]);
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -82,7 +98,7 @@ function PageContent() {
     };
 
     if (loading) return <h1>Loading...</h1>;
-    if (!data) return <h1>Error retrieving data</h1>;
+    if (!dataRes) return <h1>Error retrieving data</h1>;
 
     // Create mapping for each team from match round to match number
     // Since the round number is not accurate when matches are rescheduled
@@ -92,7 +108,7 @@ function PageContent() {
         };
     };
     const matchNumberMapping: MatchNumberMapping = {};
-    data.teams.forEach((team) => {
+    dataRes.teams.forEach((team) => {
         matchNumberMapping[team.fbref_team] = {};
         team.fbref_team_matchlog.forEach((match) => {
             matchNumberMapping[team.fbref_team][match.fbref_round] =
@@ -101,7 +117,7 @@ function PageContent() {
     });
 
     const numGameweeks = Math.max(
-        ...data.players.map(
+        ...dataRes.players.map(
             (obj: { player_gameweek_data: PlayerGameweekData[] }) =>
                 obj.player_gameweek_data.length,
         ),
@@ -114,7 +130,7 @@ function PageContent() {
         (a: string, b: string) => a.localeCompare(b),
     );
 
-    const filteredPlayers = data.players.filter((player) => {
+    const filteredPlayers = dataRes.players.filter((player) => {
         return (
             displayedPositions.includes(player.fpl_player_position) &&
             displayedTeams.includes(player.fbref_team)
@@ -129,18 +145,21 @@ function PageContent() {
               let sumNPxG = 0;
               let sumxA = 0;
               let sumNPxP = 0;
-              player.player_gameweek_data.forEach((data) => {
+
+              player.player_gameweek_data.forEach((playerGameweek) => {
                   if (
-                      matchNumberMapping[player.fbref_team][data.fbref_round] >=
-                          gameweekRange[0] &&
-                      matchNumberMapping[player.fbref_team][data.fbref_round] <=
-                          gameweekRange[1]
+                      matchNumberMapping[player.fbref_team][
+                          playerGameweek.fbref_round
+                      ] >= gameweekRange[0] &&
+                      matchNumberMapping[player.fbref_team][
+                          playerGameweek.fbref_round
+                      ] <= gameweekRange[1]
                   ) {
                       gamesPlayed++;
-                      sumMinutes += data.fbref_minutes;
-                      sumNPxG += data.fbref_npxg;
-                      sumxA += data.fbref_xg_assist;
-                      sumNPxP += data.calc_fpl_npxp;
+                      sumMinutes += playerGameweek.fbref_minutes;
+                      sumNPxG += playerGameweek.fbref_npxg;
+                      sumxA += playerGameweek.fbref_xg_assist;
+                      sumNPxP += playerGameweek.calc_fpl_npxp;
                   }
               });
 
@@ -179,6 +198,7 @@ function PageContent() {
                 setDisplayedTeams={setDisplayedTeams}
                 displayedPositions={displayedPositions}
                 setDisplayedPositions={setDisplayedPositions}
+                maxPlayerPrice={maxPlayerPrice}
             />
             <Box
                 sx={{
