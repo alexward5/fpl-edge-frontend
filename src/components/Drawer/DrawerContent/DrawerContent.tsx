@@ -145,6 +145,7 @@ export default function DrawerContent(props: Props) {
                         />
                         {uniqueTeamNames.map((teamName: string) => (
                             <FormControlLabel
+                                key={teamName}
                                 control={
                                     <Checkbox
                                         checked={displayedTeams.includes(
