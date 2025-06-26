@@ -21,6 +21,7 @@ interface Props {
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
     uniqueTeamNames: string[];
     maxPlayerPrice: number;
+    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function DrawerContent(props: Props) {
@@ -34,6 +35,7 @@ export default function DrawerContent(props: Props) {
         setDisplayedPositions,
         uniqueTeamNames,
         maxPlayerPrice,
+        setMaxPlayerPrice,
     } = props;
 
     useEffect(() => {
@@ -43,6 +45,10 @@ export default function DrawerContent(props: Props) {
     useEffect(() => {
         setDisplayedTeams(uniqueTeamNames);
     }, []);
+
+    const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxPlayerPrice(Number(event.target.value));
+    };
 
     return (
         <div
@@ -91,8 +97,14 @@ export default function DrawerContent(props: Props) {
                     label="Maximum Price"
                     type="number"
                     value={maxPlayerPrice}
-                    // onChange={handleChange}
+                    onChange={handleChangePrice}
                     inputMode="numeric"
+                    slotProps={{
+                        htmlInput: {
+                            step: 0.1,
+                            min: 0,
+                        },
+                    }}
                     sx={{
                         width: "100%",
                         marginTop: "15px",

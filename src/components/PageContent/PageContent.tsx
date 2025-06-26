@@ -199,6 +199,7 @@ function PageContent() {
                 displayedPositions={displayedPositions}
                 setDisplayedPositions={setDisplayedPositions}
                 maxPlayerPrice={maxPlayerPrice}
+                setMaxPlayerPrice={setMaxPlayerPrice}
             />
             <Box
                 sx={{
