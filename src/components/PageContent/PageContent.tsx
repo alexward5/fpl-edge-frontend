@@ -132,6 +132,7 @@ function PageContent() {
         (a: string, b: string) => a.localeCompare(b),
     );
 
+    // Filter players based on team/position
     let filteredPlayers = dataRes.players.filter((player) => {
         return (
             displayedPositions.includes(player.fpl_player_position) &&
@@ -139,6 +140,7 @@ function PageContent() {
         );
     });
 
+    // Filter players based on price
     if (maxPlayerPrice !== "" && !maxPlayerPrice.endsWith(".")) {
         const floatMaxPlayerPrice = parseFloat(maxPlayerPrice);
 
