@@ -20,8 +20,8 @@ interface Props {
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
     uniqueTeamNames: string[];
-    maxPlayerPrice: number;
-    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<number>>;
+    maxPlayerPrice: string;
+    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function DrawerContent(props: Props) {
@@ -46,8 +46,15 @@ export default function DrawerContent(props: Props) {
         setDisplayedTeams(uniqueTeamNames);
     }, []);
 
+    const validInput = /^$|^\d*\.?\d*$/;
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMaxPlayerPrice(Number(event.target.value));
+        const newValue = event.target.value;
+
+        const digitCount = newValue.replace(/\D/g, "").length;
+
+        if (validInput.test(newValue) && digitCount <= 3) {
+            setMaxPlayerPrice(newValue);
+        }
     };
 
     return (
@@ -102,7 +109,7 @@ export default function DrawerContent(props: Props) {
                     slotProps={{
                         htmlInput: {
                             step: 0.1,
-                            min: 0,
+                            min: 0.0,
                         },
                     }}
                     sx={{

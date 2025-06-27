@@ -16,8 +16,8 @@ type Props = {
     setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
-    maxPlayerPrice: number;
-    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<number>>;
+    maxPlayerPrice: string;
+    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function ResponsiveDrawer(props: Props) {

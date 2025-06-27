@@ -41,7 +41,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 
 function PageContent() {
     const [dataRes, setDataRes] = useState<Query | undefined>(undefined);
-    const [maxPlayerPrice, setMaxPlayerPrice] = useState<number>(0);
+    const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
 
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
 
@@ -64,8 +64,10 @@ function PageContent() {
             const queryRes = data as Query;
             setDataRes(queryRes);
             setMaxPlayerPrice(
-                Math.max(
-                    ...data.players.map((player) => player.fpl_player_cost),
+                String(
+                    Math.max(
+                        ...data.players.map((player) => player.fpl_player_cost),
+                    ),
                 ),
             );
         }
@@ -130,12 +132,20 @@ function PageContent() {
         (a: string, b: string) => a.localeCompare(b),
     );
 
-    const filteredPlayers = dataRes.players.filter((player) => {
+    let filteredPlayers = dataRes.players.filter((player) => {
         return (
             displayedPositions.includes(player.fpl_player_position) &&
             displayedTeams.includes(player.fbref_team)
         );
     });
+
+    if (maxPlayerPrice !== "" && !maxPlayerPrice.endsWith(".")) {
+        const floatMaxPlayerPrice = parseFloat(maxPlayerPrice);
+
+        filteredPlayers = filteredPlayers.filter(
+            (player) => player.fpl_player_cost <= floatMaxPlayerPrice,
+        );
+    }
 
     const displayedData: DisplayedData[] = filteredPlayers
         ? filteredPlayers.map((player) => {
