@@ -4,21 +4,24 @@ import DisplayedData from "../../../types/DisplayedData";
 type Props = {
     rows: DisplayedData[];
     rowsPerPage: number;
+    setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
     page: number;
-    handleChangePage: (event: unknown, newPage: number) => void;
-    handleChangeRowsPerPage: (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => void;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function EnhancedTablePagination(props: Props) {
-    const {
-        rows,
-        rowsPerPage,
-        page,
-        handleChangePage,
-        handleChangeRowsPerPage,
-    } = props;
+    const { rows, rowsPerPage, setRowsPerPage, page, setPage } = props;
+
+    const handleChangePage = (_: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
     return (
         <TablePagination

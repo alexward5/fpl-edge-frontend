@@ -88,17 +88,6 @@ function PageContent() {
         }
     };
 
-    const handleChangePage = (_: unknown, newPage: number) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
     if (loading) return <h1>Loading...</h1>;
     if (!dataRes) return <h1>Error retrieving data</h1>;
 
@@ -240,8 +229,8 @@ function PageContent() {
                     rows={displayedData}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    handleChangePage={handleChangePage}
-                    handleChangeRowsPerPage={handleChangeRowsPerPage}
+                    setPage={setPage}
+                    setRowsPerPage={setRowsPerPage}
                 />
             </Box>
         </>
