@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,6 +11,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import GameweekSlider from "../../GameweekSlider/GameweekSlider";
 import { TextField } from "@mui/material";
+import { gql } from "../../../__generated__/gql";
 
 interface Props {
     gameweekRange: number[];
@@ -19,10 +21,17 @@ interface Props {
     setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
-    uniqueTeamNames: string[];
     maxPlayerPrice: string;
     setMaxPlayerPrice: React.Dispatch<React.SetStateAction<string>>;
 }
+
+const GET_TEAM_DATA = gql(`
+    query GetTeamNames {
+        teams {
+            fbref_team
+        }
+    }
+`);
 
 export default function DrawerContent(props: Props) {
     const {
@@ -33,18 +42,27 @@ export default function DrawerContent(props: Props) {
         setDisplayedTeams,
         displayedPositions,
         setDisplayedPositions,
-        uniqueTeamNames,
         maxPlayerPrice,
         setMaxPlayerPrice,
     } = props;
+
+    const { data } = useQuery(GET_TEAM_DATA);
+
+    const [teamNames, setTeamNames] = useState<string[]>([]);
 
     useEffect(() => {
         setGameweekRange([1, numGameweeks]);
     }, [numGameweeks]);
 
     useEffect(() => {
-        setDisplayedTeams(uniqueTeamNames);
-    }, []);
+        if (data?.teams) {
+            const sortedTeamNames = data.teams
+                .map((team) => team.fbref_team)
+                .sort((a, b) => a.localeCompare(b));
+            setTeamNames(sortedTeamNames);
+            setDisplayedTeams(sortedTeamNames);
+        }
+    }, [data]);
 
     const validInput = /^$|^\d*\.?\d*$/;
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,21 +158,21 @@ export default function DrawerContent(props: Props) {
                             control={
                                 <Checkbox
                                     checked={
-                                        uniqueTeamNames.length ===
+                                        teamNames.length ===
                                         displayedTeams.length
                                     }
                                     indeterminate={
-                                        uniqueTeamNames.length !==
+                                        teamNames.length !==
                                         displayedTeams.length
                                     }
                                     onChange={() => {
                                         if (
-                                            uniqueTeamNames.length ===
+                                            teamNames.length ===
                                             displayedTeams.length
                                         ) {
                                             setDisplayedTeams([]);
                                         } else {
-                                            setDisplayedTeams(uniqueTeamNames);
+                                            setDisplayedTeams(teamNames);
                                         }
                                     }}
                                     sx={{
@@ -163,7 +181,7 @@ export default function DrawerContent(props: Props) {
                                 />
                             }
                         />
-                        {uniqueTeamNames.map((teamName: string) => (
+                        {teamNames.map((teamName: string) => (
                             <FormControlLabel
                                 key={teamName}
                                 control={

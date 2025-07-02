@@ -114,13 +114,6 @@ function PageContent() {
         ),
     );
 
-    const teamNames: string[] = data
-        ? data.players.map((player) => player.fbref_team)
-        : [];
-    const uniqueTeamNames = [...new Set(teamNames)].sort(
-        (a: string, b: string) => a.localeCompare(b),
-    );
-
     // Filter players based on team/position
     let filteredPlayers = dataRes.players.filter((player) => {
         return (
@@ -194,7 +187,6 @@ function PageContent() {
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                 handleDrawerClose={handleDrawerClose}
-                uniqueTeamNames={uniqueTeamNames}
                 displayedTeams={displayedTeams}
                 setDisplayedTeams={setDisplayedTeams}
                 displayedPositions={displayedPositions}

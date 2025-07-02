@@ -11,7 +11,6 @@ type Props = {
     mobileOpen: boolean;
     handleDrawerTransitionEnd: () => void;
     handleDrawerClose: () => void;
-    uniqueTeamNames: string[];
     displayedTeams: string[];
     setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
     displayedPositions: string[];
@@ -28,7 +27,6 @@ export default function ResponsiveDrawer(props: Props) {
         mobileOpen,
         handleDrawerTransitionEnd,
         handleDrawerClose,
-        uniqueTeamNames,
         displayedTeams,
         setDisplayedTeams,
         displayedPositions,
@@ -63,7 +61,6 @@ export default function ResponsiveDrawer(props: Props) {
                     gameweekRange={gameweekRange}
                     numGameweeks={numGameweeks}
                     setGameweekRange={setGameweekRange}
-                    uniqueTeamNames={uniqueTeamNames}
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}
                     displayedPositions={displayedPositions}
@@ -87,7 +84,6 @@ export default function ResponsiveDrawer(props: Props) {
                     gameweekRange={gameweekRange}
                     numGameweeks={numGameweeks}
                     setGameweekRange={setGameweekRange}
-                    uniqueTeamNames={uniqueTeamNames}
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}
                     displayedPositions={displayedPositions}
