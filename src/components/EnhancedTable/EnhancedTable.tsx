@@ -114,6 +114,7 @@ export default function EnhancedTable(props: Props) {
                                     inputProps={{
                                         "aria-labelledby": labelId,
                                     }}
+                                    name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
                             </TableCell>
                             <TableCell
