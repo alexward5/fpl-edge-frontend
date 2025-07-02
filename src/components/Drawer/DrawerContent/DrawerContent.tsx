@@ -66,7 +66,6 @@ export default function DrawerContent(props: Props) {
 
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
-
         const digitCount = newValue.replace(/\D/g, "").length;
 
         // Check that input is valid float and is three digits or less
