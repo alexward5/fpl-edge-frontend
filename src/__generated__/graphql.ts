@@ -72,10 +72,16 @@ export type TeamMatchlog = {
   match_number: Scalars['Int']['output'];
 };
 
+export type GetTeamNamesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTeamNamesQuery = { __typename?: 'Query', teams: Array<{ __typename?: 'Team', fbref_team: string }> };
+
 export type GetPlayerGameweekDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPlayerGameweekDataQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', fpl_player_code: number, fpl_web_name: string, fbref_team: string, fpl_player_position: string, fpl_player_cost: number, fpl_selected_by_percent: number, player_gameweek_data: Array<{ __typename?: 'PlayerGameweekData', fbref_round: number, fbref_minutes: number, calc_fpl_npxp: number, fbref_xg_assist: number, fbref_npxg: number }> }>, teams: Array<{ __typename?: 'Team', fbref_team: string, fbref_team_matchlog: Array<{ __typename?: 'TeamMatchlog', fbref_match_date: string, fbref_round: number, match_number: number }> }> };
 
 
+export const GetTeamNamesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetTeamNames"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"teams"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}}]}}]}}]} as unknown as DocumentNode<GetTeamNamesQuery, GetTeamNamesQueryVariables>;
 export const GetPlayerGameweekDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPlayerGameweekData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"players"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fpl_player_code"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_web_name"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_position"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_cost"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_selected_by_percent"}},{"kind":"Field","name":{"kind":"Name","value":"player_gameweek_data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_round"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_minutes"}},{"kind":"Field","name":{"kind":"Name","value":"calc_fpl_npxp"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_xg_assist"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_npxg"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"teams"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_team_matchlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_match_date"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_round"}},{"kind":"Field","name":{"kind":"Name","value":"match_number"}}]}}]}}]}}]} as unknown as DocumentNode<GetPlayerGameweekDataQuery, GetPlayerGameweekDataQueryVariables>;
