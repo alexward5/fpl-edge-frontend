@@ -64,13 +64,13 @@ export default function DrawerContent(props: Props) {
         }
     }, [data]);
 
-    const validInput = /^$|^\d*\.?\d*$/;
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
 
         const digitCount = newValue.replace(/\D/g, "").length;
 
-        if (validInput.test(newValue) && digitCount <= 3) {
+        // Check that input is valid float and is three digits or less
+        if (/^$|^\d*\.?\d*$/.test(newValue) && digitCount <= 3) {
             setMaxPlayerPrice(newValue);
         }
     };
