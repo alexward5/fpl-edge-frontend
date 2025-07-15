@@ -5,8 +5,6 @@ import Drawer from "../Drawer/Drawer";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 
 function PageContent() {
-    const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
-
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
     const [displayedPositions, setDisplayedPositions] = useState<string[]>([
         "DEF",
@@ -14,6 +12,7 @@ function PageContent() {
         "FWD",
     ]);
     const [displayedTeams, setDisplayedTeams] = useState<string[]>([]);
+    const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
 
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -39,17 +38,17 @@ function PageContent() {
         <>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <Drawer
-                gameweekRange={gameweekRange}
-                setGameweekRange={setGameweekRange}
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                 handleDrawerClose={handleDrawerClose}
-                displayedTeams={displayedTeams}
-                setDisplayedTeams={setDisplayedTeams}
                 displayedPositions={displayedPositions}
                 setDisplayedPositions={setDisplayedPositions}
+                displayedTeams={displayedTeams}
+                setDisplayedTeams={setDisplayedTeams}
                 maxPlayerPrice={maxPlayerPrice}
                 setMaxPlayerPrice={setMaxPlayerPrice}
+                gameweekRange={gameweekRange}
+                setGameweekRange={setGameweekRange}
             />
             <Box
                 sx={{
