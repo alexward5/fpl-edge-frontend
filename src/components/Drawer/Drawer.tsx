@@ -39,7 +39,6 @@ export default function ResponsiveDrawer(props: Props) {
         <Box
             component="nav"
             sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="mailbox folders"
         >
             <Drawer
                 variant="temporary"
@@ -47,7 +46,7 @@ export default function ResponsiveDrawer(props: Props) {
                 onTransitionEnd={handleDrawerTransitionEnd}
                 onClose={handleDrawerClose}
                 ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
+                    keepMounted: true, // Better performance on mobile while open
                 }}
                 sx={{
                     display: { xs: "block", sm: "none" },
