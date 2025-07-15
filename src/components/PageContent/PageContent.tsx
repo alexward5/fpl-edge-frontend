@@ -26,6 +26,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
                 calc_fpl_npxp
                 fbref_xg_assist
                 fbref_npxg
+                fpl_gameweek
             }
         }
         teams {
@@ -91,22 +92,6 @@ function PageContent() {
     if (loading) return <h1>Loading...</h1>;
     if (!dataRes) return <h1>Error retrieving data</h1>;
 
-    // Create mapping for each team from match round to match number
-    // Since the round number is not accurate when matches are rescheduled
-    type MatchNumberMapping = {
-        [key: string]: {
-            [key: number]: number;
-        };
-    };
-    const matchNumberMapping: MatchNumberMapping = {};
-    dataRes.teams.forEach((team) => {
-        matchNumberMapping[team.fbref_team] = {};
-        team.fbref_team_matchlog.forEach((match) => {
-            matchNumberMapping[team.fbref_team][match.fbref_round] =
-                match.match_number;
-        });
-    });
-
     const numGameweeks = Math.max(
         ...dataRes.players.map(
             (obj: { player_gameweek_data: PlayerGameweekData[] }) =>
@@ -142,12 +127,8 @@ function PageContent() {
 
               player.player_gameweek_data.forEach((playerGameweek) => {
                   if (
-                      matchNumberMapping[player.fbref_team][
-                          playerGameweek.fbref_round
-                      ] >= gameweekRange[0] &&
-                      matchNumberMapping[player.fbref_team][
-                          playerGameweek.fbref_round
-                      ] <= gameweekRange[1]
+                      playerGameweek.fpl_gameweek >= gameweekRange[0] &&
+                      playerGameweek.fpl_gameweek <= gameweekRange[1]
                   ) {
                       gamesPlayed++;
                       sumMinutes += playerGameweek.fbref_minutes;
