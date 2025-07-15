@@ -44,8 +44,6 @@ function PageContent() {
     const [dataRes, setDataRes] = useState<Query | undefined>(undefined);
     const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
 
-    const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
-
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
     const [displayedPositions, setDisplayedPositions] = useState<string[]>([
         "DEF",
@@ -60,6 +58,7 @@ function PageContent() {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(50);
 
+    const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
     useEffect(() => {
         if (data) {
             const queryRes = data as Query;
@@ -99,22 +98,21 @@ function PageContent() {
         ),
     );
 
-    // Filter players based on team/position
-    let filteredPlayers = dataRes.players.filter((player) => {
-        return (
-            displayedPositions.includes(player.fpl_player_position) &&
-            displayedTeams.includes(player.fbref_team)
+    // Filter players based on team/position and price
+    const filteredPlayers = dataRes.players.filter((player) => {
+        const isDisplayedPosition = displayedPositions.includes(
+            player.fpl_player_position,
         );
+        const isDisplayedTeam = displayedTeams.includes(player.fbref_team);
+
+        const validPriceFilter =
+            maxPlayerPrice !== "" && !maxPlayerPrice.endsWith(".");
+        const isDisplayedPrice =
+            validPriceFilter &&
+            player.fpl_player_cost <= parseFloat(maxPlayerPrice);
+
+        return isDisplayedPosition && isDisplayedTeam && isDisplayedPrice;
     });
-
-    // Filter players based on price
-    if (maxPlayerPrice !== "" && !maxPlayerPrice.endsWith(".")) {
-        const floatMaxPlayerPrice = parseFloat(maxPlayerPrice);
-
-        filteredPlayers = filteredPlayers.filter(
-            (player) => player.fpl_player_cost <= floatMaxPlayerPrice,
-        );
-    }
 
     const displayedData: DisplayedData[] = filteredPlayers
         ? filteredPlayers.map((player) => {
