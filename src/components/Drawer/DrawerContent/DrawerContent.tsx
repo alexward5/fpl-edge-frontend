@@ -109,28 +109,53 @@ export default function DrawerContent(props: Props) {
                     selectedList={displayedPositions}
                     setSelectedList={setDisplayedPositions}
                 />
-                <TextField
-                    label="Maximum Price"
-                    type="number"
-                    value={maxPlayerPrice}
-                    onChange={handleChangePrice}
-                    inputMode="numeric"
-                    slotProps={{
-                        htmlInput: {
-                            step: 0.1,
-                            min: 0.0,
-                        },
-                    }}
+                <Box
                     sx={{
                         width: "100%",
                         marginTop: "15px",
+                        display: "flex",
+                        justifyContent: "space-between",
                     }}
-                />
+                >
+                    <TextField
+                        label="Min Price"
+                        type="number"
+                        value={0}
+                        onChange={() => null}
+                        inputMode="numeric"
+                        slotProps={{
+                            htmlInput: {
+                                step: 0.1,
+                                min: 0.0,
+                            },
+                        }}
+                        sx={{
+                            width: "48%",
+                        }}
+                    />
+                    <TextField
+                        label="Max Price"
+                        type="number"
+                        value={maxPlayerPrice}
+                        onChange={handleChangePrice}
+                        inputMode="numeric"
+                        slotProps={{
+                            htmlInput: {
+                                step: 0.1,
+                                min: 0.0,
+                            },
+                        }}
+                        sx={{
+                            width: "48%",
+                        }}
+                    />
+                </Box>
             </Box>
+            <Divider />
             <Box
                 sx={{
                     width: "100%",
-                    paddingLeft: "15px",
+                    padding: "10px 0px 0px 15px",
                     flexGrow: 1,
                     overflowY: "auto",
                 }}
