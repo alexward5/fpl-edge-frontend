@@ -41,7 +41,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 `);
 
 function PageContent() {
-    const [dataRes, setDataRes] = useState<Query | undefined>(undefined);
+    const [playerData, setPlayerData] = useState<Query | undefined>(undefined);
     const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
 
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
@@ -62,7 +62,7 @@ function PageContent() {
     useEffect(() => {
         if (data) {
             const queryRes = data as Query;
-            setDataRes(queryRes);
+            setPlayerData(queryRes);
             setMaxPlayerPrice(
                 String(
                     Math.max(
@@ -89,17 +89,17 @@ function PageContent() {
     };
 
     if (loading) return <h1>Loading...</h1>;
-    if (!dataRes) return <h1>Error retrieving data</h1>;
+    if (!playerData) return <h1>Error retrieving data</h1>;
 
     const numGameweeks = Math.max(
-        ...dataRes.players.map(
+        ...playerData.players.map(
             (obj: { player_gameweek_data: PlayerGameweekData[] }) =>
                 obj.player_gameweek_data.length,
         ),
     );
 
     // Filter players based on team/position and price
-    const filteredPlayers = dataRes.players.filter((player) => {
+    const filteredPlayers = playerData.players.filter((player) => {
         const isDisplayedPosition = displayedPositions.includes(
             player.fpl_player_position,
         );
