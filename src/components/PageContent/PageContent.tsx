@@ -7,11 +7,13 @@ import Drawer from "../Drawer/Drawer";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 
 import type DisplayedData from "../../types/DisplayedData";
-import type { PlayerGameweekData } from "../../__generated__/graphql";
-import type { Query } from "../../__generated__/graphql";
+import type {
+    GetPlayerDataQuery,
+    PlayerGameweekData,
+} from "../../__generated__/graphql";
 
 const GET_PLAYER_GAMEWEEK_DATA = gql(`
-    query GetPlayerGameweekData {
+    query GetPlayerData {
         players {
             fpl_player_code
             fpl_web_name
@@ -32,7 +34,7 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 `);
 
 function PageContent() {
-    const [playerData, setPlayerData] = useState<Query | undefined>(undefined);
+    const [playerData, setPlayerData] = useState<GetPlayerDataQuery>();
     const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
 
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
@@ -49,8 +51,7 @@ function PageContent() {
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
     useEffect(() => {
         if (data) {
-            const queryRes = data as Query;
-            setPlayerData(queryRes);
+            setPlayerData(data);
             setMaxPlayerPrice(
                 String(
                     Math.max(
@@ -76,8 +77,7 @@ function PageContent() {
         }
     };
 
-    if (loading) return <h1>Loading...</h1>;
-    if (!playerData) return <h1>Error retrieving data</h1>;
+    if (loading || !playerData) return <h1>Loading...</h1>;
 
     const numGameweeks = Math.max(
         ...playerData.players.map(
