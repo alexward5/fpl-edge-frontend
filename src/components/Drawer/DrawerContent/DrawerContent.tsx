@@ -184,8 +184,8 @@ export default function DrawerContent(props: Props) {
                                         checked={displayedTeams.includes(
                                             teamName,
                                         )}
+                                        // Toggle team in displayedTeams
                                         onChange={(e) => {
-                                            console.log(e.target.checked);
                                             if (e.target.checked) {
                                                 setDisplayedTeams([
                                                     ...displayedTeams,
