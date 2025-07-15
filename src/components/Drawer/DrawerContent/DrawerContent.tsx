@@ -51,10 +51,6 @@ export default function DrawerContent(props: Props) {
     const [teamNames, setTeamNames] = useState<string[]>([]);
 
     useEffect(() => {
-        setGameweekRange([1, numGameweeks]);
-    }, [numGameweeks]);
-
-    useEffect(() => {
         if (data?.teams) {
             const sortedTeamNames = data.teams
                 .map((team) => team.fbref_team)

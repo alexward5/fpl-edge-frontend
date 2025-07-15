@@ -16,7 +16,7 @@ export default function RangeSlider(props: Props) {
 
     useEffect(() => {
         setGameweekRange([1, numGameweeks]);
-    }, [numGameweeks]);
+    }, []);
 
     // Set minimum distance between slider thumbs
     const minDistance = 1;
