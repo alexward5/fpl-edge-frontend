@@ -12,7 +12,10 @@ function PageContent() {
         "FWD",
     ]);
     const [displayedTeams, setDisplayedTeams] = useState<string[]>([]);
-    const [maxPlayerPrice, setMaxPlayerPrice] = useState<string>("");
+    const [playerPriceRange, setPlayerPriceRange] = useState<string[]>([
+        "",
+        "",
+    ]);
 
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -45,8 +48,8 @@ function PageContent() {
                 setDisplayedPositions={setDisplayedPositions}
                 displayedTeams={displayedTeams}
                 setDisplayedTeams={setDisplayedTeams}
-                maxPlayerPrice={maxPlayerPrice}
-                setMaxPlayerPrice={setMaxPlayerPrice}
+                playerPriceRange={playerPriceRange}
+                setPlayerPriceRange={setPlayerPriceRange}
                 gameweekRange={gameweekRange}
                 setGameweekRange={setGameweekRange}
             />
@@ -64,8 +67,8 @@ function PageContent() {
                 <PlayerDataTable
                     displayedPositions={displayedPositions}
                     displayedTeams={displayedTeams}
-                    maxPlayerPrice={maxPlayerPrice}
-                    setMaxPlayerPrice={setMaxPlayerPrice}
+                    playerPriceRange={playerPriceRange}
+                    setPlayerPriceRange={setPlayerPriceRange}
                     gameweekRange={gameweekRange}
                 />
             </Box>

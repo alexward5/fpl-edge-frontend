@@ -32,8 +32,8 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
 type Props = {
     displayedPositions: string[];
     displayedTeams: string[];
-    maxPlayerPrice: string;
-    setMaxPlayerPrice: (price: string) => void;
+    playerPriceRange: string[];
+    setPlayerPriceRange: React.Dispatch<React.SetStateAction<string[]>>;
     gameweekRange: number[];
 };
 
@@ -41,8 +41,8 @@ export default function PlayerDataTable(props: Props) {
     const {
         displayedPositions,
         displayedTeams,
-        maxPlayerPrice,
-        setMaxPlayerPrice,
+        playerPriceRange,
+        setPlayerPriceRange,
         gameweekRange,
     } = props;
 
@@ -55,13 +55,14 @@ export default function PlayerDataTable(props: Props) {
     useEffect(() => {
         if (data) {
             setPlayerData(data);
-            setMaxPlayerPrice(
-                String(
-                    Math.max(
-                        ...data.players.map((player) => player.fpl_player_cost),
-                    ),
-                ),
+
+            const maxPrice = Math.max(
+                ...data.players.map((player) => player.fpl_player_cost),
             );
+            const minPrice = Math.min(
+                ...data.players.map((player) => player.fpl_player_cost),
+            );
+            setPlayerPriceRange([String(minPrice), String(maxPrice)]);
         }
     }, [data]);
 
@@ -74,11 +75,17 @@ export default function PlayerDataTable(props: Props) {
         );
         const isDisplayedTeam = displayedTeams.includes(player.fbref_team);
 
+        // Check that both min and max price are valid numbers
         const validPriceFilter =
-            maxPlayerPrice !== "" && !maxPlayerPrice.endsWith(".");
+            playerPriceRange[0] !== "" &&
+            !playerPriceRange[0].endsWith(".") &&
+            playerPriceRange[1] !== "" &&
+            !playerPriceRange[1].endsWith(".");
+
         const isDisplayedPrice =
             validPriceFilter &&
-            player.fpl_player_cost <= parseFloat(maxPlayerPrice);
+            player.fpl_player_cost >= parseFloat(playerPriceRange[0]) &&
+            player.fpl_player_cost <= parseFloat(playerPriceRange[1]);
 
         return isDisplayedPosition && isDisplayedTeam && isDisplayedPrice;
     });

@@ -14,8 +14,8 @@ type Props = {
     setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
-    maxPlayerPrice: string;
-    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<string>>;
+    playerPriceRange: string[];
+    setPlayerPriceRange: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export default function ResponsiveDrawer(props: Props) {
@@ -29,8 +29,8 @@ export default function ResponsiveDrawer(props: Props) {
         setDisplayedTeams,
         displayedPositions,
         setDisplayedPositions,
-        maxPlayerPrice,
-        setMaxPlayerPrice,
+        playerPriceRange,
+        setPlayerPriceRange,
     } = props;
 
     return (
@@ -61,8 +61,8 @@ export default function ResponsiveDrawer(props: Props) {
                     setDisplayedTeams={setDisplayedTeams}
                     displayedPositions={displayedPositions}
                     setDisplayedPositions={setDisplayedPositions}
-                    maxPlayerPrice={maxPlayerPrice}
-                    setMaxPlayerPrice={setMaxPlayerPrice}
+                    playerPriceRange={playerPriceRange}
+                    setPlayerPriceRange={setPlayerPriceRange}
                 />
             </Drawer>
             <Drawer
@@ -83,8 +83,8 @@ export default function ResponsiveDrawer(props: Props) {
                     setDisplayedTeams={setDisplayedTeams}
                     displayedPositions={displayedPositions}
                     setDisplayedPositions={setDisplayedPositions}
-                    maxPlayerPrice={maxPlayerPrice}
-                    setMaxPlayerPrice={setMaxPlayerPrice}
+                    playerPriceRange={playerPriceRange}
+                    setPlayerPriceRange={setPlayerPriceRange}
                 />
             </Drawer>
         </Box>

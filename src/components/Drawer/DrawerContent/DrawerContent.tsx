@@ -20,8 +20,8 @@ interface Props {
     setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
-    maxPlayerPrice: string;
-    setMaxPlayerPrice: React.Dispatch<React.SetStateAction<string>>;
+    playerPriceRange: string[];
+    setPlayerPriceRange: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const GET_TEAM_DATA = gql(`
@@ -40,8 +40,8 @@ export default function DrawerContent(props: Props) {
         setDisplayedTeams,
         displayedPositions,
         setDisplayedPositions,
-        maxPlayerPrice,
-        setMaxPlayerPrice,
+        playerPriceRange,
+        setPlayerPriceRange,
     } = props;
 
     const [teamNames, setTeamNames] = useState<string[]>([]);
@@ -57,13 +57,27 @@ export default function DrawerContent(props: Props) {
         }
     }, [data]);
 
-    const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeMinPrice = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
         const newValue = event.target.value;
         const digitCount = newValue.replace(/\D/g, "").length;
 
         // Check that input is valid float and is three digits or less
         if (/^$|^\d*\.?\d*$/.test(newValue) && digitCount <= 3) {
-            setMaxPlayerPrice(newValue);
+            setPlayerPriceRange([newValue, playerPriceRange[1]]);
+        }
+    };
+
+    const handleChangeMaxPrice = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        const newValue = event.target.value;
+        const digitCount = newValue.replace(/\D/g, "").length;
+
+        // Check that input is valid float and is three digits or less
+        if (/^$|^\d*\.?\d*$/.test(newValue) && digitCount <= 3) {
+            setPlayerPriceRange([playerPriceRange[0], newValue]);
         }
     };
 
@@ -120,8 +134,8 @@ export default function DrawerContent(props: Props) {
                     <TextField
                         label="Min Price"
                         type="number"
-                        value={0}
-                        onChange={() => null}
+                        value={playerPriceRange[0]}
+                        onChange={handleChangeMinPrice}
                         inputMode="numeric"
                         slotProps={{
                             htmlInput: {
@@ -136,8 +150,8 @@ export default function DrawerContent(props: Props) {
                     <TextField
                         label="Max Price"
                         type="number"
-                        value={maxPlayerPrice}
-                        onChange={handleChangePrice}
+                        value={playerPriceRange[1]}
+                        onChange={handleChangeMaxPrice}
                         inputMode="numeric"
                         slotProps={{
                             htmlInput: {
