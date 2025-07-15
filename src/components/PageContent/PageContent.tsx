@@ -4,8 +4,7 @@ import { gql } from "../../__generated__/gql";
 import Box from "@mui/material/Box";
 import Header from "../Header/Header";
 import Drawer from "../Drawer/Drawer";
-import EnhancedTable from "../EnhancedTable/EnhancedTable";
-import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
+import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 
 import type DisplayedData from "../../types/DisplayedData";
 import type { PlayerGameweekData } from "../../__generated__/graphql";
@@ -29,14 +28,6 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
                 fpl_gameweek
             }
         }
-        teams {
-            fbref_team
-            fbref_team_matchlog {
-                fbref_match_date
-                fbref_round
-                match_number
-            }
-        }
     }
 `);
 
@@ -54,9 +45,6 @@ function PageContent() {
 
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(50);
 
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
     useEffect(() => {
@@ -184,25 +172,7 @@ function PageContent() {
                     ml: { sm: `${DRAWER_WIDTH}px` },
                 }}
             >
-                <Box
-                    sx={{
-                        height: `calc(100% - 52px)`,
-                        overflow: "auto",
-                    }}
-                >
-                    <EnhancedTable
-                        rows={displayedData}
-                        page={page}
-                        rowsPerPage={rowsPerPage}
-                    />
-                </Box>
-                <EnhancedTablePagination
-                    rows={displayedData}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    setPage={setPage}
-                    setRowsPerPage={setRowsPerPage}
-                />
+                <PlayerDataTable displayedData={displayedData} />
             </Box>
         </>
     );
