@@ -6,7 +6,6 @@ import Header from "../Header/Header";
 import Drawer from "../Drawer/Drawer";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 
-import type DisplayedData from "../../types/DisplayedData";
 import type {
     GetPlayerDataQuery,
     PlayerGameweekData,
@@ -52,13 +51,6 @@ function PageContent() {
     useEffect(() => {
         if (data) {
             setPlayerData(data);
-            setMaxPlayerPrice(
-                String(
-                    Math.max(
-                        ...data.players.map((player) => player.fpl_player_cost),
-                    ),
-                ),
-            );
         }
     }, [data]);
 
@@ -85,62 +77,6 @@ function PageContent() {
                 obj.player_gameweek_data.length,
         ),
     );
-
-    // Filter players based on team/position and price
-    const filteredPlayers = playerData.players.filter((player) => {
-        const isDisplayedPosition = displayedPositions.includes(
-            player.fpl_player_position,
-        );
-        const isDisplayedTeam = displayedTeams.includes(player.fbref_team);
-
-        const validPriceFilter =
-            maxPlayerPrice !== "" && !maxPlayerPrice.endsWith(".");
-        const isDisplayedPrice =
-            validPriceFilter &&
-            player.fpl_player_cost <= parseFloat(maxPlayerPrice);
-
-        return isDisplayedPosition && isDisplayedTeam && isDisplayedPrice;
-    });
-
-    const displayedData: DisplayedData[] = filteredPlayers
-        ? filteredPlayers.map((player) => {
-              // Sum player expected stats from gameweek range
-              let gamesPlayed = 0;
-              let sumMinutes = 0;
-              let sumNPxG = 0;
-              let sumxA = 0;
-              let sumNPxP = 0;
-
-              player.player_gameweek_data.forEach((playerGameweek) => {
-                  if (
-                      playerGameweek.fpl_gameweek >= gameweekRange[0] &&
-                      playerGameweek.fpl_gameweek <= gameweekRange[1]
-                  ) {
-                      gamesPlayed++;
-                      sumMinutes += playerGameweek.fbref_minutes;
-                      sumNPxG += playerGameweek.fbref_npxg;
-                      sumxA += playerGameweek.fbref_xg_assist;
-                      sumNPxP += playerGameweek.calc_fpl_npxp;
-                  }
-              });
-
-              return {
-                  fplPlayerCode: player.fpl_player_code,
-                  fplWebName: player.fpl_web_name,
-                  fbrefTeam: player.fbref_team,
-                  fplPlayerPosition: player.fpl_player_position,
-                  fplPlayerCost: Number(player.fpl_player_cost.toFixed(1)),
-                  fplSelectedByPercent: Number(
-                      player.fpl_selected_by_percent.toFixed(1),
-                  ),
-                  gamesPlayed: gamesPlayed,
-                  sumMinutes: sumMinutes,
-                  sumNPxG: Number(sumNPxG.toFixed(1)),
-                  sumxA: Number(sumxA.toFixed(1)),
-                  sumNPxP: Number(sumNPxP.toFixed(1)),
-              };
-          })
-        : [];
 
     const DRAWER_WIDTH = 240;
 
@@ -172,7 +108,13 @@ function PageContent() {
                     ml: { sm: `${DRAWER_WIDTH}px` },
                 }}
             >
-                <PlayerDataTable displayedData={displayedData} />
+                <PlayerDataTable
+                    displayedPositions={displayedPositions}
+                    displayedTeams={displayedTeams}
+                    maxPlayerPrice={maxPlayerPrice}
+                    setMaxPlayerPrice={setMaxPlayerPrice}
+                    gameweekRange={gameweekRange}
+                />
             </Box>
         </>
     );
