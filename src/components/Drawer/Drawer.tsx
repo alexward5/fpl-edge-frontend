@@ -6,7 +6,6 @@ const drawerWidth = 240;
 
 type Props = {
     gameweekRange: number[];
-    numGameweeks: number;
     setGameweekRange: React.Dispatch<React.SetStateAction<number[]>>;
     mobileOpen: boolean;
     handleDrawerTransitionEnd: () => void;
@@ -22,7 +21,6 @@ type Props = {
 export default function ResponsiveDrawer(props: Props) {
     const {
         gameweekRange,
-        numGameweeks,
         setGameweekRange,
         mobileOpen,
         handleDrawerTransitionEnd,
@@ -58,7 +56,6 @@ export default function ResponsiveDrawer(props: Props) {
             >
                 <DrawerContent
                     gameweekRange={gameweekRange}
-                    numGameweeks={numGameweeks}
                     setGameweekRange={setGameweekRange}
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}
@@ -81,7 +78,6 @@ export default function ResponsiveDrawer(props: Props) {
             >
                 <DrawerContent
                     gameweekRange={gameweekRange}
-                    numGameweeks={numGameweeks}
                     setGameweekRange={setGameweekRange}
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}

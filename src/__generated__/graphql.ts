@@ -16,6 +16,13 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type Events = {
+  __typename?: 'Events';
+  finished: Scalars['Boolean']['output'];
+  id: Scalars['Int']['output'];
+  is_current: Scalars['Boolean']['output'];
+};
+
 export type Player = {
   __typename?: 'Player';
   fbref_team: Scalars['String']['output'];
@@ -46,6 +53,7 @@ export type PlayerGameweekData = {
 
 export type Query = {
   __typename?: 'Query';
+  events: Array<Events>;
   players: Array<Player>;
   teams: Array<Team>;
 };
@@ -78,6 +86,11 @@ export type GetTeamNamesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetTeamNamesQuery = { __typename?: 'Query', teams: Array<{ __typename?: 'Team', fbref_team: string }> };
 
+export type GetFplEventsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFplEventsQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Events', id: number, is_current: boolean, finished: boolean }> };
+
 export type GetPlayerDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -85,4 +98,5 @@ export type GetPlayerDataQuery = { __typename?: 'Query', players: Array<{ __type
 
 
 export const GetTeamNamesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetTeamNames"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"teams"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}}]}}]}}]} as unknown as DocumentNode<GetTeamNamesQuery, GetTeamNamesQueryVariables>;
+export const GetFplEventsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetFplEvents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"events"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"is_current"}},{"kind":"Field","name":{"kind":"Name","value":"finished"}}]}}]}}]} as unknown as DocumentNode<GetFplEventsQuery, GetFplEventsQueryVariables>;
 export const GetPlayerDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPlayerData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"players"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fpl_player_code"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_web_name"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_position"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_cost"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_selected_by_percent"}},{"kind":"Field","name":{"kind":"Name","value":"player_gameweek_data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_round"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_minutes"}},{"kind":"Field","name":{"kind":"Name","value":"calc_fpl_npxp"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_xg_assist"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_npxg"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_gameweek"}}]}}]}}]}}]} as unknown as DocumentNode<GetPlayerDataQuery, GetPlayerDataQueryVariables>;

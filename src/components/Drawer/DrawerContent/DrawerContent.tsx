@@ -15,7 +15,6 @@ import { gql } from "../../../__generated__/gql";
 
 interface Props {
     gameweekRange: number[];
-    numGameweeks: number;
     setGameweekRange: React.Dispatch<React.SetStateAction<number[]>>;
     displayedTeams: string[];
     setDisplayedTeams: React.Dispatch<React.SetStateAction<string[]>>;
@@ -36,7 +35,6 @@ const GET_TEAM_DATA = gql(`
 export default function DrawerContent(props: Props) {
     const {
         gameweekRange,
-        numGameweeks,
         setGameweekRange,
         displayedTeams,
         setDisplayedTeams,
@@ -46,10 +44,9 @@ export default function DrawerContent(props: Props) {
         setMaxPlayerPrice,
     } = props;
 
-    const { data } = useQuery(GET_TEAM_DATA);
-
     const [teamNames, setTeamNames] = useState<string[]>([]);
 
+    const { data } = useQuery(GET_TEAM_DATA);
     useEffect(() => {
         if (data?.teams) {
             const sortedTeamNames = data.teams
@@ -97,7 +94,6 @@ export default function DrawerContent(props: Props) {
                 <GameweekSlider
                     gameweekRange={gameweekRange}
                     setGameweekRange={setGameweekRange}
-                    numGameweeks={numGameweeks}
                 />
             </Box>
             <Divider />
