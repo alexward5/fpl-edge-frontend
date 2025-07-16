@@ -138,18 +138,25 @@ export default function EnhancedTable(props: Props) {
                             <TableCell align="right">
                                 {row.fplPlayerCost}
                             </TableCell>
-                            <TableCell align="right">
-                                {row.fplSelectedByPercent}
-                            </TableCell>
+
                             <TableCell align="right">
                                 {row.gamesPlayed}
                             </TableCell>
                             <TableCell align="right">
                                 {row.sumMinutes}
                             </TableCell>
+                            <TableCell align="right">{row.sumGoals}</TableCell>
+                            <TableCell align="right">
+                                {row.sumAssists}
+                            </TableCell>
                             <TableCell align="right">{row.sumNPxG}</TableCell>
                             <TableCell align="right">{row.sumxA}</TableCell>
                             <TableCell align="right">{row.sumNPxP}</TableCell>
+                            <TableCell align="right">{row.sumBPS}</TableCell>
+                            <TableCell align="right">{row.sumPoints}</TableCell>
+                            <TableCell align="right">
+                                {row.fplSelectedByPercent}
+                            </TableCell>
                         </TableRow>
                     );
                 })}

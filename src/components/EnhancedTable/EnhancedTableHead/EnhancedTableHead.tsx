@@ -40,12 +40,7 @@ const headCells: readonly HeadCell[] = [
         disablePadding: false,
         label: "Price",
     },
-    {
-        id: "fplSelectedByPercent",
-        numeric: true,
-        disablePadding: false,
-        label: "Selected %",
-    },
+
     {
         id: "gamesPlayed",
         numeric: true,
@@ -57,6 +52,18 @@ const headCells: readonly HeadCell[] = [
         numeric: true,
         disablePadding: false,
         label: "Minutes",
+    },
+    {
+        id: "sumGoals",
+        numeric: true,
+        disablePadding: false,
+        label: "Goals",
+    },
+    {
+        id: "sumAssists",
+        numeric: true,
+        disablePadding: false,
+        label: "Assists",
     },
     {
         id: "sumNPxG",
@@ -75,6 +82,24 @@ const headCells: readonly HeadCell[] = [
         numeric: true,
         disablePadding: false,
         label: "NPxP",
+    },
+    {
+        id: "sumBPS",
+        numeric: true,
+        disablePadding: false,
+        label: "BPS",
+    },
+    {
+        id: "sumPoints",
+        numeric: true,
+        disablePadding: false,
+        label: "Points",
+    },
+    {
+        id: "fplSelectedByPercent",
+        numeric: true,
+        disablePadding: false,
+        label: "Selected %",
     },
 ];
 
