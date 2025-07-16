@@ -110,6 +110,7 @@ export default function EnhancedTable(props: Props) {
                             <TableCell padding="checkbox">
                                 <Checkbox
                                     color="primary"
+                                    size="small"
                                     checked={isItemSelected}
                                     inputProps={{
                                         "aria-labelledby": labelId,

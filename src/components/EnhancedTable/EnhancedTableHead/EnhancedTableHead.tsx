@@ -136,6 +136,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                 <TableCell padding="checkbox">
                     <Checkbox
                         color="primary"
+                        size="small"
                         indeterminate={
                             numSelected > 0 && numSelected < rowCount
                         }
