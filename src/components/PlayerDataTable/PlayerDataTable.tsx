@@ -53,15 +53,12 @@ export default function PlayerDataTable(props: Props) {
 
     const { loading, data } = useQuery(GET_PLAYER_GAMEWEEK_DATA);
     useEffect(() => {
-        if (data) {
+        if (data?.players) {
             setPlayerData(data);
 
-            const maxPrice = Math.max(
-                ...data.players.map((player) => player.fpl_player_cost),
-            );
-            const minPrice = Math.min(
-                ...data.players.map((player) => player.fpl_player_cost),
-            );
+            const playerCosts = data.players.map((p) => p.fpl_player_cost);
+            const maxPrice = Math.max(...playerCosts);
+            const minPrice = Math.min(...playerCosts);
             setPlayerPriceRange([String(minPrice), String(maxPrice)]);
         }
     }, [data]);
