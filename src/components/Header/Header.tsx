@@ -2,7 +2,6 @@ import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 
 const drawerWidth = 240;
 
@@ -20,6 +19,9 @@ export default function Header(props: Props) {
             sx={{
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
+                background:
+                    "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(74,247,146,1) 53%)",
+                color: "black",
             }}
         >
             <Toolbar>
@@ -32,9 +34,6 @@ export default function Header(props: Props) {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                    Player Gameweek Data
-                </Typography>
             </Toolbar>
         </AppBar>
     );

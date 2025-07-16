@@ -89,7 +89,20 @@ export default function DrawerContent(props: Props) {
                 flexDirection: "column",
             }}
         >
-            <Toolbar variant="regular" />
+            <Toolbar
+                variant="regular"
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                }}
+            >
+                <Box
+                    component="img"
+                    src="/temp-logo.png"
+                    alt="Logo"
+                    sx={{ height: "42px", width: "auto" }}
+                />
+            </Toolbar>
             <Divider />
             <Typography
                 variant="subtitle1"

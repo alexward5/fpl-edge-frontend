@@ -25,7 +25,6 @@ export default function EnhancedTablePagination(props: Props) {
 
     return (
         <TablePagination
-            sx={{ backgroundColor: "lightgray" }}
             rowsPerPageOptions={[25, 50, 100]}
             component="div"
             count={rows.length}
