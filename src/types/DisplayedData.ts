@@ -1,4 +1,4 @@
-interface DisplayedData {
+type DisplayedData = {
     fplPlayerCode: number;
     fplWebName: string;
     fbrefTeam: string;
@@ -10,6 +10,11 @@ interface DisplayedData {
     sumNPxG: number;
     sumxA: number;
     sumNPxP: number;
-}
+    sumPoints: number;
+    sumGoals: number;
+    sumAssists: number;
+    sumBPS: number;
+    sumCleansheets: number;
+};
 
 export default DisplayedData;

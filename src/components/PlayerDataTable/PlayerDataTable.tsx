@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import EnhancedTable from "../EnhancedTable/EnhancedTable";
 import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
 
-import DisplayedData from "../../types/DisplayedData";
+import type DisplayedData from "../../types/DisplayedData";
 import type { GetPlayerDataQuery } from "../../__generated__/graphql";
 import { useQuery } from "@apollo/client";
 
@@ -20,10 +20,15 @@ const GET_PLAYER_GAMEWEEK_DATA = gql(`
             player_gameweek_data {
                 fbref_round
                 fbref_minutes
-                calc_fpl_npxp
-                fbref_xg_assist
                 fbref_npxg
                 fpl_gameweek
+                fpl_total_points
+                fpl_goals_scored
+                fpl_assists
+                fpl_bps
+                fpl_clean_sheet
+                calc_fpl_npxp
+                fbref_xg_assist
             }
         }
     }
@@ -91,6 +96,11 @@ export default function PlayerDataTable(props: Props) {
               let sumNPxG = 0;
               let sumxA = 0;
               let sumNPxP = 0;
+              let sumPoints = 0;
+              let sumGoals = 0;
+              let sumAssists = 0;
+              let sumBPS = 0;
+              let sumCleansheets = 0;
 
               player.player_gameweek_data.forEach((playerGameweek) => {
                   if (
@@ -102,6 +112,12 @@ export default function PlayerDataTable(props: Props) {
                       sumNPxG += playerGameweek.fbref_npxg;
                       sumxA += playerGameweek.fbref_xg_assist;
                       sumNPxP += playerGameweek.calc_fpl_npxp;
+
+                      sumPoints += playerGameweek.fpl_total_points;
+                      sumGoals += playerGameweek.fpl_goals_scored;
+                      sumAssists += playerGameweek.fpl_assists;
+                      sumBPS += playerGameweek.fpl_bps;
+                      sumCleansheets += playerGameweek.fpl_clean_sheet;
                   }
               });
 
@@ -119,6 +135,11 @@ export default function PlayerDataTable(props: Props) {
                   sumNPxG: Number(sumNPxG.toFixed(1)),
                   sumxA: Number(sumxA.toFixed(1)),
                   sumNPxP: Number(sumNPxP.toFixed(1)),
+                  sumPoints: sumPoints,
+                  sumGoals: sumGoals,
+                  sumAssists: sumAssists,
+                  sumBPS: sumBPS,
+                  sumCleansheets: sumCleansheets,
               };
           })
         : [];
