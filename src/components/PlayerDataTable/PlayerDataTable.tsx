@@ -72,17 +72,13 @@ export default function PlayerDataTable(props: Props) {
         );
         const isDisplayedTeam = displayedTeams.includes(player.fbref_team);
 
-        // Check that both min and max price are valid numbers
-        const validPriceFilter =
-            playerPriceRange[0] !== "" &&
-            !playerPriceRange[0].endsWith(".") &&
-            playerPriceRange[1] !== "" &&
-            !playerPriceRange[1].endsWith(".");
-
+        // Check if player is within max/min price range
+        // If either value is empty, use default value instead
         const isDisplayedPrice =
-            validPriceFilter &&
-            player.fpl_player_cost >= parseFloat(playerPriceRange[0]) &&
-            player.fpl_player_cost <= parseFloat(playerPriceRange[1]);
+            player.fpl_player_cost >=
+                parseFloat(playerPriceRange[0] ? playerPriceRange[0] : "0") &&
+            player.fpl_player_cost <=
+                parseFloat(playerPriceRange[1] ? playerPriceRange[1] : "999");
 
         return isDisplayedPosition && isDisplayedTeam && isDisplayedPrice;
     });
