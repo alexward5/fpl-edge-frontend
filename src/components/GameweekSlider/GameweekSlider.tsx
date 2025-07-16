@@ -82,6 +82,7 @@ export default function RangeSlider(props: Props) {
             min={1}
             max={numGameweeks}
             marks={marks}
+            disableSwap
         />
     );
 }
