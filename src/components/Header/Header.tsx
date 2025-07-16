@@ -22,6 +22,7 @@ export default function Header(props: Props) {
                 background:
                     "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(74,247,146,1) 53%)",
                 color: "black",
+                borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
             }}
         >
             <Toolbar>

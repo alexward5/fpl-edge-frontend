@@ -51,6 +51,7 @@ export default function ResponsiveDrawer(props: Props) {
                     "& .MuiDrawer-paper": {
                         boxSizing: "border-box",
                         width: drawerWidth,
+                        borderRight: "none",
                     },
                 }}
             >
@@ -72,6 +73,7 @@ export default function ResponsiveDrawer(props: Props) {
                     "& .MuiDrawer-paper": {
                         boxSizing: "border-box",
                         width: drawerWidth,
+                        borderRight: "none",
                     },
                 }}
                 open
