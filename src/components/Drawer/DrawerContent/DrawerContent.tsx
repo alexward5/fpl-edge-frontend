@@ -108,6 +108,7 @@ export default function DrawerContent(props: Props) {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
+                    flexGrow: 1,
                     overflowY: "auto",
 
                     borderRight: "1px solid rgba(0, 0, 0, 0.12)",
