@@ -94,6 +94,7 @@ export default function DrawerContent(props: Props) {
                 sx={{
                     display: "flex",
                     justifyContent: "center",
+                    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
                 }}
             >
                 <Box
@@ -108,7 +109,7 @@ export default function DrawerContent(props: Props) {
                     display: "flex",
                     flexDirection: "column",
                     overflowY: "auto",
-                    borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+
                     borderRight: "1px solid rgba(0, 0, 0, 0.12)",
                 }}
             >
