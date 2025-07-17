@@ -20,8 +20,7 @@ export default function Header(props: Props) {
             sx={{
                 width: { sm: `calc(100% - ${theme.drawerWidth})` },
                 ml: { sm: theme.drawerWidth },
-                background:
-                    "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(74,247,146,1) 53%)",
+                background: `linear-gradient(90deg,rgb(255, 255, 255) 0%, ${theme.themeMainColor} 50%)`,
                 color: "black",
                 borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
             }}

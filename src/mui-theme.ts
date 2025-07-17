@@ -4,15 +4,18 @@ import { createTheme } from "@mui/material/styles";
 declare module "@mui/material/styles" {
     interface Theme {
         drawerWidth: string;
+        themeMainColor: string;
     }
 
     interface ThemeOptions {
         drawerWidth?: string;
+        themeMainColor?: string;
     }
 }
 
+const themeMainColor = "rgb(76, 230, 137)";
+
 const theme = createTheme({
-    drawerWidth: "240px",
     components: {
         MuiAppBar: {
             styleOverrides: {
@@ -36,7 +39,31 @@ const theme = createTheme({
                 }),
             },
         },
+        MuiCheckbox: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-checked": {
+                        color: "#000000",
+                    },
+                },
+            },
+        },
+        MuiSlider: {
+            styleOverrides: {
+                root: {
+                    color: themeMainColor,
+                },
+                thumb: {
+                    backgroundColor: "#fff",
+                    border: "2px solid #000000",
+                    width: 18,
+                    height: 18,
+                },
+            },
+        },
     },
+    drawerWidth: "240px",
+    themeMainColor: themeMainColor,
 });
 
 export default theme;
