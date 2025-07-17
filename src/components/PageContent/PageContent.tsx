@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Header from "../Header/Header";
 import Drawer from "../Drawer/Drawer";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
+import { useTheme } from "@mui/material/styles";
 
 function PageContent() {
     const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
@@ -35,7 +36,7 @@ function PageContent() {
         }
     };
 
-    const DRAWER_WIDTH = 240;
+    const theme = useTheme();
 
     return (
         <>
@@ -60,8 +61,8 @@ function PageContent() {
                         sm: `calc(100% - 64px)`,
                     },
                     mt: { xs: "56px", sm: "64px" },
-                    width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-                    ml: { sm: `${DRAWER_WIDTH}px` },
+                    width: { sm: `calc(100% - ${theme.drawerWidth})` },
+                    ml: { sm: `${theme.drawerWidth}` },
                 }}
             >
                 <PlayerDataTable

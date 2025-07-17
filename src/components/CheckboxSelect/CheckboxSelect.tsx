@@ -6,17 +6,10 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import { useTheme } from "@mui/material/styles";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 240,
-        },
-    },
-};
 
 type Props = {
     listItems: string[];
@@ -46,6 +39,8 @@ export default function MultipleSelectCheckmarks(props: Props) {
         );
     };
 
+    const theme = useTheme();
+
     return (
         <div>
             <FormControl sx={{ width: "100%" }}>
@@ -71,7 +66,14 @@ export default function MultipleSelectCheckmarks(props: Props) {
                             })
                             .join(", ");
                     }}
-                    MenuProps={MenuProps}
+                    MenuProps={{
+                        PaperProps: {
+                            style: {
+                                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                                width: theme.drawerWidth,
+                            },
+                        },
+                    }}
                 >
                     {listItems.map((listItem: string) => (
                         <MenuItem key={listItem} value={listItem}>

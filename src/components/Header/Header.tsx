@@ -2,8 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-
-const drawerWidth = 240;
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     handleDrawerToggle: () => void;
@@ -12,13 +11,15 @@ type Props = {
 export default function Header(props: Props) {
     const { handleDrawerToggle } = props;
 
+    const theme = useTheme();
+
     return (
         <AppBar
             position="fixed"
             elevation={0}
             sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
+                width: { sm: `calc(100% - ${theme.drawerWidth})` },
+                ml: { sm: theme.drawerWidth },
                 background:
                     "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(74,247,146,1) 53%)",
                 color: "black",
