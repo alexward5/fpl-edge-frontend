@@ -32,6 +32,9 @@ export default function EnhancedTablePagination(props: Props) {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            sx={{
+                borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+            }}
         />
     );
 }
