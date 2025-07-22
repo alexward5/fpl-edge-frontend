@@ -3,13 +3,13 @@ type DisplayedData = {
     fplWebName: string;
     fbrefTeam: string;
     fplPlayerPosition: string;
-    fplPlayerCost: number;
-    fplSelectedByPercent: number;
+    fplPlayerCost: string;
+    fplSelectedByPercent: string;
     gamesPlayed: number;
     sumMinutes: number;
-    sumNPxG: number;
-    sumxA: number;
-    sumNPxP: number;
+    sumNPxG: string;
+    sumxA: string;
+    sumNPxP: string;
     sumPoints: number;
     sumGoals: number;
     sumAssists: number;
