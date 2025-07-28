@@ -41,6 +41,25 @@ function PageContent() {
     return (
         <>
             <Header handleDrawerToggle={handleDrawerToggle} />
+            <Box
+                sx={{
+                    height: {
+                        xs: `calc(100% - ${theme.appBarHeightXs})`,
+                        sm: `calc(100% - ${theme.appBarHeightSm})`,
+                    },
+                    mt: { xs: theme.appBarHeightXs, sm: theme.appBarHeightSm },
+                    width: { sm: `calc(100% - ${theme.drawerWidth})` },
+                    ml: { sm: `${theme.drawerWidth}` },
+                }}
+            >
+                <PlayerDataTable
+                    displayedPositions={displayedPositions}
+                    displayedTeams={displayedTeams}
+                    playerPriceRange={playerPriceRange}
+                    setPlayerPriceRange={setPlayerPriceRange}
+                    gameweekRange={gameweekRange}
+                />
+            </Box>
             <Drawer
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}
@@ -54,25 +73,6 @@ function PageContent() {
                 gameweekRange={gameweekRange}
                 setGameweekRange={setGameweekRange}
             />
-            <Box
-                sx={{
-                    height: {
-                        xs: `calc(100% - 56px)`,
-                        sm: `calc(100% - 64px)`,
-                    },
-                    mt: { xs: "56px", sm: "64px" },
-                    width: { sm: `calc(100% - ${theme.drawerWidth})` },
-                    ml: { sm: `${theme.drawerWidth}` },
-                }}
-            >
-                <PlayerDataTable
-                    displayedPositions={displayedPositions}
-                    displayedTeams={displayedTeams}
-                    playerPriceRange={playerPriceRange}
-                    setPlayerPriceRange={setPlayerPriceRange}
-                    gameweekRange={gameweekRange}
-                />
-            </Box>
         </>
     );
 }

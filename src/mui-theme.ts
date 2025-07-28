@@ -5,15 +5,23 @@ declare module "@mui/material/styles" {
     interface Theme {
         drawerWidth: string;
         themeMainColor: string;
+        appBarHeightXs: string;
+        appBarHeightSm: string;
     }
 
     interface ThemeOptions {
         drawerWidth?: string;
         themeMainColor?: string;
+        appBarHeightXs?: string;
+        appBarHeightSm?: string;
     }
 }
 
 const themeMainColor = "rgb(76, 230, 137)";
+
+const drawerWidth = "240px";
+const appBarHeightXs = "46px";
+const appBarHeightSm = "56px";
 
 const theme = createTheme({
     components: {
@@ -21,10 +29,10 @@ const theme = createTheme({
             styleOverrides: {
                 root: ({ theme }) => ({
                     [theme.breakpoints.up("xs")]: {
-                        height: 46,
+                        height: appBarHeightXs,
                     },
                     [theme.breakpoints.up("sm")]: {
-                        height: 56,
+                        height: appBarHeightSm,
                     },
                 }),
             },
@@ -32,9 +40,9 @@ const theme = createTheme({
         MuiToolbar: {
             styleOverrides: {
                 root: ({ theme }) => ({
-                    minHeight: 46,
+                    minHeight: appBarHeightXs,
                     [theme.breakpoints.up("sm")]: {
-                        minHeight: 56,
+                        minHeight: appBarHeightSm,
                     },
                 }),
             },
@@ -62,8 +70,10 @@ const theme = createTheme({
             },
         },
     },
-    drawerWidth: "240px",
     themeMainColor: themeMainColor,
+    drawerWidth: drawerWidth,
+    appBarHeightXs: appBarHeightXs,
+    appBarHeightSm: appBarHeightSm,
 });
 
 export default theme;
