@@ -144,10 +144,17 @@ export default function PlayerDataTable(props: Props) {
         : [];
 
     return (
-        <>
+        <Box
+            sx={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
             <Box
                 sx={{
-                    height: `calc(100% - 52px)`,
+                    flex: 1,
                     overflow: "auto",
                 }}
             >
@@ -164,6 +171,6 @@ export default function PlayerDataTable(props: Props) {
                 setPage={setPage}
                 setRowsPerPage={setRowsPerPage}
             />
-        </>
+        </Box>
     );
 }
