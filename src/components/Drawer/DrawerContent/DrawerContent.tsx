@@ -82,8 +82,8 @@ export default function DrawerContent(props: Props) {
     };
 
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 display: "flex",
                 height: "100vh",
                 flexDirection: "column",
@@ -278,6 +278,6 @@ export default function DrawerContent(props: Props) {
                     </FormControl>
                 </Box>
             </Box>
-        </div>
+        </Box>
     );
 }
