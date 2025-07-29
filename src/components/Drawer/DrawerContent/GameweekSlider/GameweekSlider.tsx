@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@apollo/client";
-import { gql } from "../../__generated__/gql";
+import { gql } from "../../../../__generated__/gql";
 
 const GET_FPL_EVENTS = gql(`
     query GetFplEvents {

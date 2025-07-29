@@ -9,7 +9,7 @@ import CheckboxSelect from "../../CheckboxSelect/CheckboxSelect";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
-import GameweekSlider from "../../GameweekSlider/GameweekSlider";
+import GameweekSlider from "./GameweekSlider/GameweekSlider";
 import { TextField } from "@mui/material";
 import { gql } from "../../../__generated__/gql";
 
