@@ -1,29 +1,34 @@
 import { createTheme } from "@mui/material/styles";
 
+const themeMainColor = "rgb(76, 230, 137)";
+const drawerWidth = "240px";
+const appBarHeightXs = "46px";
+const appBarHeightSm = "56px";
+
 // Use module augmentation to add new variables to Theme and ThemeOptions
 declare module "@mui/material/styles" {
     interface Theme {
-        drawerWidth: string;
         themeMainColor: string;
+        drawerWidth: string;
         appBarHeightXs: string;
         appBarHeightSm: string;
     }
 
     interface ThemeOptions {
-        drawerWidth?: string;
         themeMainColor?: string;
+        drawerWidth?: string;
         appBarHeightXs?: string;
         appBarHeightSm?: string;
     }
 }
 
-const themeMainColor = "rgb(76, 230, 137)";
-
-const drawerWidth = "240px";
-const appBarHeightXs = "46px";
-const appBarHeightSm = "56px";
-
 const theme = createTheme({
+    // Theme variables to use in components
+    themeMainColor: themeMainColor,
+    drawerWidth: drawerWidth,
+    appBarHeightXs: appBarHeightXs,
+    appBarHeightSm: appBarHeightSm,
+    // Component style overrides
     components: {
         MuiAppBar: {
             styleOverrides: {
@@ -53,6 +58,9 @@ const theme = createTheme({
                     "&.Mui-checked": {
                         color: "#000000",
                     },
+                    "&.MuiCheckbox-indeterminate": {
+                        color: "#000000",
+                    },
                 },
             },
         },
@@ -70,10 +78,6 @@ const theme = createTheme({
             },
         },
     },
-    themeMainColor: themeMainColor,
-    drawerWidth: drawerWidth,
-    appBarHeightXs: appBarHeightXs,
-    appBarHeightSm: appBarHeightSm,
 });
 
 export default theme;
