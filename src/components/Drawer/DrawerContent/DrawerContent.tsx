@@ -5,13 +5,12 @@ import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
-import CheckboxSelect from "../../CheckboxSelect/CheckboxSelect";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import GameweekSlider from "./GameweekSlider/GameweekSlider";
-import { TextField } from "@mui/material";
 import { gql } from "../../../__generated__/gql";
+import PlayerFilters from "./PlayerFilters/PlayerFilters";
 
 interface Props {
     gameweekRange: number[];
@@ -119,60 +118,13 @@ export default function DrawerContent(props: Props) {
                     setGameweekRange={setGameweekRange}
                 />
                 <Divider />
-                <Box
-                    sx={{
-                        width: "100%",
-                        padding: "15px 15px 10px 15px",
-                    }}
-                >
-                    <CheckboxSelect
-                        listItems={["DEF", "MID", "FWD"]}
-                        label="Position"
-                        selectedList={displayedPositions}
-                        setSelectedList={setDisplayedPositions}
-                    />
-                    <Box
-                        sx={{
-                            width: "100%",
-                            marginTop: "15px",
-                            display: "flex",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <TextField
-                            label="Min Price"
-                            type="number"
-                            value={playerPriceRange[0]}
-                            onChange={handleChangeMinPrice}
-                            inputMode="numeric"
-                            slotProps={{
-                                htmlInput: {
-                                    step: 0.1,
-                                    min: 0.0,
-                                },
-                            }}
-                            sx={{
-                                width: "48%",
-                            }}
-                        />
-                        <TextField
-                            label="Max Price"
-                            type="number"
-                            value={playerPriceRange[1]}
-                            onChange={handleChangeMaxPrice}
-                            inputMode="numeric"
-                            slotProps={{
-                                htmlInput: {
-                                    step: 0.1,
-                                    min: 0.0,
-                                },
-                            }}
-                            sx={{
-                                width: "48%",
-                            }}
-                        />
-                    </Box>
-                </Box>
+                <PlayerFilters
+                    displayedPositions={displayedPositions}
+                    setDisplayedPositions={setDisplayedPositions}
+                    playerPriceRange={playerPriceRange}
+                    handleChangeMinPrice={handleChangeMinPrice}
+                    handleChangeMaxPrice={handleChangeMaxPrice}
+                />
                 <Divider />
                 <Box
                     sx={{
