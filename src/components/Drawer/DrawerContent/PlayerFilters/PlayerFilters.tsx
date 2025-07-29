@@ -2,15 +2,15 @@ import Box from "@mui/material/Box";
 import CheckboxSelect from "../../../CheckboxSelect/CheckboxSelect";
 import TextField from "@mui/material/TextField";
 
-interface PlayerFiltersProps {
+type Props = {
     displayedPositions: string[];
     setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
     playerPriceRange: string[];
     handleChangeMinPrice: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleChangeMaxPrice: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
-const PlayerFilters: React.FC<PlayerFiltersProps> = ({
+const PlayerFilters: React.FC<Props> = ({
     displayedPositions,
     setDisplayedPositions,
     playerPriceRange,
