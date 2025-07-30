@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { gql } from "../../__generated__/gql";
 import Box from "@mui/material/Box";
-import EnhancedTable from "../EnhancedTable/EnhancedTable";
-import EnhancedTablePagination from "../EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
+import EnhancedTable from "./EnhancedTable/EnhancedTable";
+import EnhancedTablePagination from "./EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
 
 import type DisplayedData from "../../types/DisplayedData";
 import type { GetPlayerDataQuery } from "../../__generated__/graphql";

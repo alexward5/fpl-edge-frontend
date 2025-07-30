@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Header from "../Header/Header";
+import Header from "./Header/Header";
 import Drawer from "../Drawer/Drawer";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 import { useTheme } from "@mui/material/styles";

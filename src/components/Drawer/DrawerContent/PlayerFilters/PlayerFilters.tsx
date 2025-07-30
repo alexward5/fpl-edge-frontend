@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import CheckboxSelect from "../../../CheckboxSelect/CheckboxSelect";
+import CheckboxSelect from "../CheckboxSelect/CheckboxSelect";
 import TextField from "@mui/material/TextField";
 
 type Props = {
