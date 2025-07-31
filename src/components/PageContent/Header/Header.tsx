@@ -1,4 +1,5 @@
 import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,23 +19,55 @@ export default function Header(props: Props) {
             position="fixed"
             elevation={0}
             sx={{
-                width: { sm: `calc(100% - ${theme.drawerWidth})` },
-                ml: { sm: theme.drawerWidth },
-                background: `linear-gradient(90deg,rgb(255, 255, 255) 0%, ${theme.themeMainColor} 50%)`,
                 color: "black",
-                borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+                backgroundColor: "transparent",
+                zIndex: theme.zIndex.drawer + 1,
             }}
         >
-            <Toolbar>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: "none" } }}
+            <Toolbar
+                disableGutters
+                sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.12)" }}
+            >
+                <Box
+                    sx={{
+                        backgroundColor: "transparent",
+                        width: theme.drawerWidth,
+                        height: theme.appBarHeightSm,
+                        display: { xs: "none", sm: "flex" },
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
                 >
-                    <MenuIcon />
-                </IconButton>
+                    <Box
+                        component="img"
+                        src="/temp-logo.png"
+                        alt="Logo"
+                        sx={{ height: "42px", width: "auto" }}
+                    />
+                </Box>
+                <Box
+                    sx={{
+                        width: {
+                            xs: "100%",
+                            sm: `calc(100% - ${theme.drawerWidth})`,
+                        },
+                        height: "100%",
+                        paddingLeft: 2,
+                        display: "flex",
+                        alignItems: "center",
+                        background: `linear-gradient(90deg,rgb(255, 255, 255) 0%, ${theme.themeMainColor} 50%)`,
+                    }}
+                >
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ display: { sm: "none" } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                </Box>
             </Toolbar>
         </AppBar>
     );
