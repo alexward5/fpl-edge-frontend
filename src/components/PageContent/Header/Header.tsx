@@ -21,7 +21,7 @@ export default function Header(props: Props) {
             sx={{
                 color: "black",
                 backgroundColor: "transparent",
-                zIndex: theme.zIndex.drawer + 1,
+                xs: { zIndex: theme.zIndex.drawer + 1 },
             }}
         >
             <Toolbar
