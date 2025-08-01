@@ -4,6 +4,7 @@ import { DataProvider } from "../../contexts/DataContext";
 import Box from "@mui/material/Box";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 import Drawer from "../Drawer/Drawer";
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import { useTheme } from "@mui/material/styles";
 import { useQuery } from "@apollo/client";
 
@@ -84,7 +85,7 @@ export default function PlayerData(props: Props) {
 
     const theme = useTheme();
 
-    if (loading || !data) return null;
+    if (loading || !data || !displayedTeams.length) return <LoadingIndicator />;
 
     return (
         <DataProvider value={data}>
