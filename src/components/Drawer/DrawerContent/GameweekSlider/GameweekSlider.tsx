@@ -1,19 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
-import { useQuery } from "@apollo/client";
-import { gql } from "../../../../__generated__/gql";
-
-const GET_FPL_EVENTS = gql(`
-    query GetFplEvents {
-        events {
-            id
-            is_current
-            finished
-        }
-    }
-`);
+import { useData } from "../../../../contexts/DataContext";
 
 function valuetext(value: number) {
     return `${value}`;
@@ -27,21 +16,14 @@ type Props = {
 export default function RangeSlider(props: Props) {
     const { gameweekRange, setGameweekRange } = props;
 
-    const [numGameweeks, setNumGameweeks] = useState(0);
-
-    const { data } = useQuery(GET_FPL_EVENTS);
+    const { events } = useData();
+    const numGameweeks = events.filter(
+        (event) => event.finished || event.is_current,
+    ).length;
+    // TODO: set this in parent component
     useEffect(() => {
-        if (data?.events) {
-            let eventCount = 0;
-            data.events.forEach((event) => {
-                if (event.finished || event.is_current) {
-                    eventCount++;
-                }
-            });
-            setGameweekRange([1, eventCount]);
-            setNumGameweeks(eventCount);
-        }
-    }, [data]);
+        setGameweekRange([1, numGameweeks]);
+    }, []);
 
     // Set minimum distance between slider thumbs
     const minDistance = 1;

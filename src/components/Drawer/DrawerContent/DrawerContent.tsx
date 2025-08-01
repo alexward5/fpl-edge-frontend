@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
 import GameweekSlider from "./GameweekSlider/GameweekSlider";
-import { gql } from "../../../__generated__/gql";
 import PlayerFilters from "./PlayerFilters/PlayerFilters";
 import TeamFilter from "./TeamFilter/TeamFilter";
+import { useData } from "../../../contexts/DataContext";
 
 type Props = {
     gameweekRange: number[];
@@ -18,14 +17,6 @@ type Props = {
     playerPriceRange: string[];
     setPlayerPriceRange: React.Dispatch<React.SetStateAction<string[]>>;
 };
-
-const GET_TEAM_DATA = gql(`
-    query GetTeamNames {
-        teams {
-            fbref_team
-        }
-    }
-`);
 
 export default function DrawerContent(props: Props) {
     const {
@@ -39,18 +30,16 @@ export default function DrawerContent(props: Props) {
         setPlayerPriceRange,
     } = props;
 
-    const [teamNames, setTeamNames] = useState<string[]>([]);
+    const { teams } = useData();
 
-    const { data } = useQuery(GET_TEAM_DATA);
+    const teamNames = teams
+        .map((team) => team.fbref_team)
+        .sort((a, b) => a.localeCompare(b));
+
+    // TODO: set this in parent component
     useEffect(() => {
-        if (data?.teams) {
-            const sortedTeamNames = data.teams
-                .map((team) => team.fbref_team)
-                .sort((a, b) => a.localeCompare(b));
-            setTeamNames(sortedTeamNames);
-            setDisplayedTeams(sortedTeamNames);
-        }
-    }, [data]);
+        setDisplayedTeams(teamNames);
+    }, []);
 
     const handleChangeMinPrice = (
         event: React.ChangeEvent<HTMLInputElement>,
