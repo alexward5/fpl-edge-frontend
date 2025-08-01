@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { gql } from "../../__generated__/gql";
 import { DataProvider } from "../../contexts/DataContext";
 import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
 import Drawer from "../Drawer/Drawer";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
@@ -89,27 +90,29 @@ export default function PlayerData(props: Props) {
 
     return (
         <DataProvider value={data}>
-            <Box
-                sx={{
-                    height: {
-                        xs: `calc(100% - ${theme.appBarHeightXs})`,
-                        sm: `calc(100% - ${theme.appBarHeightSm})`,
-                    },
-                    mt: {
-                        xs: theme.appBarHeightXs,
-                        sm: theme.appBarHeightSm,
-                    },
-                    width: { sm: `calc(100% - ${theme.drawerWidth})` },
-                    ml: { sm: `${theme.drawerWidth}` },
-                }}
-            >
-                <PlayerDataTable
-                    displayedPositions={displayedPositions}
-                    displayedTeams={displayedTeams}
-                    playerPriceRange={playerPriceRange}
-                    gameweekRange={gameweekRange}
-                />
-            </Box>
+            <Fade in={true} timeout={500}>
+                <Box
+                    sx={{
+                        height: {
+                            xs: `calc(100% - ${theme.appBarHeightXs})`,
+                            sm: `calc(100% - ${theme.appBarHeightSm})`,
+                        },
+                        mt: {
+                            xs: theme.appBarHeightXs,
+                            sm: theme.appBarHeightSm,
+                        },
+                        width: { sm: `calc(100% - ${theme.drawerWidth})` },
+                        ml: { sm: `${theme.drawerWidth}` },
+                    }}
+                >
+                    <PlayerDataTable
+                        displayedPositions={displayedPositions}
+                        displayedTeams={displayedTeams}
+                        playerPriceRange={playerPriceRange}
+                        gameweekRange={gameweekRange}
+                    />
+                </Box>
+            </Fade>
             <Drawer
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}

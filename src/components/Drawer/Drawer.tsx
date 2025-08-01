@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
+import Fade from "@mui/material/Fade";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import { useTheme } from "@mui/material/styles";
 
@@ -35,61 +36,63 @@ export default function ResponsiveDrawer(props: Props) {
     const theme = useTheme();
 
     return (
-        <Box
-            component="nav"
-            sx={{ width: { sm: theme.drawerWidth }, flexShrink: { sm: 0 } }}
-        >
-            <Drawer
-                variant="temporary"
-                open={mobileOpen}
-                onTransitionEnd={handleDrawerTransitionEnd}
-                onClose={handleDrawerClose}
-                ModalProps={{
-                    keepMounted: true, // Better performance on mobile while open
-                }}
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                    "& .MuiDrawer-paper": {
-                        boxSizing: "border-box",
-                        width: theme.drawerWidth,
-                        borderRight: "none",
-                    },
-                }}
+        <Fade in={true} timeout={500}>
+            <Box
+                component="nav"
+                sx={{ width: { sm: theme.drawerWidth }, flexShrink: { sm: 0 } }}
             >
-                <DrawerContent
-                    gameweekRange={gameweekRange}
-                    setGameweekRange={setGameweekRange}
-                    displayedTeams={displayedTeams}
-                    setDisplayedTeams={setDisplayedTeams}
-                    displayedPositions={displayedPositions}
-                    setDisplayedPositions={setDisplayedPositions}
-                    playerPriceRange={playerPriceRange}
-                    setPlayerPriceRange={setPlayerPriceRange}
-                />
-            </Drawer>
-            <Drawer
-                variant="permanent"
-                sx={{
-                    display: { xs: "none", sm: "block" },
-                    "& .MuiDrawer-paper": {
-                        boxSizing: "border-box",
-                        width: theme.drawerWidth,
-                        borderRight: "none",
-                    },
-                }}
-                open
-            >
-                <DrawerContent
-                    gameweekRange={gameweekRange}
-                    setGameweekRange={setGameweekRange}
-                    displayedTeams={displayedTeams}
-                    setDisplayedTeams={setDisplayedTeams}
-                    displayedPositions={displayedPositions}
-                    setDisplayedPositions={setDisplayedPositions}
-                    playerPriceRange={playerPriceRange}
-                    setPlayerPriceRange={setPlayerPriceRange}
-                />
-            </Drawer>
-        </Box>
+                <Drawer
+                    variant="temporary"
+                    open={mobileOpen}
+                    onTransitionEnd={handleDrawerTransitionEnd}
+                    onClose={handleDrawerClose}
+                    ModalProps={{
+                        keepMounted: true, // Better performance on mobile while open
+                    }}
+                    sx={{
+                        display: { xs: "block", sm: "none" },
+                        "& .MuiDrawer-paper": {
+                            boxSizing: "border-box",
+                            width: theme.drawerWidth,
+                            borderRight: "none",
+                        },
+                    }}
+                >
+                    <DrawerContent
+                        gameweekRange={gameweekRange}
+                        setGameweekRange={setGameweekRange}
+                        displayedTeams={displayedTeams}
+                        setDisplayedTeams={setDisplayedTeams}
+                        displayedPositions={displayedPositions}
+                        setDisplayedPositions={setDisplayedPositions}
+                        playerPriceRange={playerPriceRange}
+                        setPlayerPriceRange={setPlayerPriceRange}
+                    />
+                </Drawer>
+                <Drawer
+                    variant="permanent"
+                    sx={{
+                        display: { xs: "none", sm: "block" },
+                        "& .MuiDrawer-paper": {
+                            boxSizing: "border-box",
+                            width: theme.drawerWidth,
+                            borderRight: "none",
+                        },
+                    }}
+                    open
+                >
+                    <DrawerContent
+                        gameweekRange={gameweekRange}
+                        setGameweekRange={setGameweekRange}
+                        displayedTeams={displayedTeams}
+                        setDisplayedTeams={setDisplayedTeams}
+                        displayedPositions={displayedPositions}
+                        setDisplayedPositions={setDisplayedPositions}
+                        playerPriceRange={playerPriceRange}
+                        setPlayerPriceRange={setPlayerPriceRange}
+                    />
+                </Drawer>
+            </Box>
+        </Fade>
     );
 }
