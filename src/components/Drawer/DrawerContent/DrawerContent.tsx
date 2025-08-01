@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
@@ -35,11 +34,6 @@ export default function DrawerContent(props: Props) {
     const teamNames = teams
         .map((team) => team.fbref_team)
         .sort((a, b) => a.localeCompare(b));
-
-    // TODO: set this in parent component
-    useEffect(() => {
-        setDisplayedTeams(teamNames);
-    }, []);
 
     const handleChangeMinPrice = (
         event: React.ChangeEvent<HTMLInputElement>,

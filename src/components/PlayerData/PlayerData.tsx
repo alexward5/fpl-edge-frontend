@@ -70,6 +70,16 @@ export default function PlayerData(props: Props) {
             const minPrice = Math.min(...playerCosts);
             setPlayerPriceRange([String(minPrice), String(maxPrice)]);
         }
+        if (data?.teams) {
+            const teamNames = data.teams.map((team) => team.fbref_team);
+            setDisplayedTeams(teamNames);
+        }
+        if (data?.events) {
+            const numGameweeks = data.events.filter(
+                (event) => event.finished || event.is_current,
+            ).length;
+            setGameweekRange([1, numGameweeks]);
+        }
     }, [data]);
 
     const theme = useTheme();

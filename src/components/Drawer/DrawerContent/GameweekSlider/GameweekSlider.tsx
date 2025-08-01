@@ -1,12 +1,7 @@
-import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { useData } from "../../../../contexts/DataContext";
-
-function valuetext(value: number) {
-    return `${value}`;
-}
 
 type Props = {
     gameweekRange: number[];
@@ -20,10 +15,6 @@ export default function RangeSlider(props: Props) {
     const numGameweeks = events.filter(
         (event) => event.finished || event.is_current,
     ).length;
-    // TODO: set this in parent component
-    useEffect(() => {
-        setGameweekRange([1, numGameweeks]);
-    }, []);
 
     // Set minimum distance between slider thumbs
     const minDistance = 1;
@@ -76,7 +67,7 @@ export default function RangeSlider(props: Props) {
                     value={gameweekRange}
                     onChange={handleChange}
                     valueLabelDisplay="auto"
-                    getAriaValueText={valuetext}
+                    getAriaValueText={(value: number) => `${value}`}
                     step={1}
                     min={1}
                     max={numGameweeks}
