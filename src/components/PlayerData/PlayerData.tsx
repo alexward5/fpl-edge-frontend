@@ -4,7 +4,7 @@ import { DataProvider } from "../../contexts/DataContext";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import PlayerDataTable from "../PlayerDataTable/PlayerDataTable";
-import Drawer from "../Drawer/Drawer";
+import PlayerDataDrawer from "../PlayerDataDrawer/PlayerDataDrawer";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import { useTheme } from "@mui/material/styles";
 import { useQuery } from "@apollo/client";
@@ -113,7 +113,7 @@ export default function PlayerData(props: Props) {
                     />
                 </Box>
             </Fade>
-            <Drawer
+            <PlayerDataDrawer
                 mobileOpen={mobileOpen}
                 handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                 handleDrawerClose={handleDrawerClose}

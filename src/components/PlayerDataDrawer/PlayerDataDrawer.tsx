@@ -18,7 +18,7 @@ type Props = {
     setPlayerPriceRange: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export default function ResponsiveDrawer(props: Props) {
+export default function PlayerDataDrawer(props: Props) {
     const {
         gameweekRange,
         setGameweekRange,
