@@ -8,27 +8,27 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material/styles";
 
+const PLAYER_POSITIONS = ["DEF", "MID", "FWD"];
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
 type Props = {
-    listItems: string[];
-    label: string;
     selectedList: string[];
     setSelectedList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export default function MultipleSelectCheckmarks(props: Props) {
-    const { listItems, label, selectedList, setSelectedList } = props;
+    const { selectedList, setSelectedList } = props;
 
     // Track the original order of the list so it can be maintained
     const listOrder: Record<string, number> = {};
-    listItems.forEach((listItem: string, index: number) => {
+    PLAYER_POSITIONS.forEach((listItem: string, index: number) => {
         listOrder[listItem] = index;
     });
 
     useEffect(() => {
-        setSelectedList(listItems);
+        setSelectedList(PLAYER_POSITIONS);
     }, []);
 
     const handleChange = (event: SelectChangeEvent<typeof selectedList>) => {
@@ -44,16 +44,14 @@ export default function MultipleSelectCheckmarks(props: Props) {
     return (
         <div>
             <FormControl sx={{ width: "100%" }}>
-                <InputLabel id={`multiple-checkbox-label-${label}`}>
-                    {label}
-                </InputLabel>
+                <InputLabel id={"position-select"}>Position</InputLabel>
                 <Select
-                    labelId={`multiple-checkbox-label-${label}`}
-                    id={`multiple-checkbox-${label}`}
+                    labelId={"position-select"}
+                    id={"position-select"}
                     multiple
                     value={selectedList}
                     onChange={handleChange}
-                    input={<OutlinedInput label={label} />}
+                    input={<OutlinedInput />}
                     renderValue={(selected) => {
                         const selectedLen = selected.length;
                         if (selectedLen > 3) {
@@ -75,7 +73,7 @@ export default function MultipleSelectCheckmarks(props: Props) {
                         },
                     }}
                 >
-                    {listItems.map((listItem: string) => (
+                    {PLAYER_POSITIONS.map((listItem: string) => (
                         <MenuItem key={listItem} value={listItem}>
                             <Checkbox
                                 checked={selectedList.includes(listItem)}

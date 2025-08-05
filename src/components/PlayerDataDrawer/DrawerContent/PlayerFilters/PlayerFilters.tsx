@@ -47,8 +47,6 @@ const PlayerFilters: React.FC<Props> = ({
             }}
         >
             <CheckboxSelect
-                listItems={["DEF", "MID", "FWD"]}
-                label="Position"
                 selectedList={displayedPositions}
                 setSelectedList={setDisplayedPositions}
             />
