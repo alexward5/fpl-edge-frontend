@@ -39,19 +39,20 @@ export default function MultipleSelectCheckmarks(props: Props) {
         );
     };
 
+    const label = "Position";
     const theme = useTheme();
 
     return (
         <div>
             <FormControl sx={{ width: "100%" }}>
-                <InputLabel id={"position-select"}>Position</InputLabel>
+                <InputLabel id={"position-select"}>{label}</InputLabel>
                 <Select
                     labelId={"position-select"}
                     id={"position-select"}
                     multiple
                     value={selectedList}
                     onChange={handleChange}
-                    input={<OutlinedInput />}
+                    input={<OutlinedInput label={label} />}
                     renderValue={(selected) => {
                         const selectedLen = selected.length;
                         if (selectedLen > 3) {
