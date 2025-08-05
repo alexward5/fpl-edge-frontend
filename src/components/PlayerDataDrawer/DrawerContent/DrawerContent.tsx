@@ -4,7 +4,6 @@ import Toolbar from "@mui/material/Toolbar";
 import GameweekSlider from "./GameweekSlider/GameweekSlider";
 import PlayerFilters from "./PlayerFilters/PlayerFilters";
 import TeamFilter from "./TeamFilter/TeamFilter";
-import { useData } from "../../../contexts/DataContext";
 
 type Props = {
     gameweekRange: number[];
@@ -28,12 +27,6 @@ export default function DrawerContent(props: Props) {
         playerPriceRange,
         setPlayerPriceRange,
     } = props;
-
-    const { teams } = useData();
-
-    const teamNames = teams
-        .map((team) => team.fbref_team)
-        .sort((a, b) => a.localeCompare(b));
 
     return (
         <Box
@@ -81,7 +74,6 @@ export default function DrawerContent(props: Props) {
                 />
                 <Divider />
                 <TeamFilter
-                    teamNames={teamNames}
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}
                 />
