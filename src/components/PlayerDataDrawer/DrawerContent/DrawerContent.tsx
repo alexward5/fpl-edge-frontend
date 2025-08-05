@@ -35,30 +35,6 @@ export default function DrawerContent(props: Props) {
         .map((team) => team.fbref_team)
         .sort((a, b) => a.localeCompare(b));
 
-    const handleChangeMinPrice = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        const newValue = event.target.value;
-        const digitCount = newValue.replace(/\D/g, "").length;
-
-        // Check that input is valid float and is three digits or less
-        if (/^$|^\d*\.?\d*$/.test(newValue) && digitCount <= 3) {
-            setPlayerPriceRange([newValue, playerPriceRange[1]]);
-        }
-    };
-
-    const handleChangeMaxPrice = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        const newValue = event.target.value;
-        const digitCount = newValue.replace(/\D/g, "").length;
-
-        // Check that input is valid float and is three digits or less
-        if (/^$|^\d*\.?\d*$/.test(newValue) && digitCount <= 3) {
-            setPlayerPriceRange([playerPriceRange[0], newValue]);
-        }
-    };
-
     return (
         <Box
             sx={{
@@ -101,8 +77,7 @@ export default function DrawerContent(props: Props) {
                     displayedPositions={displayedPositions}
                     setDisplayedPositions={setDisplayedPositions}
                     playerPriceRange={playerPriceRange}
-                    handleChangeMinPrice={handleChangeMinPrice}
-                    handleChangeMaxPrice={handleChangeMaxPrice}
+                    setPlayerPriceRange={setPlayerPriceRange}
                 />
                 <Divider />
                 <TeamFilter
