@@ -2,6 +2,7 @@ import { useState } from "react";
 import { orderBy } from "natural-orderby";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
+import TableContainer from "@mui/material/TableContainer";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 // import Checkbox from "@mui/material/Checkbox";
@@ -78,40 +79,48 @@ export default function EnhancedTable(props: Props) {
     const theme = useTheme();
 
     return (
-        <Table
-            stickyHeader
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={"small"}
+        <TableContainer
+            sx={{
+                flex: 1,
+                overflow: "auto",
+            }}
         >
-            <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderColumn}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-            />
-            <TableBody>
-                {visibleRows.map((row, index) => {
-                    const isItemSelected = selected.includes(row.fplPlayerCode);
-                    const labelId = `enhanced-table-checkbox-${index}`;
+            <Table
+                stickyHeader
+                sx={{ minWidth: 750 }}
+                aria-labelledby="tableTitle"
+                size={"small"}
+            >
+                <EnhancedTableHead
+                    numSelected={selected.length}
+                    order={order}
+                    orderBy={orderColumn}
+                    onSelectAllClick={handleSelectAllClick}
+                    onRequestSort={handleRequestSort}
+                    rowCount={rows.length}
+                />
+                <TableBody>
+                    {visibleRows.map((row, index) => {
+                        const isItemSelected = selected.includes(
+                            row.fplPlayerCode,
+                        );
+                        const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
-                        <TableRow
-                            // hover
-                            onClick={(event) =>
-                                handleClick(event, row.fplPlayerCode)
-                            }
-                            // role="checkbox"
-                            aria-checked={isItemSelected}
-                            tabIndex={-1}
-                            key={row.fplPlayerCode}
-                            // selected={isItemSelected}
-                            selected={false}
-                            // sx={{ cursor: "pointer" }}
-                        >
-                            {/* <TableCell padding="checkbox">
+                        return (
+                            <TableRow
+                                // hover
+                                onClick={(event) =>
+                                    handleClick(event, row.fplPlayerCode)
+                                }
+                                // role="checkbox"
+                                aria-checked={isItemSelected}
+                                tabIndex={-1}
+                                key={row.fplPlayerCode}
+                                // selected={isItemSelected}
+                                selected={false}
+                                // sx={{ cursor: "pointer" }}
+                            >
+                                {/* <TableCell padding="checkbox">
                                 <Checkbox
                                     color="primary"
                                     size="small"
@@ -122,67 +131,78 @@ export default function EnhancedTable(props: Props) {
                                     name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
                             </TableCell> */}
-                            <TableCell
-                                sx={{
-                                    minWidth: "135px",
-                                    position: "sticky",
-                                    left: 0,
-                                    paddingLeft: "15px",
-                                    borderRight: "1px solid #e0e0e0",
-                                    backgroundColor: "white",
-                                    zIndex: theme.zIndex.appBar + 1,
-                                }}
-                                component="th"
-                                id={labelId}
-                                scope="row"
-                                padding="none"
-                            >
-                                {row.fplWebName}
-                            </TableCell>
-                            <TableCell
-                                sx={{ width: "140px", minWidth: "140px" }}
-                                align="right"
-                            >
-                                {row.fbrefTeam}
-                            </TableCell>
-                            <TableCell align="right">
-                                {row.fplPlayerPosition}
-                            </TableCell>
-                            <TableCell align="right">
-                                {row.fplPlayerCost}
-                            </TableCell>
+                                <TableCell
+                                    sx={{
+                                        minWidth: "135px",
+                                        position: "sticky",
+                                        left: 0,
+                                        paddingLeft: "15px",
+                                        borderRight: "1px solid #e0e0e0",
+                                        backgroundColor: "white",
+                                        zIndex: theme.zIndex.appBar + 1,
+                                    }}
+                                    component="th"
+                                    id={labelId}
+                                    scope="row"
+                                    padding="none"
+                                >
+                                    {row.fplWebName}
+                                </TableCell>
+                                <TableCell
+                                    sx={{ width: "140px", minWidth: "140px" }}
+                                    align="right"
+                                >
+                                    {row.fbrefTeam}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.fplPlayerPosition}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.fplPlayerCost}
+                                </TableCell>
 
-                            <TableCell align="right">
-                                {row.gamesPlayed}
-                            </TableCell>
-                            <TableCell align="right">
-                                {row.sumMinutes}
-                            </TableCell>
-                            <TableCell align="right">{row.sumGoals}</TableCell>
-                            <TableCell align="right">
-                                {row.sumAssists}
-                            </TableCell>
-                            <TableCell align="right">{row.sumNPxG}</TableCell>
-                            <TableCell align="right">{row.sumxA}</TableCell>
-                            <TableCell align="right">{row.sumNPxP}</TableCell>
-                            <TableCell align="right">{row.sumBPS}</TableCell>
-                            <TableCell align="right">{row.sumPoints}</TableCell>
-                            <TableCell align="right">
-                                {row.fplSelectedByPercent}
-                            </TableCell>
+                                <TableCell align="right">
+                                    {row.gamesPlayed}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.sumMinutes}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.sumGoals}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.sumAssists}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.sumNPxG}
+                                </TableCell>
+                                <TableCell align="right">{row.sumxA}</TableCell>
+                                <TableCell align="right">
+                                    {row.sumNPxP}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.sumBPS}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.sumPoints}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {row.fplSelectedByPercent}
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })}
+                    {emptyRows > 0 && (
+                        <TableRow
+                            style={{
+                                height: 33 * emptyRows,
+                            }}
+                        >
+                            <TableCell colSpan={6} />
                         </TableRow>
-                    );
-                })}
-                {emptyRows > 0 && (
-                    <TableRow
-                        style={{
-                            height: 33 * emptyRows,
-                        }}
-                    >
-                        <TableCell colSpan={6} />
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
+                    )}
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 }

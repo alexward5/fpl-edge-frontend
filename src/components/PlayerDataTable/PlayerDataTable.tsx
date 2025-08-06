@@ -108,18 +108,11 @@ export default function PlayerDataTable(props: Props) {
                 flexDirection: "column",
             }}
         >
-            <Box
-                sx={{
-                    flex: 1,
-                    overflow: "auto",
-                }}
-            >
-                <EnhancedTable
-                    rows={displayedData}
-                    page={page}
-                    rowsPerPage={rowsPerPage}
-                />
-            </Box>
+            <EnhancedTable
+                rows={displayedData}
+                page={page}
+                rowsPerPage={rowsPerPage}
+            />
             <EnhancedTablePagination
                 rows={displayedData}
                 rowsPerPage={rowsPerPage}
