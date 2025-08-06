@@ -3,8 +3,9 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Checkbox from "@mui/material/Checkbox";
+// import Checkbox from "@mui/material/Checkbox";
 import { visuallyHidden } from "@mui/utils";
+import { useTheme } from "@mui/material/styles";
 
 import type DisplayedData from "../../../../types/DisplayedData";
 
@@ -13,6 +14,7 @@ interface HeadCell {
     id: keyof DisplayedData;
     label: string;
     numeric: boolean;
+    sticky?: boolean;
 }
 
 const headCells: readonly HeadCell[] = [
@@ -21,6 +23,7 @@ const headCells: readonly HeadCell[] = [
         numeric: false,
         disablePadding: true,
         label: "Name",
+        sticky: true,
     },
     {
         id: "fbrefTeam",
@@ -117,11 +120,11 @@ interface EnhancedTableProps {
 
 export default function EnhancedTableHead(props: EnhancedTableProps) {
     const {
-        onSelectAllClick,
+        // onSelectAllClick,
         order,
         orderBy,
-        numSelected,
-        rowCount,
+        // numSelected,
+        // rowCount,
         onRequestSort,
     } = props;
     const createSortHandler =
@@ -130,10 +133,12 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
             onRequestSort(event, property);
         };
 
+    const theme = useTheme();
+
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                     <Checkbox
                         color="primary"
                         size="small"
@@ -146,10 +151,23 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             "aria-label": "Select all displayed rows",
                         }}
                     />
-                </TableCell>
+                </TableCell> */}
                 {headCells.map((headCell) => (
                     <TableCell
-                        sx={{ fontWeight: "bold" }}
+                        sx={{
+                            fontWeight: "bold",
+                            position: headCell.sticky ? "sticky" : "",
+                            top: headCell.sticky ? 0 : "",
+                            left: headCell.sticky ? 0 : "",
+                            paddingLeft: headCell.sticky ? "15px" : "",
+                            backgroundColor: headCell.sticky ? "white" : "",
+                            borderRight: headCell.sticky
+                                ? "1px solid #e0e0e0"
+                                : "",
+                            zIndex: headCell.sticky
+                                ? theme.zIndex.appBar + 2
+                                : "",
+                        }}
                         key={headCell.id}
                         align={headCell.numeric ? "right" : "left"}
                         padding={headCell.disablePadding ? "none" : "normal"}

@@ -4,7 +4,8 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Checkbox from "@mui/material/Checkbox";
+// import Checkbox from "@mui/material/Checkbox";
+import { useTheme } from "@mui/material/styles";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 
 import type DisplayedData from "../../../types/DisplayedData";
@@ -74,6 +75,8 @@ export default function EnhancedTable(props: Props) {
         page * rowsPerPage + rowsPerPage,
     );
 
+    const theme = useTheme();
+
     return (
         <Table
             stickyHeader
@@ -96,18 +99,19 @@ export default function EnhancedTable(props: Props) {
 
                     return (
                         <TableRow
-                            hover
+                            // hover
                             onClick={(event) =>
                                 handleClick(event, row.fplPlayerCode)
                             }
-                            role="checkbox"
+                            // role="checkbox"
                             aria-checked={isItemSelected}
                             tabIndex={-1}
                             key={row.fplPlayerCode}
-                            selected={isItemSelected}
-                            sx={{ cursor: "pointer" }}
+                            // selected={isItemSelected}
+                            selected={false}
+                            // sx={{ cursor: "pointer" }}
                         >
-                            <TableCell padding="checkbox">
+                            {/* <TableCell padding="checkbox">
                                 <Checkbox
                                     color="primary"
                                     size="small"
@@ -117,9 +121,17 @@ export default function EnhancedTable(props: Props) {
                                     }}
                                     name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
-                            </TableCell>
+                            </TableCell> */}
                             <TableCell
-                                sx={{ width: "100px", minWidth: "100px" }}
+                                sx={{
+                                    minWidth: "135px",
+                                    position: "sticky",
+                                    left: 0,
+                                    paddingLeft: "15px",
+                                    borderRight: "1px solid #e0e0e0",
+                                    backgroundColor: "white",
+                                    zIndex: theme.zIndex.appBar + 1,
+                                }}
                                 component="th"
                                 id={labelId}
                                 scope="row"
