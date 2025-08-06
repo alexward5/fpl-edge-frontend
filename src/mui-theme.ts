@@ -77,6 +77,13 @@ const theme = createTheme({
                 },
             },
         },
+        MuiTableRow: {
+            styleOverrides: {
+                root: {
+                    height: 34,
+                },
+            },
+        },
     },
 });
 
