@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import EnhancedTable from "./EnhancedTable/EnhancedTable";
 import EnhancedTablePagination from "./EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
@@ -23,6 +23,12 @@ export default function PlayerDataTable(props: Props) {
 
     const [page, setPage] = useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = useState<number>(50);
+
+    // Scroll to top of table when user changes page
+    const tableRef = useRef<HTMLDivElement>(null);
+    const scrollToTop = () => {
+        tableRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     const { players } = useData();
 
@@ -109,6 +115,7 @@ export default function PlayerDataTable(props: Props) {
             }}
         >
             <EnhancedTable
+                ref={tableRef}
                 rows={displayedData}
                 page={page}
                 rowsPerPage={rowsPerPage}
@@ -119,6 +126,7 @@ export default function PlayerDataTable(props: Props) {
                 page={page}
                 setPage={setPage}
                 setRowsPerPage={setRowsPerPage}
+                scrollToTop={scrollToTop}
             />
         </Box>
     );
