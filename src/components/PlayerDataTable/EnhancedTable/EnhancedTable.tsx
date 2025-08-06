@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 
-import type DisplayedData from "../../types/DisplayedData";
+import type DisplayedData from "../../../types/DisplayedData";
 
 type Order = "asc" | "desc";
 
@@ -25,7 +25,7 @@ export default function EnhancedTable(props: Props) {
     const [selected, setSelected] = useState<readonly number[]>([]);
 
     const handleRequestSort = (
-        _: React.MouseEvent<unknown>,
+        _event: React.MouseEvent<unknown>,
         property: keyof DisplayedData,
     ) => {
         const isAsc = orderColumn === property && order === "asc";

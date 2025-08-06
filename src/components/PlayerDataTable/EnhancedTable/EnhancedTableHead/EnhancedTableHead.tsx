@@ -6,7 +6,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { visuallyHidden } from "@mui/utils";
 
-import type DisplayedData from "../../../types/DisplayedData";
+import type DisplayedData from "../../../../types/DisplayedData";
 
 interface HeadCell {
     disablePadding: boolean;
