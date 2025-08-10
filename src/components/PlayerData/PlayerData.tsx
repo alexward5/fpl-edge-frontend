@@ -86,7 +86,7 @@ export default function PlayerData(props: Props) {
 
     const theme = useTheme();
 
-    if (loading || !data || !displayedTeams.length) return <LoadingIndicator />;
+    if (loading || !data?.players) return <LoadingIndicator />;
 
     return (
         <DataProvider value={data}>
