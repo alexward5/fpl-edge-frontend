@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import GameweekSlider from "./GameweekSlider/GameweekSlider";
+import Divider from "@mui/material/Divider";
 import PlayerFilters from "./PlayerFilters/PlayerFilters";
 import TeamFilter from "./TeamFilter/TeamFilter";
 
@@ -64,12 +65,14 @@ export default function DrawerContent(props: Props) {
                     gameweekRange={gameweekRange}
                     setGameweekRange={setGameweekRange}
                 />
+                <Divider sx={{ marginBottom: "8px" }} />
                 <PlayerFilters
                     displayedPositions={displayedPositions}
                     setDisplayedPositions={setDisplayedPositions}
                     playerPriceRange={playerPriceRange}
                     setPlayerPriceRange={setPlayerPriceRange}
                 />
+                <Divider sx={{ marginTop: "15px", marginBottom: "10px" }} />
                 <TeamFilter
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}

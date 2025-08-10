@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import PositionSelect from "../PositionSelect/PositionSelect";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Divider } from "@mui/material";
 
 type Props = {
     displayedPositions: string[];
@@ -94,7 +93,6 @@ const PlayerFilters: React.FC<Props> = ({
                     }}
                 />
             </Box>
-            <Divider sx={{ marginTop: "10px" }} />
         </Box>
     );
 };

@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { useData } from "../../../../contexts/DataContext";
-import Divider from "@mui/material/Divider";
 
 type Props = {
     gameweekRange: number[];
@@ -71,7 +70,6 @@ export default function RangeSlider(props: Props) {
                     disableSwap
                 />
             </Box>
-            <Divider />
         </>
     );
 }
