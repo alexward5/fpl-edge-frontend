@@ -3,6 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
@@ -41,7 +42,7 @@ export default function PositionSelect(props: Props) {
     const theme = useTheme();
 
     return (
-        <div>
+        <Box>
             <FormControl sx={{ width: "100%" }}>
                 <Typography variant="subtitle1" fontWeight={"bold"}>
                     Positions
@@ -83,6 +84,6 @@ export default function PositionSelect(props: Props) {
                     ))}
                 </Select>
             </FormControl>
-        </div>
+        </Box>
     );
 }
