@@ -175,15 +175,15 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                     >
                         <TableSortLabel
                             active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : "asc"}
+                            direction={orderBy === headCell.id ? order : "desc"}
                             onClick={createSortHandler(headCell.id)}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
                                 <Box component="span" sx={visuallyHidden}>
-                                    {order === "desc"
-                                        ? "sorted descending"
-                                        : "sorted ascending"}
+                                    {order === "asc"
+                                        ? "sorted ascending"
+                                        : "sorted descending"}
                                 </Box>
                             ) : null}
                         </TableSortLabel>

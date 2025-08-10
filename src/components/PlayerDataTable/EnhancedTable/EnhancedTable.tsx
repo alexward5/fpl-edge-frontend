@@ -32,8 +32,8 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
         _event: React.MouseEvent<unknown>,
         property: keyof DisplayedData,
     ) => {
-        const isAsc = orderColumn === property && order === "asc";
-        setOrder(isAsc ? "desc" : "asc");
+        const isDesc = orderColumn === property && order === "desc";
+        setOrder(isDesc ? "asc" : "desc");
         setOrderBy(property);
     };
 
