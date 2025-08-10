@@ -22,7 +22,6 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
         <Box
             sx={{
                 width: "100%",
-                padding: "10px 0px 0px 15px",
                 flexGrow: 1,
                 overflowY: "auto",
             }}

@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { useData } from "../../../../contexts/DataContext";
+import Divider from "@mui/material/Divider";
 
 type Props = {
     gameweekRange: number[];
@@ -48,18 +49,13 @@ export default function RangeSlider(props: Props) {
 
     return (
         <>
-            <Typography
-                variant="subtitle1"
-                fontWeight={"bold"}
-                sx={{ padding: "5px 0px 0px 18px" }}
-            >
+            <Typography variant="subtitle1" fontWeight={"bold"}>
                 Gameweeks
             </Typography>
             <Box
                 sx={{
                     width: "100%",
-                    height: "68px",
-                    padding: "0px 25px 0px 25px",
+                    padding: "0px 9px",
                 }}
             >
                 <Slider
@@ -75,6 +71,7 @@ export default function RangeSlider(props: Props) {
                     disableSwap
                 />
             </Box>
+            <Divider />
         </>
     );
 }

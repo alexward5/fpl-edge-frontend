@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 const PLAYER_POSITIONS = ["DEF", "MID", "FWD"];
 
@@ -18,7 +17,7 @@ type Props = {
     setSelectedList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export default function MultipleSelectCheckmarks(props: Props) {
+export default function PositionSelect(props: Props) {
     const { selectedList, setSelectedList } = props;
 
     // Track the original order of the list so it can be maintained
@@ -39,20 +38,20 @@ export default function MultipleSelectCheckmarks(props: Props) {
         );
     };
 
-    const label = "Position";
     const theme = useTheme();
 
     return (
         <div>
             <FormControl sx={{ width: "100%" }}>
-                <InputLabel id={"position-select"}>{label}</InputLabel>
+                <Typography variant="subtitle1" fontWeight={"bold"}>
+                    Positions
+                </Typography>
                 <Select
                     labelId={"position-select"}
                     id={"position-select"}
                     multiple
                     value={selectedList}
                     onChange={handleChange}
-                    input={<OutlinedInput label={label} />}
                     renderValue={(selected) => {
                         const selectedLen = selected.length;
                         if (selectedLen > 3) {

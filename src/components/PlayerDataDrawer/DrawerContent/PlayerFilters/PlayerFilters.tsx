@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
-import CheckboxSelect from "../CheckboxSelect/CheckboxSelect";
+import PositionSelect from "../PositionSelect/PositionSelect";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { Divider } from "@mui/material";
 
 type Props = {
     displayedPositions: string[];
@@ -43,23 +45,24 @@ const PlayerFilters: React.FC<Props> = ({
         <Box
             sx={{
                 width: "100%",
-                padding: "15px 15px 10px 15px",
             }}
         >
-            <CheckboxSelect
+            <PositionSelect
                 selectedList={displayedPositions}
                 setSelectedList={setDisplayedPositions}
             />
+            <Typography variant="subtitle1" fontWeight={"bold"}>
+                Price
+            </Typography>
             <Box
                 sx={{
                     width: "100%",
-                    marginTop: "15px",
                     display: "flex",
                     justifyContent: "space-between",
+                    alignItems: "center",
                 }}
             >
                 <TextField
-                    label="Min Price"
                     type="number"
                     value={playerPriceRange[0]}
                     onChange={handleChangeMinPrice}
@@ -70,12 +73,15 @@ const PlayerFilters: React.FC<Props> = ({
                             min: 0.0,
                         },
                     }}
-                    sx={{
-                        width: "48%",
-                    }}
                 />
+                <Typography
+                    variant="subtitle1"
+                    fontWeight={"bold"}
+                    sx={{ padding: "0px 4px" }}
+                >
+                    To
+                </Typography>
                 <TextField
-                    label="Max Price"
                     type="number"
                     value={playerPriceRange[1]}
                     onChange={handleChangeMaxPrice}
@@ -86,11 +92,9 @@ const PlayerFilters: React.FC<Props> = ({
                             min: 0.0,
                         },
                     }}
-                    sx={{
-                        width: "48%",
-                    }}
                 />
             </Box>
+            <Divider sx={{ marginTop: "10px" }} />
         </Box>
     );
 };
