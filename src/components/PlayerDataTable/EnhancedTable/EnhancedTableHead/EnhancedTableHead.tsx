@@ -22,7 +22,7 @@ const headCells: readonly HeadCell[] = [
         id: "fplWebName",
         numeric: false,
         disablePadding: true,
-        label: "Name",
+        label: "Player",
         sticky: true,
     },
     {
@@ -43,7 +43,12 @@ const headCells: readonly HeadCell[] = [
         disablePadding: false,
         label: "Price",
     },
-
+    {
+        id: "sumPoints",
+        numeric: true,
+        disablePadding: false,
+        label: "Points",
+    },
     {
         id: "gamesPlayed",
         numeric: true,
@@ -84,19 +89,13 @@ const headCells: readonly HeadCell[] = [
         id: "sumNPxP",
         numeric: true,
         disablePadding: false,
-        label: "NPxP",
+        label: "NPxGAP",
     },
     {
         id: "sumBPS",
         numeric: true,
         disablePadding: false,
         label: "BPS",
-    },
-    {
-        id: "sumPoints",
-        numeric: true,
-        disablePadding: false,
-        label: "Points",
     },
     {
         id: "fplSelectedByPercent",

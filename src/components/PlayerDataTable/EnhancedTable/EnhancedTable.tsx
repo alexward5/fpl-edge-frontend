@@ -25,7 +25,8 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
     const { rows, page, rowsPerPage } = props;
 
     const [order, setOrder] = useState<Order>("desc");
-    const [orderColumn, setOrderBy] = useState<keyof DisplayedData>("sumNPxP");
+    const [orderColumn, setOrderBy] =
+        useState<keyof DisplayedData>("sumPoints");
     const [selected, setSelected] = useState<readonly number[]>([]);
 
     const handleRequestSort = (
@@ -163,7 +164,9 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                 <TableCell align="right">
                                     {row.fplPlayerCost}
                                 </TableCell>
-
+                                <TableCell align="right">
+                                    {row.sumPoints}
+                                </TableCell>
                                 <TableCell align="right">
                                     {row.gamesPlayed}
                                 </TableCell>
@@ -185,9 +188,6 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                 </TableCell>
                                 <TableCell align="right">
                                     {row.sumBPS}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumPoints}
                                 </TableCell>
                                 <TableCell align="right">
                                     {row.fplSelectedByPercent}
