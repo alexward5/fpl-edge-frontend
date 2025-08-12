@@ -60,6 +60,13 @@ const theme = createTheme({
                 }),
             },
         },
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    height: 50,
+                },
+            },
+        },
         MuiCheckbox: {
             styleOverrides: {
                 root: {

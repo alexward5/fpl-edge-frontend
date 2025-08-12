@@ -5,7 +5,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
-import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 const PLAYER_POSITIONS = ["DEF", "MID", "FWD"];
@@ -39,8 +38,6 @@ export default function PositionSelect(props: Props) {
         );
     };
 
-    const theme = useTheme();
-
     return (
         <Box>
             <FormControl sx={{ width: "100%" }}>
@@ -69,7 +66,6 @@ export default function PositionSelect(props: Props) {
                         PaperProps: {
                             style: {
                                 maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                                width: theme.drawerWidth,
                             },
                         },
                     }}
