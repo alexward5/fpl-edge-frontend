@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
 const themeMainColor = "rgb(76, 230, 137)";
+const tableRowAlternateColor = "#f2f2f2";
 const drawerWidth = "240px";
 const appBarHeightXs = "46px";
 const appBarHeightSm = "56px";
@@ -9,22 +10,25 @@ const appBarHeightSm = "56px";
 declare module "@mui/material/styles" {
     interface Theme {
         themeMainColor: string;
+        tableRowAlternateColor: string;
         drawerWidth: string;
         appBarHeightXs: string;
         appBarHeightSm: string;
     }
 
     interface ThemeOptions {
-        themeMainColor?: string;
-        drawerWidth?: string;
-        appBarHeightXs?: string;
-        appBarHeightSm?: string;
+        themeMainColor: string;
+        tableRowAlternateColor: string;
+        drawerWidth: string;
+        appBarHeightXs: string;
+        appBarHeightSm: string;
     }
 }
 
 const theme = createTheme({
     // Theme variables to use in components
     themeMainColor: themeMainColor,
+    tableRowAlternateColor: tableRowAlternateColor,
     drawerWidth: drawerWidth,
     appBarHeightXs: appBarHeightXs,
     appBarHeightSm: appBarHeightSm,
@@ -85,6 +89,13 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     height: 34,
+                },
+            },
+        },
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    borderBottom: "none",
                 },
             },
         },

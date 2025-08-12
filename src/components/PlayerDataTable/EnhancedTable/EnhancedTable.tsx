@@ -123,6 +123,12 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                 // selected={isItemSelected}
                                 selected={false}
                                 // sx={{ cursor: "pointer" }}
+                                sx={{
+                                    backgroundColor:
+                                        index % 2 === 0
+                                            ? theme.tableRowAlternateColor
+                                            : "white",
+                                }}
                             >
                                 {/* <TableCell padding="checkbox">
                                 <Checkbox
@@ -142,7 +148,10 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                         left: 0,
                                         paddingLeft: "15px",
                                         borderRight: "1px solid #e0e0e0",
-                                        backgroundColor: "white",
+                                        backgroundColor:
+                                            index % 2 === 0
+                                                ? theme.tableRowAlternateColor
+                                                : "white",
                                         zIndex: theme.zIndex.appBar + 1,
                                     }}
                                     component="th"

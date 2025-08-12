@@ -163,6 +163,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             borderRight: headCell.sticky
                                 ? "1px solid #e0e0e0"
                                 : "",
+                            borderBottom: "1px solid #e0e0e0",
                             zIndex: headCell.sticky
                                 ? theme.zIndex.appBar + 2
                                 : "",
