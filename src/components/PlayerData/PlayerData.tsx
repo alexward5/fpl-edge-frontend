@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { gql } from "../../__generated__/gql";
 import { DataProvider } from "../../contexts/DataContext";
 import Box from "@mui/material/Box";
@@ -64,29 +64,42 @@ export default function PlayerData(props: Props) {
         "",
     ]);
 
+    const dataLoaded = useRef(false);
     const { loading, data } = useQuery(GET_PLAYER_DATA);
     useEffect(() => {
+        let playersLoaded = false;
+        let teamsLoaded = false;
+        let gameweeksLoaded = false;
+
         if (data?.players) {
             const playerCosts = data.players.map((p) => p.fpl_player_cost);
             const maxPrice = Math.max(...playerCosts);
             const minPrice = Math.min(...playerCosts);
             setPlayerPriceRange([String(minPrice), String(maxPrice)]);
+            playersLoaded = true;
         }
         if (data?.teams) {
             const teamNames = data.teams.map((team) => team.fbref_team);
             setDisplayedTeams(teamNames);
+            teamsLoaded = true;
         }
         if (data?.events) {
             const numGameweeks = data.events.filter(
                 (event) => event.finished || event.is_current,
             ).length;
             setGameweekRange([1, numGameweeks]);
+            gameweeksLoaded = true;
+        }
+
+        if (playersLoaded && teamsLoaded && gameweeksLoaded) {
+            dataLoaded.current = true;
         }
     }, [data]);
 
     const theme = useTheme();
 
-    if (loading || !data?.players) return <LoadingIndicator />;
+    if (loading || !data?.players || !dataLoaded.current)
+        return <LoadingIndicator />;
 
     return (
         <DataProvider value={data}>
