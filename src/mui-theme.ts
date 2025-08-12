@@ -28,6 +28,10 @@ const theme = createTheme({
     drawerWidth: drawerWidth,
     appBarHeightXs: appBarHeightXs,
     appBarHeightSm: appBarHeightSm,
+    // Custom font from Google fonts
+    typography: {
+        fontFamily: '"Inter", sans-serif',
+    },
     // Component style overrides
     components: {
         MuiAppBar: {
