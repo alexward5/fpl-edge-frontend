@@ -153,7 +153,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     {row.fplWebName}
                                 </TableCell>
                                 <TableCell
-                                    sx={{ width: "140px", minWidth: "140px" }}
+                                    sx={{ width: "145px", minWidth: "145px" }}
                                     align="right"
                                 >
                                     {row.fbrefTeam}
