@@ -73,8 +73,8 @@ export default function PlayerData(props: Props) {
 
         if (data?.players) {
             const playerCosts = data.players.map((p) => p.fpl_player_cost);
-            const maxPrice = Math.max(...playerCosts);
-            const minPrice = Math.min(...playerCosts);
+            const maxPrice = Math.max(...playerCosts).toFixed(1);
+            const minPrice = Math.min(...playerCosts).toFixed(1);
             setPlayerPriceRange([String(minPrice), String(maxPrice)]);
             playersLoaded = true;
         }
