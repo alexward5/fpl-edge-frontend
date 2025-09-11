@@ -63,6 +63,7 @@ export default function PlayerDataTable(props: Props) {
               let sumAssists = 0;
               let sumBPS = 0;
               let sumCleansheets = 0;
+              let sumDefensiveContributions = 0;
 
               player.player_gameweek_data.forEach((playerGameweek) => {
                   if (
@@ -78,6 +79,8 @@ export default function PlayerDataTable(props: Props) {
                       sumPoints += playerGameweek.fpl_total_points;
                       sumGoals += playerGameweek.fpl_goals_scored;
                       sumAssists += playerGameweek.fpl_assists;
+                      sumDefensiveContributions +=
+                          playerGameweek.fpl_defensive_contribution;
                       sumBPS += playerGameweek.fpl_bps;
                       sumCleansheets += playerGameweek.fpl_clean_sheet;
                   }
@@ -99,6 +102,7 @@ export default function PlayerDataTable(props: Props) {
                   sumPoints: sumPoints,
                   sumGoals: sumGoals,
                   sumAssists: sumAssists,
+                  sumDefensiveContributions: sumDefensiveContributions,
                   sumBPS: sumBPS,
                   sumCleansheets: sumCleansheets,
               };

@@ -92,6 +92,12 @@ const headCells: readonly HeadCell[] = [
         label: "NPxGAP",
     },
     {
+        id: "sumDefensiveContributions",
+        numeric: true,
+        disablePadding: false,
+        label: "DC",
+    },
+    {
         id: "sumBPS",
         numeric: true,
         disablePadding: false,

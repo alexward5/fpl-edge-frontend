@@ -13,6 +13,7 @@ type DisplayedData = {
     sumPoints: number;
     sumGoals: number;
     sumAssists: number;
+    sumDefensiveContributions: number;
     sumBPS: number;
     sumCleansheets: number;
 };

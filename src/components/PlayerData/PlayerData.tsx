@@ -28,6 +28,7 @@ const GET_PLAYER_DATA = gql(`
                 fpl_assists
                 fpl_bps
                 fpl_clean_sheet
+                fpl_defensive_contribution
                 calc_fpl_npxp
                 fbref_xg_assist
             }

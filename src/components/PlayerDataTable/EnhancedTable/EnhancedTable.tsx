@@ -196,6 +196,9 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     {row.sumNPxP}
                                 </TableCell>
                                 <TableCell align="right">
+                                    {row.sumDefensiveContributions}
+                                </TableCell>
+                                <TableCell align="right">
                                     {row.sumBPS}
                                 </TableCell>
                                 <TableCell align="right">
