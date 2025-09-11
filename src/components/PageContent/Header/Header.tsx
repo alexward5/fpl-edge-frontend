@@ -40,7 +40,7 @@ export default function Header(props: Props) {
                 >
                     <Box
                         component="img"
-                        src="/temp-logo.png"
+                        src="/logo-black.png"
                         alt="Logo"
                         sx={{ height: "42px", width: "auto" }}
                     />
