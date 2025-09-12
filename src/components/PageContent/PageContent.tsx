@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import Header from "./Header/Header";
 import PlayerData from "../PlayerData/PlayerData";
@@ -23,6 +24,15 @@ function PageContent() {
 
     return (
         <>
+            <Helmet>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="VersoStat" />
+                <meta property="og:url" content="https://versostat.com/" />
+                <meta
+                    property="og:description"
+                    content="Fantasy Premier League data table containing xG, xA, xGI, defensive contributions, and more."
+                />
+            </Helmet>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <PlayerData
                 handleDrawerClose={handleDrawerClose}

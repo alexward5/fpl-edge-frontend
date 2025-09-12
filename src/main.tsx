@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import { HelmetProvider } from "react-helmet-async";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./App.tsx";
 
@@ -13,7 +14,9 @@ const client = new ApolloClient({
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <ApolloProvider client={client}>
-            <App />
+            <HelmetProvider>
+                <App />
+            </HelmetProvider>
         </ApolloProvider>
     </StrictMode>,
 );
