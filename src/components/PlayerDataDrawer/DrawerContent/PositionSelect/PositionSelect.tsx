@@ -51,11 +51,6 @@ export default function PositionSelect(props: Props) {
                     value={selectedList}
                     onChange={handleChange}
                     renderValue={(selected) => {
-                        const selectedLen = selected.length;
-                        if (selectedLen > 3) {
-                            return `${selectedLen} Selected`;
-                        }
-
                         return selected
                             .sort((a: string, b: string) => {
                                 return listOrder[a] - listOrder[b];
