@@ -78,7 +78,7 @@ const PlayerFilters: React.FC<Props> = ({
                     fontWeight={"bold"}
                     sx={{ padding: "0px 4px" }}
                 >
-                    To
+                    to
                 </Typography>
                 <TextField
                     type="number"
