@@ -40,9 +40,9 @@ export default function Header(props: Props) {
                 >
                     <Box
                         component="img"
-                        src="/logo-black.png"
+                        src="/logo-dark.png"
                         alt="Logo"
-                        sx={{ height: "42px", width: "auto" }}
+                        sx={{ height: "40px", width: "auto" }}
                     />
                 </Box>
                 <Box
@@ -63,7 +63,10 @@ export default function Header(props: Props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ display: { sm: "none" } }}
+                        sx={{
+                            color: theme.themeMainColor,
+                            display: { sm: "none" },
+                        }}
                     >
                         <MenuIcon />
                     </IconButton>
