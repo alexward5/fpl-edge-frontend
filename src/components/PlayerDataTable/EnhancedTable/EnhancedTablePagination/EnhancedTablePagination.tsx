@@ -1,5 +1,6 @@
 import TablePagination from "@mui/material/TablePagination";
 import DisplayedData from "../../../../types/DisplayedData";
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     rows: DisplayedData[];
@@ -27,6 +28,8 @@ export default function EnhancedTablePagination(props: Props) {
         scrollToTop(); // Scroll to top of table
     };
 
+    const theme = useTheme();
+
     return (
         <TablePagination
             rowsPerPageOptions={[25, 50, 100]}
@@ -37,7 +40,16 @@ export default function EnhancedTablePagination(props: Props) {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
             sx={{
-                borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+                backgroundColor: theme.darkThemeSurfaceColor_1,
+            }}
+            slotProps={{
+                select: {
+                    sx: {
+                        "& .MuiSelect-icon": {
+                            color: theme.themeMainTextColor,
+                        },
+                    },
+                },
             }}
         />
     );

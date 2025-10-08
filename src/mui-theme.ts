@@ -1,40 +1,81 @@
-import { createTheme } from "@mui/material/styles";
+import { alpha, createTheme } from "@mui/material/styles";
 
-const themeMainColor = "rgb(76, 230, 137)";
-const tableRowAlternateColor = "#f2f2f2";
 const drawerWidth = "240px";
 const appBarHeightXs = "46px";
 const appBarHeightSm = "56px";
 
+const themeMainColor = "#49e688";
+const themeMainTextColor = "#FFFFFF";
+
+const darkThemeSurfaceColor_1 = "#191924";
+const darkThemeSurfaceColor_2 = "#2e2e39";
+const darkThemeSurfaceColor_3 = "#45444e";
+const darkThemeSurfaceColor_4 = "#5d5c65";
+const darkThemeSurfaceColor_5 = "#76757d";
+const darkThemeSurfaceColor_6 = "#8f8f96";
+
 // Use module augmentation to add new variables to Theme and ThemeOptions
 declare module "@mui/material/styles" {
     interface Theme {
-        themeMainColor: string;
-        tableRowAlternateColor: string;
         drawerWidth: string;
         appBarHeightXs: string;
         appBarHeightSm: string;
+
+        themeMainColor: string;
+        themeMainTextColor: string;
+
+        darkThemeSurfaceColor_1: string;
+        darkThemeSurfaceColor_2: string;
+        darkThemeSurfaceColor_3: string;
+        darkThemeSurfaceColor_4: string;
+        darkThemeSurfaceColor_5: string;
+        darkThemeSurfaceColor_6: string;
+        darkThemeBorderColor: string;
     }
 
     interface ThemeOptions {
-        themeMainColor: string;
-        tableRowAlternateColor: string;
         drawerWidth: string;
         appBarHeightXs: string;
         appBarHeightSm: string;
+
+        themeMainColor: string;
+        themeMainTextColor: string;
+
+        darkThemeSurfaceColor_1: string;
+        darkThemeSurfaceColor_2: string;
+        darkThemeSurfaceColor_3: string;
+        darkThemeSurfaceColor_4: string;
+        darkThemeSurfaceColor_5: string;
+        darkThemeSurfaceColor_6: string;
+        darkThemeBorderColor: string;
     }
 }
 
 const theme = createTheme({
     // Theme variables to use in components
-    themeMainColor: themeMainColor,
-    tableRowAlternateColor: tableRowAlternateColor,
     drawerWidth: drawerWidth,
     appBarHeightXs: appBarHeightXs,
     appBarHeightSm: appBarHeightSm,
+
+    themeMainColor: themeMainColor,
+    themeMainTextColor: themeMainTextColor,
+
+    darkThemeSurfaceColor_1: darkThemeSurfaceColor_1,
+    darkThemeSurfaceColor_2: darkThemeSurfaceColor_2,
+    darkThemeSurfaceColor_3: darkThemeSurfaceColor_3,
+    darkThemeSurfaceColor_4: darkThemeSurfaceColor_4,
+    darkThemeSurfaceColor_5: darkThemeSurfaceColor_5,
+    darkThemeSurfaceColor_6: darkThemeSurfaceColor_6,
+    darkThemeBorderColor: darkThemeSurfaceColor_5,
+
     // Custom font from Google fonts
     typography: {
         fontFamily: '"Inter", sans-serif',
+    },
+    palette: {
+        text: {
+            primary: themeMainTextColor,
+        },
     },
     // Component style overrides
     components: {
@@ -71,11 +112,12 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     "&.Mui-checked": {
-                        color: "#000000",
+                        color: themeMainTextColor,
                     },
                     "&.MuiCheckbox-indeterminate": {
-                        color: "#000000",
+                        color: themeMainTextColor,
                     },
+                    color: themeMainTextColor,
                 },
             },
         },
@@ -85,7 +127,7 @@ const theme = createTheme({
                     color: themeMainColor,
                 },
                 thumb: {
-                    backgroundColor: "#fff",
+                    backgroundColor: themeMainTextColor,
                     border: "2px solid #000000",
                     width: 18,
                     height: 18,
@@ -103,6 +145,69 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderBottom: "none",
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                notchedOutline: {
+                    borderColor: darkThemeSurfaceColor_5,
+                },
+                root: {
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: darkThemeSurfaceColor_6,
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: darkThemeSurfaceColor_6,
+                    },
+                },
+            },
+        },
+        MuiSelect: {
+            styleOverrides: {
+                root: {
+                    ".MuiSelect-icon": {
+                        color: themeMainTextColor,
+                    },
+                },
+            },
+        },
+        MuiIconButton: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-disabled": { color: darkThemeSurfaceColor_4 },
+                },
+            },
+        },
+        MuiDivider: {
+            styleOverrides: {
+                root: {
+                    borderColor: darkThemeSurfaceColor_3,
+                },
+            },
+        },
+        MuiMenu: {
+            styleOverrides: {
+                paper: {
+                    backgroundColor: darkThemeSurfaceColor_5,
+                },
+                list: { paddingTop: 0, paddingBottom: 0 },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    color: themeMainTextColor,
+                    backgroundColor: darkThemeSurfaceColor_5,
+                    "&:hover": {
+                        backgroundColor: alpha(darkThemeSurfaceColor_2, 0.3),
+                    },
+                    "&.Mui-selected": {
+                        backgroundColor: darkThemeSurfaceColor_2,
+                        "&:hover": {
+                            backgroundColor: darkThemeSurfaceColor_2,
+                        },
+                    },
                 },
             },
         },

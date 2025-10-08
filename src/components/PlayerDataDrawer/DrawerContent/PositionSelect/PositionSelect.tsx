@@ -66,7 +66,7 @@ export default function PositionSelect(props: Props) {
                     }}
                 >
                     {PLAYER_POSITIONS.map((listItem: string) => (
-                        <MenuItem key={listItem} value={listItem}>
+                        <MenuItem key={listItem} value={listItem} dense={true}>
                             <Checkbox
                                 checked={selectedList.includes(listItem)}
                             />
