@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { useData } from "../../../../contexts/DataContext";
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     gameweekRange: number[];
@@ -46,6 +47,8 @@ export default function RangeSlider(props: Props) {
         { value: numGameweeks, label: gameweekRange[1] },
     ];
 
+    const theme = useTheme();
+
     return (
         <>
             <Typography variant="subtitle1" fontWeight={"bold"}>
@@ -68,6 +71,11 @@ export default function RangeSlider(props: Props) {
                     max={numGameweeks}
                     marks={marks}
                     disableSwap
+                    sx={{
+                        "& .MuiSlider-markLabel": {
+                            color: theme.themeMainTextColor,
+                        },
+                    }}
                 />
             </Box>
         </>
