@@ -26,7 +26,7 @@ export default function Header(props: Props) {
         >
             <Toolbar
                 disableGutters
-                sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.12)" }}
+                sx={{ borderBottom: `1px solid ${theme.darkThemeBorderColor}` }}
             >
                 <Box
                     sx={{
@@ -55,7 +55,7 @@ export default function Header(props: Props) {
                         paddingLeft: 2,
                         display: "flex",
                         alignItems: "center",
-                        background: `linear-gradient(90deg,rgb(255, 255, 255) 0%, ${theme.themeMainColor} 50%)`,
+                        background: theme.darkThemeSurfaceColor_1,
                     }}
                 >
                     <IconButton

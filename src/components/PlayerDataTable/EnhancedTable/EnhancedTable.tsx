@@ -126,8 +126,8 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                 sx={{
                                     backgroundColor:
                                         index % 2 === 0
-                                            ? theme.tableRowAlternateColor
-                                            : "white",
+                                            ? theme.darkThemeSurfaceColor_2
+                                            : theme.darkThemeSurfaceColor_3,
                                 }}
                             >
                                 {/* <TableCell padding="checkbox">
@@ -147,11 +147,11 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                         position: "sticky",
                                         left: 0,
                                         paddingLeft: "15px",
-                                        borderRight: "1px solid #e0e0e0",
+                                        borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                                         backgroundColor:
                                             index % 2 === 0
-                                                ? theme.tableRowAlternateColor
-                                                : "white",
+                                                ? theme.darkThemeSurfaceColor_2
+                                                : theme.darkThemeSurfaceColor_3,
                                         zIndex: theme.zIndex.appBar + 1,
                                     }}
                                     component="th"

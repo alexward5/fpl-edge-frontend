@@ -165,11 +165,11 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             top: headCell.sticky ? 0 : "",
                             left: headCell.sticky ? 0 : "",
                             paddingLeft: headCell.sticky ? "15px" : "",
-                            backgroundColor: headCell.sticky ? "white" : "",
+                            backgroundColor: theme.darkThemeSurfaceColor_1,
                             borderRight: headCell.sticky
-                                ? "1px solid #e0e0e0"
+                                ? `1px solid ${theme.darkThemeBorderColor}`
                                 : "",
-                            borderBottom: "1px solid #e0e0e0",
+                            borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
                             zIndex: headCell.sticky
                                 ? theme.zIndex.appBar + 2
                                 : "",
@@ -183,6 +183,12 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : "desc"}
                             onClick={createSortHandler(headCell.id)}
+                            sx={{
+                                "&:hover": { color: theme.themeMainTextColor },
+                                "&.Mui-active .MuiTableSortLabel-icon": {
+                                    color: theme.themeMainColor,
+                                },
+                            }}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (

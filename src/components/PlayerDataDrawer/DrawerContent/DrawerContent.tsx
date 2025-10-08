@@ -4,6 +4,7 @@ import GameweekSlider from "./GameweekSlider/GameweekSlider";
 import Divider from "@mui/material/Divider";
 import PlayerFilters from "./PlayerFilters/PlayerFilters";
 import TeamFilter from "./TeamFilter/TeamFilter";
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     gameweekRange: number[];
@@ -28,12 +29,15 @@ export default function DrawerContent(props: Props) {
         setPlayerPriceRange,
     } = props;
 
+    const theme = useTheme();
+
     return (
         <Box
             sx={{
                 display: "flex",
                 height: "100vh",
                 flexDirection: "column",
+                backgroundColor: theme.darkThemeSurfaceColor_1,
             }}
         >
             <Toolbar
@@ -41,7 +45,7 @@ export default function DrawerContent(props: Props) {
                 sx={{
                     display: "flex",
                     justifyContent: "center",
-                    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+                    borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
                 }}
             >
                 <Box
@@ -58,7 +62,7 @@ export default function DrawerContent(props: Props) {
                     flexGrow: 1,
                     overflowY: "auto",
                     padding: "0px 15px",
-                    borderRight: "1px solid rgba(0, 0, 0, 0.12)",
+                    borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                 }}
             >
                 <GameweekSlider

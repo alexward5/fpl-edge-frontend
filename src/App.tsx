@@ -5,7 +5,10 @@ import PageContent from "./components/PageContent/PageContent.tsx";
 
 function App() {
     return (
-        <div className="app-contianer">
+        <div
+            className="app-contianer"
+            style={{ backgroundColor: theme.darkThemeSurfaceColor_1 }}
+        >
             <ThemeProvider theme={theme}>
                 <PageContent />
             </ThemeProvider>
