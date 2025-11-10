@@ -5,10 +5,15 @@ import { HelmetProvider } from "react-helmet-async";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./App.tsx";
 
+const apiUrl =
+    window.location.hostname === "localhost"
+        ? "http://localhost:4000/graphql"
+        : "https://api.versostat.com/graphql";
+
 const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: apiUrl,
     cache: new InMemoryCache(),
-    connectToDevTools: false,
+    connectToDevTools: import.meta.env.DEV,
 });
 
 createRoot(document.getElementById("root")!).render(
