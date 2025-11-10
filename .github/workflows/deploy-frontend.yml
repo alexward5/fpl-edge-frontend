@@ -1,0 +1,85 @@
+name: Deploy Frontend (prod)
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch: {}
+
+concurrency:
+    group: deploy-frontend-prod
+    cancel-in-progress: false
+
+permissions:
+    id-token: write # OIDC
+    contents: read
+
+env:
+    AWS_REGION: us-east-1
+    ROLE_ARN: arn:aws:iam::586999013151:role/VersoStat-GHADeployRole
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Configure AWS credentials (OIDC)
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  role-to-assume: ${{ env.ROLE_ARN }}
+                  aws-region: ${{ env.AWS_REGION }}
+
+            # Ensure the script is executable (in case git perms differ)
+            - name: Make deploy script executable
+              run: chmod +x scripts/deploy-frontend.sh
+
+            # This script builds, syncs to S3 with correct cache headers, and invalidates CF
+            - name: Build & deploy to S3 + CloudFront
+              run: ./scripts/deploy-frontend.sh
+
+            # Simple smoke tests
+            - name: Smoke test (homepage + API /health + GraphQL probe)
+              id: smoke
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  # Homepage should load over HTTPS
+                  CODE=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" https://versostat.com/)
+                  echo "Homepage HTTP $CODE"
+                  [ "$CODE" = "200" ] || (echo "Homepage not 200" && exit 1)
+
+                  # API health (public hostname)
+                  CODE_API=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" https://api.versostat.com/health)
+                  echo "API /health HTTP $CODE_API"
+                  [ "$CODE_API" = "200" ] || (echo "API health not 200" && exit 1)
+
+                  # Minimal GraphQL probe
+                  RESP=$(curl -sS -m 20 -H 'content-type: application/json' \
+                          -X POST https://api.versostat.com/graphql \
+                          --data-raw '{"query":"{ __typename }"}' || true)
+                  echo "GraphQL response (first 200 chars):"
+                  echo "$RESP" | head -c 200; echo
+
+                  echo "$RESP" | grep -q '"data"' || (echo "GraphQL probe missing data" && exit 1)
+
+            - name: Summary
+              if: always()
+              run: |
+                  {
+                    echo "### Frontend deploy summary"
+                    echo "- Region: \`${{ env.AWS_REGION }}\`"
+                    echo "- Bucket & Distribution resolved via CFN exports inside deploy script"
+                    echo "- Smoke test: $([[ '${{ steps.smoke.outcome }}' == 'success' ]] && echo 'passed' || echo 'failed')"
+                  } >> $GITHUB_STEP_SUMMARY
