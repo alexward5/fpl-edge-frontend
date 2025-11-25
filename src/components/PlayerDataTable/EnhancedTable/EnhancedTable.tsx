@@ -149,12 +149,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                         position: "sticky",
                                         left: 0,
                                         paddingLeft: "15px",
-                                        // Right border for sticky cells on large screens
-                                        borderRight: {
-                                            xs: "none",
-                                            sm: `1px solid ${theme.darkThemeBorderColor}`,
-                                        },
-                                        // Right border for sticky cells on small screens
+                                        // Right border for sticky cells
                                         "&::after": {
                                             content: '""',
                                             position: "absolute",
@@ -164,10 +159,6 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                             width: "1px",
                                             backgroundColor:
                                                 theme.darkThemeBorderColor,
-                                            display: {
-                                                xs: "block",
-                                                sm: "none",
-                                            },
                                         },
                                         backgroundColor:
                                             index % 2 === 0

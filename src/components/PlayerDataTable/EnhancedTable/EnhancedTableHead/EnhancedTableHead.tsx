@@ -168,14 +168,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             left: headCell.sticky ? 0 : "",
                             paddingLeft: headCell.sticky ? "15px" : "",
                             backgroundColor: theme.darkThemeSurfaceColor_1,
-                            borderRight: headCell.sticky
-                                ? // Right border for sticky cells on large screens
-                                  {
-                                      xs: "none",
-                                      sm: `1px solid ${theme.darkThemeBorderColor}`,
-                                  }
-                                : "",
-                            // Right border for sticky cells on small screens
+                            // Right border for sticky cells
                             "&::after": headCell.sticky
                                 ? {
                                       content: '""',
@@ -186,7 +179,6 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                                       width: "1px",
                                       backgroundColor:
                                           theme.darkThemeBorderColor,
-                                      display: isSmallScreen ? "block" : "none",
                                   }
                                 : {},
                             borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
