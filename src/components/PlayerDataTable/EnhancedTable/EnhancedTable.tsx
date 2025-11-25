@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
+import StickyTableCell from "./StickyTableCell/StickyTableCell";
 
 import type DisplayedData from "../../../types/DisplayedData";
 
@@ -143,39 +144,13 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
                             </TableCell> */}
-                                <TableCell
-                                    sx={{
-                                        minWidth: "135px",
-                                        position: "sticky",
-                                        left: 0,
-                                        paddingLeft: "15px",
-                                        // Right border for sticky cells
-                                        "&::after": {
-                                            content: '""',
-                                            position: "absolute",
-                                            top: 0,
-                                            right: 0,
-                                            bottom: 0,
-                                            width: "1px",
-                                            backgroundColor:
-                                                theme.darkThemeBorderColor,
-                                        },
-                                        backgroundColor:
-                                            index % 2 === 0
-                                                ? theme.darkThemeSurfaceColor_2
-                                                : theme.darkThemeSurfaceColor_3,
-                                        zIndex: {
-                                            xs: 1,
-                                            sm: theme.zIndex.appBar + 1,
-                                        },
-                                    }}
+                                <StickyTableCell
                                     component="th"
                                     id={labelId}
                                     scope="row"
-                                    padding="none"
                                 >
                                     {row.fplWebName}
-                                </TableCell>
+                                </StickyTableCell>
                                 <TableCell
                                     sx={{ width: "145px", minWidth: "145px" }}
                                     align="right"
