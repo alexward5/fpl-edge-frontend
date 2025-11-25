@@ -116,7 +116,7 @@ export default function PlayerData(props: Props) {
                             sm: "auto",
                         },
                         mt: {
-                            xs: theme.appBarHeightXs,
+                            xs: 0,
                             sm: theme.appBarHeightSm,
                         },
                         width: { sm: `calc(100% - ${theme.drawerWidth})` },
