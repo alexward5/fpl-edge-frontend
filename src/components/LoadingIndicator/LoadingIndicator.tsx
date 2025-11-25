@@ -10,14 +10,14 @@ export default function LoadingIndicator() {
         <Fade in={true} timeout={600}>
             <Box
                 sx={{
-                    height: {
-                        xs: `calc(100% - ${theme.appBarHeightXs})`,
-                        sm: `calc(100% - ${theme.appBarHeightSm})`,
-                    },
-                    mt: {
+                    position: "fixed",
+                    top: {
                         xs: theme.appBarHeightXs,
                         sm: theme.appBarHeightSm,
                     },
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
