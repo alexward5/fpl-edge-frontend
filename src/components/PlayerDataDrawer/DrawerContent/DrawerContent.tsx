@@ -46,6 +46,10 @@ export default function DrawerContent(props: Props) {
                     display: "flex",
                     justifyContent: "center",
                     borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
+                    borderRight: {
+                        xs: `1px solid ${theme.darkThemeBorderColor}`,
+                        sm: "none",
+                    },
                 }}
             >
                 <Box
