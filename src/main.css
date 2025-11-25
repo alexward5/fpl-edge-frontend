@@ -21,3 +21,30 @@
     font-size: var(--font-size);
     line-height: var(--line-height);
   }
+
+  /* Global scrollbar styling */
+  /* Thumb: theme.darkThemeSurfaceColor_5 (#76757d) */
+  /* Track: theme.darkThemeSurfaceColor_1 (#191924) - matches app background */
+  * {
+    scrollbar-color: #76757d #191924;
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #76757d;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: #191924;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background-color: #191924;
+  }
