@@ -163,12 +163,15 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                     <TableCell
                         sx={{
                             fontWeight: "bold",
-                            position: headCell.sticky ? "sticky" : "",
-                            top: headCell.sticky && !isSmallScreen ? 0 : "",
+                            position: !isSmallScreen
+                                ? "sticky"
+                                : headCell.sticky
+                                  ? "sticky"
+                                  : "relative",
+                            top: !isSmallScreen ? 0 : headCell.sticky ? 0 : "",
                             left: headCell.sticky ? 0 : "",
                             paddingLeft: headCell.sticky ? "15px" : "",
                             backgroundColor: theme.darkThemeSurfaceColor_1,
-                            // Right border for sticky cells
                             "&::after": headCell.sticky
                                 ? {
                                       content: '""',
@@ -176,17 +179,31 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                                       top: 0,
                                       right: 0,
                                       bottom: 0,
-                                      width: "1px",
+                                      left: 0,
+                                      background: `linear-gradient(to left, ${theme.darkThemeBorderColor} 1px, transparent 1px),
+                                                   linear-gradient(to top, ${theme.darkThemeBorderColor} 1px, transparent 1px)`,
+                                      backgroundPosition: "right, bottom",
+                                      backgroundSize: "1px 100%, 100% 1px",
+                                      backgroundRepeat: "no-repeat",
+                                  }
+                                : {
+                                      // For non-sticky cells: just bottom border
+                                      content: '""',
+                                      position: "absolute",
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      height: "1px",
                                       backgroundColor:
                                           theme.darkThemeBorderColor,
-                                  }
-                                : {},
-                            borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
-                            zIndex: headCell.sticky
-                                ? isSmallScreen
-                                    ? 2
-                                    : theme.zIndex.appBar + 2
-                                : "",
+                                  },
+                            zIndex: !isSmallScreen
+                                ? headCell.sticky
+                                    ? theme.zIndex.appBar + 2
+                                    : theme.zIndex.appBar + 1
+                                : headCell.sticky
+                                  ? 2
+                                  : "",
                         }}
                         key={headCell.id}
                         align={headCell.numeric ? "right" : "left"}
