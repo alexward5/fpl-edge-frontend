@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 type Props = {
     handleDrawerToggle: () => void;
@@ -13,10 +14,11 @@ export default function Header(props: Props) {
     const { handleDrawerToggle } = props;
 
     const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <AppBar
-            position="fixed"
+            position={isSmallScreen ? "sticky" : "fixed"}
             elevation={0}
             sx={{
                 color: "black",

@@ -108,8 +108,12 @@ export default function PlayerData(props: Props) {
                 <Box
                     sx={{
                         height: {
-                            xs: `calc(100% - ${theme.appBarHeightXs})`,
+                            xs: "auto",
                             sm: `calc(100% - ${theme.appBarHeightSm})`,
+                        },
+                        minHeight: {
+                            xs: `calc(100vh - ${theme.appBarHeightXs})`,
+                            sm: "auto",
                         },
                         mt: {
                             xs: theme.appBarHeightXs,

@@ -7,6 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 // import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 
 import type DisplayedData from "../../../types/DisplayedData";
@@ -80,17 +81,18 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
     );
 
     const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <TableContainer
             sx={{
-                flex: 1,
-                overflow: "auto",
+                flex: { xs: "none", sm: 1 },
+                overflow: { xs: "visible", sm: "auto" },
             }}
             ref={ref}
         >
             <Table
-                stickyHeader
+                stickyHeader={!isSmallScreen}
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={"small"}
