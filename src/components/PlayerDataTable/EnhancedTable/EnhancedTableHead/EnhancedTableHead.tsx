@@ -169,8 +169,26 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             paddingLeft: headCell.sticky ? "15px" : "",
                             backgroundColor: theme.darkThemeSurfaceColor_1,
                             borderRight: headCell.sticky
-                                ? `1px solid ${theme.darkThemeBorderColor}`
+                                ? // Right border for sticky cells on large screens
+                                  {
+                                      xs: "none",
+                                      sm: `1px solid ${theme.darkThemeBorderColor}`,
+                                  }
                                 : "",
+                            // Right border for sticky cells on small screens
+                            "&::after": headCell.sticky
+                                ? {
+                                      content: '""',
+                                      position: "absolute",
+                                      top: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      width: "1px",
+                                      backgroundColor:
+                                          theme.darkThemeBorderColor,
+                                      display: isSmallScreen ? "block" : "none",
+                                  }
+                                : {},
                             borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
                             zIndex: headCell.sticky
                                 ? isSmallScreen
