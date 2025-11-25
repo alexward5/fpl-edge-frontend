@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTable from "./EnhancedTable/EnhancedTable";
 import EnhancedTablePagination from "./EnhancedTable/EnhancedTablePagination/EnhancedTablePagination";
 
@@ -31,6 +33,8 @@ export default function PlayerDataTable(props: Props) {
     };
 
     const { players } = useData();
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     // Filter players based on team/position and price
     const filteredPlayers = players.filter((player) => {
@@ -118,12 +122,43 @@ export default function PlayerDataTable(props: Props) {
                 flexDirection: "column",
             }}
         >
-            <EnhancedTable
-                ref={tableRef}
-                rows={displayedData}
-                page={page}
-                rowsPerPage={rowsPerPage}
-            />
+            {isSmallScreen ? (
+                <Box
+                    sx={{
+                        overflowX: "auto",
+                        overflowY: "visible",
+                        width: "100%",
+                        overscrollBehaviorX: "contain",
+                        overscrollBehaviorY: "none",
+                    }}
+                    onWheel={(e) => {
+                        // Allow vertical scrolling to pass through to the page on small screens
+                        if (
+                            e.deltaY !== 0 &&
+                            Math.abs(e.deltaY) > Math.abs(e.deltaX)
+                        ) {
+                            window.scrollBy({
+                                top: e.deltaY,
+                                behavior: "auto",
+                            });
+                        }
+                    }}
+                >
+                    <EnhancedTable
+                        ref={tableRef}
+                        rows={displayedData}
+                        page={page}
+                        rowsPerPage={rowsPerPage}
+                    />
+                </Box>
+            ) : (
+                <EnhancedTable
+                    ref={tableRef}
+                    rows={displayedData}
+                    page={page}
+                    rowsPerPage={rowsPerPage}
+                />
+            )}
             <EnhancedTablePagination
                 rows={displayedData}
                 rowsPerPage={rowsPerPage}
