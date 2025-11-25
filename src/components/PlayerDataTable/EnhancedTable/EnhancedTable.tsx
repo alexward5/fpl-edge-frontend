@@ -146,15 +146,21 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                 <TableCell
                                     sx={{
                                         minWidth: "135px",
-                                        position: "sticky",
-                                        left: 0,
+                                        position: {
+                                            xs: "static",
+                                            sm: "sticky",
+                                        },
+                                        left: { xs: "auto", sm: 0 },
                                         paddingLeft: "15px",
                                         borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                                         backgroundColor:
                                             index % 2 === 0
                                                 ? theme.darkThemeSurfaceColor_2
                                                 : theme.darkThemeSurfaceColor_3,
-                                        zIndex: theme.zIndex.appBar + 1,
+                                        zIndex: {
+                                            xs: "auto",
+                                            sm: theme.zIndex.appBar + 1,
+                                        },
                                     }}
                                     component="th"
                                     id={labelId}

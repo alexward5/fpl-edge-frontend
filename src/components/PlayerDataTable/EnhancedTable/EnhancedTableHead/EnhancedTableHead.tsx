@@ -6,6 +6,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 // import Checkbox from "@mui/material/Checkbox";
 import { visuallyHidden } from "@mui/utils";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import type DisplayedData from "../../../../types/DisplayedData";
 
@@ -139,6 +140,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
         };
 
     const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <TableHead>
@@ -161,18 +163,22 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                     <TableCell
                         sx={{
                             fontWeight: "bold",
-                            position: headCell.sticky ? "sticky" : "",
-                            top: headCell.sticky ? 0 : "",
-                            left: headCell.sticky ? 0 : "",
+                            position:
+                                headCell.sticky && !isSmallScreen
+                                    ? "sticky"
+                                    : "",
+                            top: headCell.sticky && !isSmallScreen ? 0 : "",
+                            left: headCell.sticky && !isSmallScreen ? 0 : "",
                             paddingLeft: headCell.sticky ? "15px" : "",
                             backgroundColor: theme.darkThemeSurfaceColor_1,
                             borderRight: headCell.sticky
                                 ? `1px solid ${theme.darkThemeBorderColor}`
                                 : "",
                             borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
-                            zIndex: headCell.sticky
-                                ? theme.zIndex.appBar + 2
-                                : "",
+                            zIndex:
+                                headCell.sticky && !isSmallScreen
+                                    ? theme.zIndex.appBar + 2
+                                    : "",
                         }}
                         key={headCell.id}
                         align={headCell.numeric ? "right" : "left"}
