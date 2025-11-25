@@ -146,11 +146,8 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                 <TableCell
                                     sx={{
                                         minWidth: "135px",
-                                        position: {
-                                            xs: "static",
-                                            sm: "sticky",
-                                        },
-                                        left: { xs: "auto", sm: 0 },
+                                        position: "sticky",
+                                        left: 0,
                                         paddingLeft: "15px",
                                         borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                                         backgroundColor:
@@ -158,7 +155,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                                 ? theme.darkThemeSurfaceColor_2
                                                 : theme.darkThemeSurfaceColor_3,
                                         zIndex: {
-                                            xs: "auto",
+                                            xs: 1,
                                             sm: theme.zIndex.appBar + 1,
                                         },
                                     }}

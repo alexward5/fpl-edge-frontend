@@ -163,22 +163,20 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                     <TableCell
                         sx={{
                             fontWeight: "bold",
-                            position:
-                                headCell.sticky && !isSmallScreen
-                                    ? "sticky"
-                                    : "",
+                            position: headCell.sticky ? "sticky" : "",
                             top: headCell.sticky && !isSmallScreen ? 0 : "",
-                            left: headCell.sticky && !isSmallScreen ? 0 : "",
+                            left: headCell.sticky ? 0 : "",
                             paddingLeft: headCell.sticky ? "15px" : "",
                             backgroundColor: theme.darkThemeSurfaceColor_1,
                             borderRight: headCell.sticky
                                 ? `1px solid ${theme.darkThemeBorderColor}`
                                 : "",
                             borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
-                            zIndex:
-                                headCell.sticky && !isSmallScreen
-                                    ? theme.zIndex.appBar + 2
-                                    : "",
+                            zIndex: headCell.sticky
+                                ? isSmallScreen
+                                    ? 2
+                                    : theme.zIndex.appBar + 2
+                                : "",
                         }}
                         key={headCell.id}
                         align={headCell.numeric ? "right" : "left"}
