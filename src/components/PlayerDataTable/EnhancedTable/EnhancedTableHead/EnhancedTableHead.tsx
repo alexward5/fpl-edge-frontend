@@ -159,79 +159,101 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                         }}
                     />
                 </TableCell> */}
-                {headCells.map((headCell) => (
-                    <TableCell
-                        sx={{
-                            fontWeight: "bold",
-                            position: !isSmallScreen
-                                ? "sticky"
-                                : headCell.sticky
-                                  ? "sticky"
-                                  : "relative",
-                            top: !isSmallScreen ? 0 : headCell.sticky ? 0 : "",
-                            left: headCell.sticky ? 0 : "",
-                            paddingLeft: headCell.sticky ? "15px" : "",
-                            backgroundColor: theme.darkThemeSurfaceColor_1,
-                            "&::after": headCell.sticky
-                                ? {
-                                      content: '""',
-                                      position: "absolute",
-                                      top: 0,
-                                      right: 0,
-                                      bottom: 0,
-                                      left: 0,
-                                      background: `linear-gradient(to left, ${theme.darkThemeBorderColor} 1px, transparent 1px),
-                                                   linear-gradient(to top, ${theme.darkThemeBorderColor} 1px, transparent 1px)`,
-                                      backgroundPosition: "right, bottom",
-                                      backgroundSize: "1px 100%, 100% 1px",
-                                      backgroundRepeat: "no-repeat",
-                                  }
-                                : {
-                                      // For non-sticky cells: just bottom border
-                                      content: '""',
-                                      position: "absolute",
-                                      bottom: 0,
-                                      left: 0,
-                                      right: 0,
-                                      height: "1px",
-                                      backgroundColor:
-                                          theme.darkThemeBorderColor,
-                                  },
-                            zIndex: !isSmallScreen
-                                ? headCell.sticky
-                                    ? theme.zIndex.appBar + 2
-                                    : theme.zIndex.appBar + 1
-                                : headCell.sticky
-                                  ? 2
-                                  : "",
-                        }}
-                        key={headCell.id}
-                        align={headCell.numeric ? "right" : "left"}
-                        padding={headCell.disablePadding ? "none" : "normal"}
-                        sortDirection={orderBy === headCell.id ? order : false}
-                    >
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : "desc"}
-                            onClick={createSortHandler(headCell.id)}
+                {headCells.map((headCell) => {
+                    const isSticky = headCell.sticky;
+                    const isVerticalSticky = !isSmallScreen;
+                    const baseZIndex = theme.zIndex.appBar;
+
+                    return (
+                        <TableCell
                             sx={{
-                                "&:hover": { color: theme.themeMainTextColor },
-                                "&.Mui-active .MuiTableSortLabel-icon": {
-                                    color: theme.themeMainColor,
+                                fontWeight: "bold",
+                                position:
+                                    isVerticalSticky || isSticky
+                                        ? "sticky"
+                                        : "relative",
+                                top:
+                                    isVerticalSticky || isSticky
+                                        ? 0
+                                        : undefined,
+                                left: isSticky ? 0 : undefined,
+                                paddingLeft: isSticky ? "15px" : undefined,
+                                backgroundColor: theme.darkThemeSurfaceColor_1,
+                                // Borders using pseudo-element (needed for sticky elements)
+                                "&::after": {
+                                    content: '""',
+                                    position: "absolute",
+                                    ...(isSticky
+                                        ? {
+                                              // Sticky cell: right + bottom borders
+                                              top: 0,
+                                              right: 0,
+                                              bottom: 0,
+                                              left: 0,
+                                              background: [
+                                                  `linear-gradient(to left, ${theme.darkThemeBorderColor} 1px, transparent 1px)`,
+                                                  `linear-gradient(to top, ${theme.darkThemeBorderColor} 1px, transparent 1px)`,
+                                              ].join(", "),
+                                              backgroundPosition:
+                                                  "right, bottom",
+                                              backgroundSize:
+                                                  "1px 100%, 100% 1px",
+                                              backgroundRepeat: "no-repeat",
+                                          }
+                                        : {
+                                              // Non-sticky cell: bottom border only
+                                              bottom: 0,
+                                              left: 0,
+                                              right: 0,
+                                              height: "1px",
+                                              backgroundColor:
+                                                  theme.darkThemeBorderColor,
+                                          }),
                                 },
+                                zIndex: isVerticalSticky
+                                    ? isSticky
+                                        ? baseZIndex + 2
+                                        : baseZIndex + 1
+                                    : isSticky
+                                      ? 2
+                                      : undefined,
                             }}
+                            key={headCell.id}
+                            align={headCell.numeric ? "right" : "left"}
+                            padding={
+                                headCell.disablePadding ? "none" : "normal"
+                            }
+                            sortDirection={
+                                orderBy === headCell.id ? order : false
+                            }
                         >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === "asc"
-                                        ? "sorted ascending"
-                                        : "sorted descending"}
-                                </Box>
-                            ) : null}
-                        </TableSortLabel>
-                    </TableCell>
-                ))}
+                            <TableSortLabel
+                                active={orderBy === headCell.id}
+                                direction={
+                                    orderBy === headCell.id ? order : "desc"
+                                }
+                                onClick={createSortHandler(headCell.id)}
+                                sx={{
+                                    "&:hover": {
+                                        color: theme.themeMainTextColor,
+                                    },
+                                    "&.Mui-active .MuiTableSortLabel-icon": {
+                                        color: theme.themeMainColor,
+                                    },
+                                }}
+                            >
+                                {headCell.label}
+                                {orderBy === headCell.id ? (
+                                    <Box component="span" sx={visuallyHidden}>
+                                        {order === "asc"
+                                            ? "sorted ascending"
+                                            : "sorted descending"}
+                                    </Box>
+                                ) : null}
+                            </TableSortLabel>
+                        </TableCell>
+                    );
+                })}
             </TableRow>
         </TableHead>
     );
