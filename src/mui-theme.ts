@@ -1,7 +1,7 @@
 import { alpha, createTheme } from "@mui/material/styles";
 
 const drawerWidth = "240px";
-const appBarHeightXs = "46px";
+const appBarHeightXs = "52px";
 const appBarHeightSm = "56px";
 
 const themeMainColor = "#49e688";

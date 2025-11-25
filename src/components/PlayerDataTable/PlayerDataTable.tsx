@@ -128,7 +128,7 @@ export default function PlayerDataTable(props: Props) {
                         overflowX: "auto",
                         overflowY: "visible",
                         width: "100%",
-                        overscrollBehaviorX: "contain",
+                        overscrollBehaviorX: "none",
                         overscrollBehaviorY: "none",
                     }}
                     onWheel={(e) => {

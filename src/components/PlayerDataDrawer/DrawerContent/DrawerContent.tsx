@@ -56,7 +56,7 @@ export default function DrawerContent(props: Props) {
                     component="img"
                     src="/logo-dark.png"
                     alt="Logo"
-                    sx={{ height: "40px", width: "auto" }}
+                    sx={{ height: "36px", width: "auto" }}
                 />
             </Toolbar>
             <Box
