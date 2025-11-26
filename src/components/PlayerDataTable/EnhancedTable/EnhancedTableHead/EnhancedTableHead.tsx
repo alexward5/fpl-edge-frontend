@@ -2,7 +2,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 // import Checkbox from "@mui/material/Checkbox";
 import StickyTableHeader from "../StickyTableHeader/StickyTableHeader";
-import tableConfigJson from "../../PlayerDataTable.json";
+import tableConfigJson from "../../PlayerDataTableConfig.json";
 
 import type DisplayedData from "../../../../types/DisplayedData";
 

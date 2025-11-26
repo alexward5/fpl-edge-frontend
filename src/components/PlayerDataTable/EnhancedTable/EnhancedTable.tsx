@@ -11,7 +11,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 import EnhancedTableCell from "./EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "./StickyTableCell/StickyTableCell";
-import tableConfigJson from "../PlayerDataTable.json";
+import tableConfigJson from "../PlayerDataTableConfig.json";
 
 import type DisplayedData from "../../../types/DisplayedData";
 
