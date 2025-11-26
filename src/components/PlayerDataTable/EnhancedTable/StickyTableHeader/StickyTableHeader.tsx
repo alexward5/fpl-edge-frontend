@@ -21,6 +21,7 @@ interface StickyTableHeaderProps {
         event: React.MouseEvent<unknown>,
         property: keyof DisplayedData,
     ) => void;
+    sx?: Record<string, any>;
 }
 
 export default function StickyTableHeader({
@@ -29,6 +30,7 @@ export default function StickyTableHeader({
     order,
     orderBy,
     onRequestSort,
+    sx = {},
 }: StickyTableHeaderProps) {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -92,6 +94,7 @@ export default function StickyTableHeader({
                     : isSticky
                       ? 2
                       : undefined,
+                ...sx, // Allow config to override any of these styles
             }}
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}

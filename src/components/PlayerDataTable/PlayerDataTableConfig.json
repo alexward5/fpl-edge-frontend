@@ -161,12 +161,16 @@
         {
             "id": "fplSelectedByPercent",
             "sx": {
-                "textAlign": "right"
+                "textAlign": "right",
+                "paddingRight": "15px"
             },
             "headerConfig": {
                 "label": "Selected %",
                 "numeric": true,
-                "disablePadding": false
+                "disablePadding": false,
+                "sx": {
+                    "paddingRight": "15px"
+                }
             }
         }
     ]

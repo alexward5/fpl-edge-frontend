@@ -65,6 +65,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={onRequestSort}
+                            sx={column.headerConfig.sx}
                         />
                     );
                 })}
