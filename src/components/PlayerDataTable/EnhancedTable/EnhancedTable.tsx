@@ -9,9 +9,13 @@ import TableRow from "@mui/material/TableRow";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
+import EnhancedTableCell from "./EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "./StickyTableCell/StickyTableCell";
+import tableConfigJson from "../PlayerDataTable.json";
 
 import type DisplayedData from "../../../types/DisplayedData";
+
+const tableConfig = tableConfigJson as { columns: any[] };
 
 type Order = "asc" | "desc";
 
@@ -144,56 +148,39 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
                             </TableCell> */}
-                                <StickyTableCell
-                                    component="th"
-                                    id={labelId}
-                                    scope="row"
-                                >
-                                    {row.fplWebName}
-                                </StickyTableCell>
-                                <TableCell
-                                    sx={{ width: "145px", minWidth: "145px" }}
-                                    align="right"
-                                >
-                                    {row.fbrefTeam}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.fplPlayerPosition}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.fplPlayerCost}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumPoints}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.gamesPlayed}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumMinutes}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumGoals}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumAssists}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumNPxG}
-                                </TableCell>
-                                <TableCell align="right">{row.sumxA}</TableCell>
-                                <TableCell align="right">
-                                    {row.sumNPxP}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumDefensiveContributions}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.sumBPS}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {row.fplSelectedByPercent}
-                                </TableCell>
+                                {tableConfig.columns.map(
+                                    (column, columnIndex) => {
+                                        const cellValue =
+                                            row[
+                                                column.id as keyof DisplayedData
+                                            ];
+
+                                        // Only first column gets id for accessibility/row identification
+                                        const cellId =
+                                            columnIndex === 0
+                                                ? labelId
+                                                : undefined;
+
+                                        return column.sticky ? (
+                                            <StickyTableCell
+                                                key={column.id}
+                                                component="th"
+                                                id={cellId}
+                                                scope="row"
+                                            >
+                                                {cellValue}
+                                            </StickyTableCell>
+                                        ) : (
+                                            <EnhancedTableCell
+                                                key={column.id}
+                                                columnConfig={column}
+                                                id={cellId}
+                                            >
+                                                {cellValue}
+                                            </EnhancedTableCell>
+                                        );
+                                    },
+                                )}
                             </TableRow>
                         );
                     })}

@@ -1,0 +1,97 @@
+{
+    "columns": [
+        {
+            "id": "fplWebName",
+            "sticky": true,
+            "sx": {
+                "minWidth": "135px"
+            }
+        },
+        {
+            "id": "fbrefTeam",
+            "sx": {
+                "width": "145px",
+                "minWidth": "145px",
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "fplPlayerPosition",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "fplPlayerCost",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumPoints",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "gamesPlayed",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumMinutes",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumGoals",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumAssists",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumNPxG",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumxA",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumNPxP",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumDefensiveContributions",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "sumBPS",
+            "sx": {
+                "textAlign": "right"
+            }
+        },
+        {
+            "id": "fplSelectedByPercent",
+            "sx": {
+                "textAlign": "right"
+            }
+        }
+    ]
+}
