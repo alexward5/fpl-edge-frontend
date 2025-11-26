@@ -18,7 +18,15 @@ export default function EnhancedTableCell({
     id,
 }: EnhancedTableCellProps) {
     return (
-        <TableCell sx={columnConfig.sx} id={id}>
+        <TableCell
+            sx={{
+                minWidth: "80px",
+                paddingLeft: "4px",
+                paddingRight: "4px",
+                ...columnConfig.sx,
+            }}
+            id={id}
+        >
             {children}
         </TableCell>
     );

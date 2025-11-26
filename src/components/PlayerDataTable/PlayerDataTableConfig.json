@@ -4,7 +4,8 @@
             "id": "fplWebName",
             "sticky": true,
             "sx": {
-                "minWidth": "135px"
+                "minWidth": "125px",
+                "width": "125px"
             },
             "headerConfig": {
                 "label": "Player",
@@ -15,8 +16,8 @@
         {
             "id": "fbrefTeam",
             "sx": {
-                "width": "130px",
-                "minWidth": "130px",
+                "width": "125px",
+                "minWidth": "125px",
                 "textAlign": "right"
             },
             "headerConfig": {
