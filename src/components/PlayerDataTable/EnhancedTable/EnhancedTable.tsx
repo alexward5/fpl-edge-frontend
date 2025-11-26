@@ -161,9 +161,27 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                                 ? labelId
                                                 : undefined;
 
+                                        // Check if this column is currently selected for sorting
+                                        const isSelectedColumn =
+                                            column.id === orderColumn;
+
+                                        // Create enhanced column config with styling for selected column
+                                        const enhancedColumnConfig = {
+                                            ...column,
+                                            sx: {
+                                                ...column.sx,
+                                                ...(isSelectedColumn && {
+                                                    fontWeight: "bold",
+                                                }),
+                                            },
+                                        };
+
                                         return column.sticky ? (
                                             <StickyTableCell
                                                 key={column.id}
+                                                columnConfig={
+                                                    enhancedColumnConfig
+                                                }
                                                 component="th"
                                                 id={cellId}
                                                 scope="row"
@@ -173,7 +191,9 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                         ) : (
                                             <EnhancedTableCell
                                                 key={column.id}
-                                                columnConfig={column}
+                                                columnConfig={
+                                                    enhancedColumnConfig
+                                                }
                                                 id={cellId}
                                             >
                                                 {cellValue}

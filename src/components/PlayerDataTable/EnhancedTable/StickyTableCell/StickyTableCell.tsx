@@ -1,8 +1,15 @@
 import TableCell, { TableCellProps } from "@mui/material/TableCell";
 import { useTheme } from "@mui/material/styles";
 
+interface ColumnConfig {
+    id: string;
+    sticky?: boolean;
+    sx?: Record<string, any>;
+}
+
 interface StickyTableCellProps {
     children: React.ReactNode;
+    columnConfig: ColumnConfig;
     component?: TableCellProps["component"];
     id?: string;
     scope?: string;
@@ -10,6 +17,7 @@ interface StickyTableCellProps {
 
 export default function StickyTableCell({
     children,
+    columnConfig,
     component,
     id,
     scope,
@@ -38,6 +46,7 @@ export default function StickyTableCell({
                     xs: 1,
                     sm: theme.zIndex.appBar + 1,
                 },
+                ...columnConfig.sx,
             }}
             component={component}
             id={id}
