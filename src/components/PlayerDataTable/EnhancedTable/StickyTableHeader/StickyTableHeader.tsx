@@ -53,6 +53,7 @@ export default function StickyTableHeader({
                 backgroundColor: theme.darkThemeSurfaceColor_1,
                 paddingTop: 0,
                 paddingBottom: 0,
+                whiteSpace: "nowrap",
                 // Borders using pseudo-element (needed for sticky elements)
                 "&::after": {
                     content: '""',
