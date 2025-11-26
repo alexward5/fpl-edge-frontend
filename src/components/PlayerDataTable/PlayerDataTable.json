@@ -5,6 +5,11 @@
             "sticky": true,
             "sx": {
                 "minWidth": "135px"
+            },
+            "headerConfig": {
+                "label": "Player",
+                "numeric": false,
+                "disablePadding": true
             }
         },
         {
@@ -13,84 +18,154 @@
                 "width": "145px",
                 "minWidth": "145px",
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Team",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "fplPlayerPosition",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Position",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "fplPlayerCost",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Price",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumPoints",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Points",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "gamesPlayed",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Games",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumMinutes",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Minutes",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumGoals",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Goals",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumAssists",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Assists",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumNPxG",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "NPxG",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumxA",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "xA",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumNPxP",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "NPxGAP",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumDefensiveContributions",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "DC",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "sumBPS",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "BPS",
+                "numeric": true,
+                "disablePadding": false
             }
         },
         {
             "id": "fplSelectedByPercent",
             "sx": {
                 "textAlign": "right"
+            },
+            "headerConfig": {
+                "label": "Selected %",
+                "numeric": true,
+                "disablePadding": false
             }
         }
     ]

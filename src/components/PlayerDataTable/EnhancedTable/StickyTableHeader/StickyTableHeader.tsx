@@ -51,6 +51,8 @@ export default function StickyTableHeader({
                 left: isSticky ? 0 : undefined,
                 paddingLeft: isSticky ? "15px" : undefined,
                 backgroundColor: theme.darkThemeSurfaceColor_1,
+                paddingTop: 0,
+                paddingBottom: 0,
                 // Borders using pseudo-element (needed for sticky elements)
                 "&::after": {
                     content: '""',
@@ -99,6 +101,9 @@ export default function StickyTableHeader({
                 direction={orderBy === headCell.id ? order : "desc"}
                 onClick={createSortHandler(headCell.id)}
                 sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    height: "38px",
                     "&:hover": {
                         color: theme.themeMainTextColor,
                     },
