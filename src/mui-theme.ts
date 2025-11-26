@@ -71,6 +71,7 @@ const theme = createTheme({
     // Custom font from Google fonts
     typography: {
         fontFamily: '"Inter", sans-serif',
+        fontWeightBold: 800,
     },
     palette: {
         text: {

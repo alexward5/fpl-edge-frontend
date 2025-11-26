@@ -171,7 +171,9 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                             sx: {
                                                 ...column.sx,
                                                 ...(isSelectedColumn && {
-                                                    fontWeight: 900,
+                                                    fontWeight:
+                                                        theme.typography
+                                                            .fontWeightBold,
                                                 }),
                                             },
                                         };

@@ -47,7 +47,7 @@ export default function StickyTableHeader({
     return (
         <TableCell
             sx={{
-                fontWeight: "bold",
+                fontWeight: theme.typography.fontWeightBold,
                 position: isVerticalSticky || isSticky ? "sticky" : "relative",
                 top: isVerticalSticky || isSticky ? 0 : undefined,
                 left: isSticky ? 0 : undefined,
