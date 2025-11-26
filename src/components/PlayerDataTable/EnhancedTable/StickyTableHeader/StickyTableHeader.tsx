@@ -69,6 +69,7 @@ export default function StickyTableHeader({
                               backgroundPosition: "right, bottom",
                               backgroundSize: "1px 100%, 100% 1px",
                               backgroundRepeat: "no-repeat",
+                              pointerEvents: "none",
                           }
                         : {
                               // Non-sticky cell: bottom border only
@@ -77,6 +78,7 @@ export default function StickyTableHeader({
                               right: 0,
                               height: "1px",
                               backgroundColor: theme.darkThemeBorderColor,
+                              pointerEvents: "none",
                           }),
                 },
                 zIndex: isVerticalSticky

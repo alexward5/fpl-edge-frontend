@@ -40,6 +40,7 @@ export default function StickyTableCell({
                     bottom: 0,
                     width: "1px",
                     backgroundColor: theme.darkThemeBorderColor,
+                    pointerEvents: "none",
                 },
                 backgroundColor: "inherit",
                 zIndex: {
