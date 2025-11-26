@@ -51,7 +51,7 @@ export default function StickyTableHeader({
                 position: isVerticalSticky || isSticky ? "sticky" : "relative",
                 top: isVerticalSticky || isSticky ? 0 : undefined,
                 left: isSticky ? 0 : undefined,
-                paddingLeft: isSticky ? "15px" : "4px",
+                paddingLeft: "4px",
                 paddingRight: "4px",
                 backgroundColor: theme.darkThemeSurfaceColor_1,
                 paddingTop: 0,

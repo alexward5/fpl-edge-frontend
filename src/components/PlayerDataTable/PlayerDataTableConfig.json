@@ -5,12 +5,15 @@
             "sticky": true,
             "sx": {
                 "minWidth": "125px",
-                "width": "125px"
+                "width": "125px",
+                "paddingLeft": "12px"
             },
             "headerConfig": {
                 "label": "Player",
                 "numeric": false,
-                "disablePadding": true
+                "sx": {
+                    "paddingLeft": "12px"
+                }
             }
         },
         {
@@ -162,14 +165,14 @@
             "id": "fplSelectedByPercent",
             "sx": {
                 "textAlign": "right",
-                "paddingRight": "15px"
+                "paddingRight": "12px"
             },
             "headerConfig": {
                 "label": "Selected %",
                 "numeric": true,
                 "disablePadding": false,
                 "sx": {
-                    "paddingRight": "15px"
+                    "paddingRight": "12px"
                 }
             }
         }

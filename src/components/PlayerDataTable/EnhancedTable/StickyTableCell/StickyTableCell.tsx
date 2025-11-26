@@ -30,7 +30,6 @@ export default function StickyTableCell({
                 minWidth: "135px",
                 position: "sticky",
                 left: 0,
-                paddingLeft: "15px",
                 // Right border for sticky cells
                 "&::after": {
                     content: '""',
