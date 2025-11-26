@@ -114,6 +114,10 @@ export default function StickyTableHeader({
                     },
                     "&.Mui-active .MuiTableSortLabel-icon": {
                         color: theme.themeMainColor,
+                        marginRight: "2px", // Reduce gap between text and arrow
+                    },
+                    "& .MuiTableSortLabel-icon": {
+                        marginRight: "2px", // Reduce gap for inactive state arrow
                     },
                 }}
             >
