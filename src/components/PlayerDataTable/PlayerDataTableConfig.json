@@ -15,8 +15,8 @@
         {
             "id": "fbrefTeam",
             "sx": {
-                "width": "145px",
-                "minWidth": "145px",
+                "width": "130px",
+                "minWidth": "130px",
                 "textAlign": "right"
             },
             "headerConfig": {
