@@ -3,7 +3,6 @@ import { orderBy } from "natural-orderby";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 // import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material/styles";
@@ -11,6 +10,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 import EnhancedTableCell from "./EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "./StickyTableCell/StickyTableCell";
+import EmptyTableRow from "./EmptyTableRow/EmptyTableRow";
 import tableConfigJson from "../PlayerDataTableConfig.json";
 
 import type DisplayedData from "../../../types/DisplayedData";
@@ -74,16 +74,15 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
         setSelected(newSelected);
     };
 
-    // Avoid a layout jump when reaching the last page with empty rows
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
     const orderedRows = orderBy(rows, [orderColumn], order);
 
     const visibleRows = [...orderedRows].slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
     );
+
+    // Calculate empty rows needed to fill the page
+    const emptyRows = Math.max(0, rowsPerPage - visibleRows.length);
 
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -206,15 +205,13 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                             </TableRow>
                         );
                     })}
-                    {emptyRows > 0 && (
-                        <TableRow
-                            style={{
-                                height: 33 * emptyRows,
-                            }}
-                        >
-                            <TableCell colSpan={6} />
-                        </TableRow>
-                    )}
+                    {emptyRows > 0 &&
+                        Array.from({ length: emptyRows }).map((_, index) => (
+                            <EmptyTableRow
+                                key={`empty-${index}`}
+                                config={tableConfig}
+                            />
+                        ))}
                 </TableBody>
             </Table>
         </TableContainer>
