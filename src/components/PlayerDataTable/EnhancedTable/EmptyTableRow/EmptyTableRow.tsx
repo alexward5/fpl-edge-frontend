@@ -1,16 +1,7 @@
 import TableRow from "@mui/material/TableRow";
 import EnhancedTableCell from "../EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "../StickyTableCell/StickyTableCell";
-
-interface ColumnConfig {
-    id: string;
-    sticky?: boolean;
-    sx?: Record<string, any>;
-}
-
-interface TableConfig {
-    columns: ColumnConfig[];
-}
+import type { TableConfig } from "../../../../types/TableColumn";
 
 interface EmptyTableRowProps {
     config: TableConfig;

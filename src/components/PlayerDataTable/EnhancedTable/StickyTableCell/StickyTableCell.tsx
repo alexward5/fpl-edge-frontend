@@ -1,11 +1,6 @@
 import TableCell, { TableCellProps } from "@mui/material/TableCell";
 import { useTheme } from "@mui/material/styles";
-
-interface ColumnConfig {
-    id: string;
-    sticky?: boolean;
-    sx?: Record<string, any>;
-}
+import type { ColumnConfig } from "../../../../types/TableColumn";
 
 interface StickyTableCellProps {
     children: React.ReactNode;

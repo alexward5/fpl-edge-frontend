@@ -1,10 +1,5 @@
 import TableCell from "@mui/material/TableCell";
-
-interface ColumnConfig {
-    id: string;
-    sticky?: boolean;
-    sx?: Record<string, any>;
-}
+import type { ColumnConfig } from "../../../../types/TableColumn";
 
 interface EnhancedTableCellProps {
     columnConfig: ColumnConfig;
