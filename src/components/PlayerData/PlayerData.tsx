@@ -109,18 +109,18 @@ export default function PlayerData(props: Props) {
                     sx={{
                         height: {
                             xs: "auto",
-                            sm: `calc(100% - ${theme.appBarHeightSm})`,
+                            md: `calc(100% - ${theme.appBarHeightMd})`,
                         },
                         minHeight: {
                             xs: `calc(100vh - ${theme.appBarHeightXs})`,
-                            sm: "auto",
+                            md: "auto",
                         },
                         mt: {
                             xs: 0,
-                            sm: theme.appBarHeightSm,
+                            md: theme.appBarHeightMd,
                         },
-                        width: { sm: `calc(100% - ${theme.drawerWidth})` },
-                        ml: { sm: `${theme.drawerWidth}` },
+                        width: { md: `calc(100% - ${theme.drawerWidth})` },
+                        ml: { md: `${theme.drawerWidth}` },
                     }}
                 >
                     <PlayerDataTable

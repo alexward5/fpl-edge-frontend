@@ -13,7 +13,7 @@ export default function LoadingIndicator() {
                     position: "fixed",
                     top: {
                         xs: theme.appBarHeightXs,
-                        sm: theme.appBarHeightSm,
+                        md: theme.appBarHeightMd,
                     },
                     left: 0,
                     right: 0,

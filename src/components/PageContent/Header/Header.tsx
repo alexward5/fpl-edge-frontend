@@ -14,7 +14,7 @@ export default function Header(props: Props) {
     const { handleDrawerToggle } = props;
 
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <AppBar
@@ -34,8 +34,8 @@ export default function Header(props: Props) {
                     sx={{
                         backgroundColor: "transparent",
                         width: theme.drawerWidth,
-                        height: theme.appBarHeightSm,
-                        display: { xs: "none", sm: "flex" },
+                        height: theme.appBarHeightMd,
+                        display: { xs: "none", md: "flex" },
                         justifyContent: "center",
                         alignItems: "center",
                     }}
@@ -51,7 +51,7 @@ export default function Header(props: Props) {
                     sx={{
                         width: {
                             xs: "100%",
-                            sm: `calc(100% - ${theme.drawerWidth})`,
+                            md: `calc(100% - ${theme.drawerWidth})`,
                         },
                         height: "100%",
                         paddingLeft: 2,
@@ -67,7 +67,7 @@ export default function Header(props: Props) {
                         onClick={handleDrawerToggle}
                         sx={{
                             color: theme.themeMainColor,
-                            display: { sm: "none" },
+                            display: { md: "none" },
                         }}
                     >
                         <MenuIcon />

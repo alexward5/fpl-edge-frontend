@@ -33,7 +33,7 @@ export default function StickyTableHeader({
     sx = {},
 }: StickyTableHeaderProps) {
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     const isVerticalSticky = !isSmallScreen;
     const baseZIndex = theme.zIndex.appBar;

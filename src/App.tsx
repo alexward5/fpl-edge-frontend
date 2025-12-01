@@ -11,7 +11,7 @@ function App() {
                 className="app-contianer"
                 sx={{
                     backgroundColor: theme.darkThemeSurfaceColor_1,
-                    [theme.breakpoints.down("sm")]: {
+                    [theme.breakpoints.down("md")]: {
                         position: "relative",
                         minHeight: "100vh",
                     },

@@ -44,7 +44,7 @@ export default function StickyTableCell({
                 backgroundColor: "inherit",
                 zIndex: {
                     xs: 1,
-                    sm: theme.zIndex.appBar + 1,
+                    md: theme.zIndex.appBar + 1,
                 },
                 ...columnConfig.sx,
             }}

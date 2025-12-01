@@ -34,7 +34,7 @@ export default function PlayerDataTable(props: Props) {
 
     const { players } = useData();
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     // Filter players based on team/position and price
     const filteredPlayers = players.filter((player) => {
@@ -117,7 +117,7 @@ export default function PlayerDataTable(props: Props) {
         <Box
             sx={{
                 width: "100%",
-                height: { xs: "auto", sm: "100%" },
+                height: { xs: "auto", md: "100%" },
                 display: "flex",
                 flexDirection: "column",
             }}

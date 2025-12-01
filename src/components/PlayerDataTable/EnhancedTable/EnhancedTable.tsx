@@ -86,13 +86,13 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
     );
 
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <TableContainer
             sx={{
-                flex: { xs: "none", sm: 1 },
-                overflow: { xs: "visible", sm: "auto" },
+                flex: { xs: "none", md: 1 },
+                overflow: { xs: "visible", md: "auto" },
             }}
             ref={ref}
         >

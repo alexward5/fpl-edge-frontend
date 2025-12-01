@@ -39,7 +39,7 @@ export default function PlayerDataDrawer(props: Props) {
         <Fade in={true} timeout={500}>
             <Box
                 component="nav"
-                sx={{ width: { sm: theme.drawerWidth }, flexShrink: { sm: 0 } }}
+                sx={{ width: { md: theme.drawerWidth }, flexShrink: { md: 0 } }}
             >
                 <Drawer
                     variant="temporary"
@@ -50,7 +50,7 @@ export default function PlayerDataDrawer(props: Props) {
                         keepMounted: true, // Better performance on mobile while open
                     }}
                     sx={{
-                        display: { xs: "block", sm: "none" },
+                        display: { xs: "block", md: "none" },
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
                             width: theme.drawerWidth,
@@ -72,7 +72,7 @@ export default function PlayerDataDrawer(props: Props) {
                 <Drawer
                     variant="permanent"
                     sx={{
-                        display: { xs: "none", sm: "block" },
+                        display: { xs: "none", md: "block" },
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
                             width: theme.drawerWidth,

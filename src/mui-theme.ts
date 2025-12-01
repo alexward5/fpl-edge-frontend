@@ -2,7 +2,7 @@ import { alpha, createTheme } from "@mui/material/styles";
 
 const drawerWidth = "240px";
 const appBarHeightXs = "52px";
-const appBarHeightSm = "56px";
+const appBarHeightMd = "56px";
 
 const themeMainColor = "#49e688";
 const themeMainTextColor = "#FFFFFF";
@@ -19,7 +19,7 @@ declare module "@mui/material/styles" {
     interface Theme {
         drawerWidth: string;
         appBarHeightXs: string;
-        appBarHeightSm: string;
+        appBarHeightMd: string;
 
         themeMainColor: string;
         themeMainTextColor: string;
@@ -36,7 +36,7 @@ declare module "@mui/material/styles" {
     interface ThemeOptions {
         drawerWidth: string;
         appBarHeightXs: string;
-        appBarHeightSm: string;
+        appBarHeightMd: string;
 
         themeMainColor: string;
         themeMainTextColor: string;
@@ -55,7 +55,7 @@ const theme = createTheme({
     // Theme variables to use in components
     drawerWidth: drawerWidth,
     appBarHeightXs: appBarHeightXs,
-    appBarHeightSm: appBarHeightSm,
+    appBarHeightMd: appBarHeightMd,
 
     themeMainColor: themeMainColor,
     themeMainTextColor: themeMainTextColor,
@@ -85,9 +85,14 @@ const theme = createTheme({
                 root: ({ theme }) => ({
                     height: appBarHeightXs,
                     minHeight: appBarHeightXs,
-                    [theme.breakpoints.up("sm")]: {
-                        height: appBarHeightSm,
-                        minHeight: appBarHeightSm,
+                    // Explicitly set for sm breakpoint (600px-900px) to prevent Material-UI defaults
+                    [theme.breakpoints.only("sm")]: {
+                        height: appBarHeightXs,
+                        minHeight: appBarHeightXs,
+                    },
+                    [theme.breakpoints.up("md")]: {
+                        height: appBarHeightMd,
+                        minHeight: appBarHeightMd,
                     },
                 }),
             },
@@ -97,9 +102,14 @@ const theme = createTheme({
                 root: ({ theme }) => ({
                     minHeight: appBarHeightXs,
                     height: appBarHeightXs,
-                    [theme.breakpoints.up("sm")]: {
-                        minHeight: appBarHeightSm,
-                        height: appBarHeightSm,
+                    // Explicitly set for sm breakpoint (600px-900px) to prevent Material-UI defaults
+                    [theme.breakpoints.only("sm")]: {
+                        minHeight: appBarHeightXs,
+                        height: appBarHeightXs,
+                    },
+                    [theme.breakpoints.up("md")]: {
+                        minHeight: appBarHeightMd,
+                        height: appBarHeightMd,
                     },
                 }),
             },
