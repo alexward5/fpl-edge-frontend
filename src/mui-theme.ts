@@ -136,6 +136,19 @@ const theme = createTheme({
         },
         MuiSlider: {
             styleOverrides: {
+                root: ({ theme }) => ({
+                    marginBottom: "10px",
+                    // Ensure consistent spacing across all breakpoints
+                    [theme.breakpoints.only("xs")]: {
+                        marginBottom: "10px",
+                    },
+                    [theme.breakpoints.only("sm")]: {
+                        marginBottom: "10px",
+                    },
+                    [theme.breakpoints.up("md")]: {
+                        marginBottom: "10px",
+                    },
+                }),
                 track: {
                     border: "none",
                     background:
