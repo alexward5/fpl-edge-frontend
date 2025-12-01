@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import GameweekSlider from "./GameweekSlider/GameweekSlider";
 import PlayerFilters from "./PlayerFilters/PlayerFilters";
@@ -58,10 +59,9 @@ export default function DrawerContent(props: Props) {
                     sx={{ height: "36px", width: "auto" }}
                 />
             </Toolbar>
-            <Box
+            <Stack
+                spacing={2}
                 sx={{
-                    display: "flex",
-                    flexDirection: "column",
                     flexGrow: 1,
                     overflowY: "auto",
                     padding: "0px 15px",
@@ -82,7 +82,7 @@ export default function DrawerContent(props: Props) {
                     displayedTeams={displayedTeams}
                     setDisplayedTeams={setDisplayedTeams}
                 />
-            </Box>
+            </Stack>
         </Box>
     );
 }

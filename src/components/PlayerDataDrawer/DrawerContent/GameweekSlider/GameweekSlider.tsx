@@ -50,7 +50,7 @@ export default function RangeSlider(props: Props) {
     const theme = useTheme();
 
     return (
-        <>
+        <Box>
             <Typography variant="subtitle1" fontWeight={"bold"}>
                 Gameweeks
             </Typography>
@@ -78,6 +78,6 @@ export default function RangeSlider(props: Props) {
                     }}
                 />
             </Box>
-        </>
+        </Box>
     );
 }
