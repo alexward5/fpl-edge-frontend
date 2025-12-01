@@ -4,8 +4,8 @@
             "id": "fplWebName",
             "sticky": true,
             "sx": {
-                "minWidth": "125px",
                 "width": "125px",
+                "minWidth": "125px",
                 "paddingLeft": "12px"
             },
             "headerConfig": {
@@ -32,6 +32,8 @@
         {
             "id": "fplPlayerPosition",
             "sx": {
+                "width": "90px",
+                "minWidth": "90px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -43,6 +45,8 @@
         {
             "id": "fplPlayerCost",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -54,6 +58,8 @@
         {
             "id": "sumPoints",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -65,6 +71,8 @@
         {
             "id": "gamesPlayed",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -76,6 +84,8 @@
         {
             "id": "sumMinutes",
             "sx": {
+                "width": "90px",
+                "minWidth": "90px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -87,6 +97,8 @@
         {
             "id": "sumGoals",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -98,6 +110,8 @@
         {
             "id": "sumAssists",
             "sx": {
+                "width": "85px",
+                "minWidth": "85px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -109,6 +123,8 @@
         {
             "id": "sumNPxG",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -120,6 +136,8 @@
         {
             "id": "sumxA",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -131,6 +149,8 @@
         {
             "id": "sumNPxP",
             "sx": {
+                "width": "92px",
+                "minWidth": "92px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -142,6 +162,8 @@
         {
             "id": "sumDefensiveContributions",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -153,6 +175,8 @@
         {
             "id": "sumBPS",
             "sx": {
+                "width": "80px",
+                "minWidth": "80px",
                 "textAlign": "right"
             },
             "headerConfig": {
@@ -164,6 +188,8 @@
         {
             "id": "fplSelectedByPercent",
             "sx": {
+                "width": "120px",
+                "minWidth": "120px",
                 "textAlign": "right",
                 "paddingRight": "12px"
             },
