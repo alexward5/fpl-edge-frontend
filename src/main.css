@@ -24,9 +24,9 @@
 
   /* Global scrollbar styling */
   /* Thumb: theme.darkThemeSurfaceColor_5 (#76757d) */
-  /* Track: theme.darkThemeSurfaceColor_1 (#191924) - matches app background */
+  /* Track: transparent - remains invisible even on hover */
   * {
-    scrollbar-color: #76757d #191924;
+    scrollbar-color: #76757d transparent;
   }
 
   *::-webkit-scrollbar {
@@ -42,9 +42,9 @@
   }
 
   *::-webkit-scrollbar-track {
-    background-color: #191924;
+    background-color: transparent;
   }
 
   *::-webkit-scrollbar-corner {
-    background-color: #191924;
+    background-color: transparent;
   }
