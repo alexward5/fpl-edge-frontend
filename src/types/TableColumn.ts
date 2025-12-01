@@ -7,4 +7,3 @@ export interface ColumnConfig {
 export interface TableConfig {
     columns: ColumnConfig[];
 }
-
