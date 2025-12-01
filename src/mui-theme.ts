@@ -83,11 +83,11 @@ const theme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: ({ theme }) => ({
-                    [theme.breakpoints.up("xs")]: {
-                        height: appBarHeightXs,
-                    },
+                    height: appBarHeightXs,
+                    minHeight: appBarHeightXs,
                     [theme.breakpoints.up("sm")]: {
                         height: appBarHeightSm,
+                        minHeight: appBarHeightSm,
                     },
                 }),
             },
@@ -96,8 +96,10 @@ const theme = createTheme({
             styleOverrides: {
                 root: ({ theme }) => ({
                     minHeight: appBarHeightXs,
+                    height: appBarHeightXs,
                     [theme.breakpoints.up("sm")]: {
                         minHeight: appBarHeightSm,
+                        height: appBarHeightSm,
                     },
                 }),
             },
