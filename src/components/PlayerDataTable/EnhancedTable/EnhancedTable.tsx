@@ -114,7 +114,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                         const isItemSelected = selected.includes(
                             row.fplPlayerCode,
                         );
-                        const labelId = `enhanced-table-checkbox-${index}`;
+                        const rowId = `enhanced-table-row-${index}`;
 
                         return (
                             <TableRow
@@ -142,7 +142,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     size="small"
                                     checked={isItemSelected}
                                     inputProps={{
-                                        "aria-labelledby": labelId,
+                                        "aria-labelledby": rowId,
                                     }}
                                     name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
@@ -157,7 +157,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                         // Only first column gets id for accessibility/row identification
                                         const cellId =
                                             columnIndex === 0
-                                                ? labelId
+                                                ? rowId
                                                 : undefined;
 
                                         // Check if this column is currently selected for sorting
