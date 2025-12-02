@@ -39,6 +39,8 @@ export default function DrawerContent(props: Props) {
                 height: "100vh",
                 flexDirection: "column",
                 backgroundColor: theme.darkThemeSurfaceColor_1,
+                // On small screens, make the entire drawer scrollable
+                overflowY: { xs: "auto", md: "hidden" },
             }}
         >
             <Toolbar
@@ -63,9 +65,10 @@ export default function DrawerContent(props: Props) {
             <Stack
                 spacing={1.5}
                 sx={{
-                    flexGrow: 1,
-                    overflowY: "auto",
-                    padding: theme.spacing(1.5, 2, 4, 2),
+                    // On small screens, make the entire drawer scrollable
+                    flexGrow: { xs: 0, md: 1 },
+                    overflowY: { xs: "visible", md: "auto" },
+                    padding: theme.spacing(1.5, 2),
                     borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                 }}
             >
