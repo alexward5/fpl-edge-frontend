@@ -41,7 +41,11 @@ const PriceSelect: React.FC<Props> = ({
                 width: "100%",
             }}
         >
-            <Typography variant="subtitle1" fontWeight={"bold"}>
+            <Typography
+                variant="subtitle1"
+                fontWeight={"bold"}
+                sx={{ marginBottom: "6px" }}
+            >
                 Price
             </Typography>
             <Box

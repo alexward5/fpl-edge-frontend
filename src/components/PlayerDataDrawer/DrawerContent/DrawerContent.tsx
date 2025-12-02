@@ -61,11 +61,11 @@ export default function DrawerContent(props: Props) {
                 />
             </Toolbar>
             <Stack
-                spacing={2}
+                spacing={1.5}
                 sx={{
                     flexGrow: 1,
                     overflowY: "auto",
-                    padding: theme.spacing(1, "14px"),
+                    padding: theme.spacing(1.5, "14px"),
                     borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                 }}
             >

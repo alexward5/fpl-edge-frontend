@@ -51,13 +51,17 @@ export default function RangeSlider(props: Props) {
 
     return (
         <Box>
-            <Typography variant="subtitle1" fontWeight={"bold"}>
+            <Typography
+                variant="subtitle1"
+                fontWeight={"bold"}
+                sx={{ marginBottom: "6px" }}
+            >
                 Gameweeks
             </Typography>
             <Box
                 sx={{
                     width: "100%",
-                    padding: "0px 9px",
+                    padding: "0px 8px",
                 }}
             >
                 <Slider

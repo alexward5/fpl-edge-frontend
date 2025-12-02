@@ -41,7 +41,11 @@ export default function PositionSelect(props: Props) {
     return (
         <Box>
             <FormControl sx={{ width: "100%" }}>
-                <Typography variant="subtitle1" fontWeight={"bold"}>
+                <Typography
+                    variant="subtitle1"
+                    fontWeight={"bold"}
+                    sx={{ marginBottom: "6px" }}
+                >
                     Positions
                 </Typography>
                 <Select

@@ -137,16 +137,21 @@ const theme = createTheme({
         MuiSlider: {
             styleOverrides: {
                 root: ({ theme }) => ({
-                    marginBottom: "10px",
                     // Ensure consistent spacing across all breakpoints
                     [theme.breakpoints.only("xs")]: {
-                        marginBottom: "10px",
+                        marginBottom: "18px",
+                        paddingTop: "0px",
+                        paddingBottom: "0px",
                     },
                     [theme.breakpoints.only("sm")]: {
-                        marginBottom: "10px",
+                        marginBottom: "18px",
+                        paddingTop: "0px",
+                        paddingBottom: "0px",
                     },
                     [theme.breakpoints.up("md")]: {
-                        marginBottom: "10px",
+                        marginBottom: "18px",
+                        paddingTop: "0px",
+                        paddingBottom: "0px",
                     },
                 }),
                 track: {
@@ -161,6 +166,17 @@ const theme = createTheme({
                     width: 18,
                     height: 18,
                 },
+                markLabel: ({ theme }) => ({
+                    [theme.breakpoints.only("xs")]: {
+                        top: 14,
+                    },
+                    [theme.breakpoints.only("sm")]: {
+                        top: 14,
+                    },
+                    [theme.breakpoints.up("md")]: {
+                        top: 14,
+                    },
+                }),
             },
         },
         MuiTableRow: {
