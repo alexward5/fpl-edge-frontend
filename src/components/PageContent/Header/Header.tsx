@@ -44,7 +44,7 @@ export default function Header(props: Props) {
                         component="img"
                         src="/logo-dark.png"
                         alt="Logo"
-                        sx={{ height: "36px", width: "auto" }}
+                        sx={{ height: "38px", width: "auto" }}
                     />
                 </Box>
                 <Box

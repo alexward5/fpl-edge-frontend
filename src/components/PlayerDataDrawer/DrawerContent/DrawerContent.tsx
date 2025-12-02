@@ -55,16 +55,16 @@ export default function DrawerContent(props: Props) {
                     component="img"
                     src="/logo-dark.png"
                     alt="Logo"
-                    sx={{ height: "36px", width: "auto" }}
+                    sx={{ height: "38px", width: "auto" }}
                 />
             </Toolbar>
             <Stack
                 spacing={1.5}
                 sx={{
+                    padding: theme.spacing(1.5, 2),
                     // On small screens, make the entire drawer scrollable
                     flexGrow: { xs: 0, md: 1 },
                     overflowY: { xs: "visible", md: "auto" },
-                    padding: theme.spacing(1.5, 2),
                     borderRight: {
                         md: `1px solid ${theme.darkThemeBorderColor}`,
                     },
