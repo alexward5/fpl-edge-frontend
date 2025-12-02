@@ -2,7 +2,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import GameweekSlider from "./GameweekSlider/GameweekSlider";
-import PlayerFilters from "./PlayerFilters/PlayerFilters";
+import PositionSelect from "./PositionSelect/PositionSelect";
+import PriceSelect from "./PriceSelect/PriceSelect";
 import TeamFilter from "./TeamFilter/TeamFilter";
 import { useTheme } from "@mui/material/styles";
 
@@ -64,7 +65,8 @@ export default function DrawerContent(props: Props) {
                 sx={{
                     flexGrow: 1,
                     overflowY: "auto",
-                    padding: "0px 15px",
+                    margin: theme.spacing(1, 0),
+                    padding: "0px 12px",
                     borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                 }}
             >
@@ -72,9 +74,11 @@ export default function DrawerContent(props: Props) {
                     gameweekRange={gameweekRange}
                     setGameweekRange={setGameweekRange}
                 />
-                <PlayerFilters
-                    displayedPositions={displayedPositions}
-                    setDisplayedPositions={setDisplayedPositions}
+                <PositionSelect
+                    selectedList={displayedPositions}
+                    setSelectedList={setDisplayedPositions}
+                />
+                <PriceSelect
                     playerPriceRange={playerPriceRange}
                     setPlayerPriceRange={setPlayerPriceRange}
                 />

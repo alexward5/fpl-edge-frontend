@@ -1,18 +1,13 @@
 import Box from "@mui/material/Box";
-import PositionSelect from "../PositionSelect/PositionSelect";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 type Props = {
-    displayedPositions: string[];
-    setDisplayedPositions: React.Dispatch<React.SetStateAction<string[]>>;
     playerPriceRange: string[];
     setPlayerPriceRange: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const PlayerFilters: React.FC<Props> = ({
-    displayedPositions,
-    setDisplayedPositions,
+const PriceSelect: React.FC<Props> = ({
     playerPriceRange,
     setPlayerPriceRange,
 }) => {
@@ -46,10 +41,6 @@ const PlayerFilters: React.FC<Props> = ({
                 width: "100%",
             }}
         >
-            <PositionSelect
-                selectedList={displayedPositions}
-                setSelectedList={setDisplayedPositions}
-            />
             <Typography variant="subtitle1" fontWeight={"bold"}>
                 Price
             </Typography>
@@ -97,4 +88,4 @@ const PlayerFilters: React.FC<Props> = ({
     );
 };
 
-export default PlayerFilters;
+export default PriceSelect;
