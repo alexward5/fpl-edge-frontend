@@ -65,7 +65,7 @@ export default function DrawerContent(props: Props) {
                 sx={{
                     flexGrow: 1,
                     overflowY: "auto",
-                    padding: theme.spacing(1.5, "14px", 4, "14px"),
+                    padding: theme.spacing(1.5, 2, 4, 2),
                     borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                 }}
             >
