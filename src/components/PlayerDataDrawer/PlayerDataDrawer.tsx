@@ -47,8 +47,10 @@ export default function PlayerDataDrawer(props: Props) {
                 <Drawer
                     variant="temporary"
                     open={mobileOpen}
-                    onTransitionEnd={handleDrawerTransitionEnd}
                     onClose={handleDrawerClose}
+                    SlideProps={{
+                        onExited: handleDrawerTransitionEnd,
+                    }}
                     sx={{
                         display: { xs: "block", md: "none" },
                         "& .MuiDrawer-paper": {
