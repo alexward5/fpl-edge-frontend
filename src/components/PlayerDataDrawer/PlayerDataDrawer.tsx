@@ -49,9 +49,6 @@ export default function PlayerDataDrawer(props: Props) {
                     open={mobileOpen}
                     onTransitionEnd={handleDrawerTransitionEnd}
                     onClose={handleDrawerClose}
-                    ModalProps={{
-                        keepMounted: true, // Better performance on mobile while open
-                    }}
                     sx={{
                         display: { xs: "block", md: "none" },
                         "& .MuiDrawer-paper": {
