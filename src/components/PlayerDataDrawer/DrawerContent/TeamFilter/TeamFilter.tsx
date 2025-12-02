@@ -3,7 +3,10 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 import { useData } from "../../../../contexts/DataContext";
+import DrawerAccordion from "../DrawerAccordion/DrawerAccordion";
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     displayedTeams: string[];
@@ -17,75 +20,63 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
         .map((team) => team.fbref_team)
         .sort((a, b) => a.localeCompare(b));
 
+    const theme = useTheme();
+
     return (
-        <FormControl component="fieldset" variant="standard">
-            <FormGroup>
-                <FormControlLabel
-                    label={
-                        <Typography variant="subtitle1" fontWeight={"bold"}>
-                            Teams
-                        </Typography>
-                    }
-                    control={
-                        <Checkbox
-                            checked={teamNames.length === displayedTeams.length}
-                            indeterminate={
-                                teamNames.length !== displayedTeams.length
-                            }
-                            onChange={() => {
-                                if (
-                                    teamNames.length === displayedTeams.length
-                                ) {
-                                    setDisplayedTeams([]);
-                                } else {
-                                    setDisplayedTeams(teamNames);
+        <DrawerAccordion summaryText="Teams">
+            <FormControl component="fieldset" variant="standard">
+                <FormGroup>
+                    <Stack
+                        spacing={0.5}
+                        sx={{
+                            padding: theme.spacing(0, 1.5, 1.5, 1.5),
+                        }}
+                    >
+                        {teamNames.map((teamName: string) => (
+                            <FormControlLabel
+                                id={`team-filter-${teamName}`}
+                                key={teamName}
+                                sx={{ marginLeft: 0 }}
+                                label={
+                                    <Typography variant="subtitle2">
+                                        {teamName}
+                                    </Typography>
                                 }
-                            }}
-                            sx={{
-                                height: "28px",
-                            }}
-                        />
-                    }
-                />
-                {teamNames.map((teamName: string) => (
-                    <FormControlLabel
-                        key={teamName}
-                        control={
-                            <Checkbox
-                                checked={displayedTeams.includes(teamName)}
-                                // Toggle team in displayedTeams
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        setDisplayedTeams([
-                                            ...displayedTeams,
+                                control={
+                                    <Checkbox
+                                        checked={displayedTeams.includes(
                                             teamName,
-                                        ]);
-                                    } else {
-                                        setDisplayedTeams(
-                                            displayedTeams.filter(
-                                                (team: string) =>
-                                                    team !== teamName,
-                                            ),
-                                        );
-                                    }
-                                }}
-                                name={teamName}
-                                size="small"
-                                sx={{
-                                    height: "28px",
-                                }}
+                                        )}
+                                        // Toggle team in displayedTeams
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setDisplayedTeams([
+                                                    ...displayedTeams,
+                                                    teamName,
+                                                ]);
+                                            } else {
+                                                setDisplayedTeams(
+                                                    displayedTeams.filter(
+                                                        (team: string) =>
+                                                            team !== teamName,
+                                                    ),
+                                                );
+                                            }
+                                        }}
+                                        name={teamName}
+                                        size="small"
+                                        sx={{
+                                            height: "22px",
+                                            width: "22px",
+                                        }}
+                                    />
+                                }
                             />
-                        }
-                        sx={{ paddingLeft: "15px" }}
-                        label={
-                            <Typography variant="subtitle2">
-                                {teamName}
-                            </Typography>
-                        }
-                    />
-                ))}
-            </FormGroup>
-        </FormControl>
+                        ))}
+                    </Stack>
+                </FormGroup>
+            </FormControl>
+        </DrawerAccordion>
     );
 };
 
