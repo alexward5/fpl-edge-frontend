@@ -49,10 +49,6 @@ export default function DrawerContent(props: Props) {
                     display: "flex",
                     justifyContent: "center",
                     borderBottom: `1px solid ${theme.darkThemeBorderColor}`,
-                    borderRight: {
-                        xs: `1px solid ${theme.darkThemeBorderColor}`,
-                        md: "none",
-                    },
                 }}
             >
                 <Box
@@ -69,7 +65,9 @@ export default function DrawerContent(props: Props) {
                     flexGrow: { xs: 0, md: 1 },
                     overflowY: { xs: "visible", md: "auto" },
                     padding: theme.spacing(1.5, 2),
-                    borderRight: `1px solid ${theme.darkThemeBorderColor}`,
+                    borderRight: {
+                        md: `1px solid ${theme.darkThemeBorderColor}`,
+                    },
                 }}
             >
                 <GameweekSlider

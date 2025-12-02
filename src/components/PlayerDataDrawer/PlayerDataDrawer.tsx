@@ -39,7 +39,10 @@ export default function PlayerDataDrawer(props: Props) {
         <Fade in={true} timeout={500}>
             <Box
                 component="nav"
-                sx={{ width: { md: theme.drawerWidth }, flexShrink: { md: 0 } }}
+                sx={{
+                    width: { md: theme.drawerWidth },
+                    flexShrink: { md: 0 },
+                }}
             >
                 <Drawer
                     variant="temporary"
@@ -54,7 +57,7 @@ export default function PlayerDataDrawer(props: Props) {
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
                             width: theme.drawerWidth,
-                            borderRight: "none",
+                            borderRight: `1px solid ${theme.darkThemeBorderColor}`,
                         },
                     }}
                 >
