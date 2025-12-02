@@ -122,6 +122,9 @@ const theme = createTheme({
             },
         },
         MuiCheckbox: {
+            defaultProps: {
+                disableRipple: true,
+            },
             styleOverrides: {
                 root: {
                     "&.Mui-checked": {
