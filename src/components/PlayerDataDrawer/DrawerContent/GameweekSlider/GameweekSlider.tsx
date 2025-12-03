@@ -54,7 +54,7 @@ export default function RangeSlider(props: Props) {
             <Typography
                 variant="subtitle1"
                 fontWeight={"bold"}
-                sx={{ marginBottom: "6px" }}
+                sx={{ marginBottom: theme.spacing(1.5), lineHeight: 1 }}
             >
                 Gameweeks
             </Typography>

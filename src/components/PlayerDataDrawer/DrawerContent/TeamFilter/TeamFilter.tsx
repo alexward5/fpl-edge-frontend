@@ -3,7 +3,11 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import DrawerAccordion from "../DrawerAccordion/DrawerAccordion";
 import { useData } from "../../../../contexts/DataContext";
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     displayedTeams: string[];
@@ -12,80 +16,97 @@ type Props = {
 
 const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
     const { teams } = useData();
+    const theme = useTheme();
 
     const teamNames = teams
         .map((team) => team.fbref_team)
         .sort((a, b) => a.localeCompare(b));
 
+    const selectedCount = displayedTeams.length;
+    const summaryText = `Teams (${selectedCount})`;
+    const allTeamsSelected =
+        teamNames.length > 0 && displayedTeams.length === teamNames.length;
+    const someTeamsSelected =
+        displayedTeams.length > 0 && displayedTeams.length < teamNames.length;
+
+    const handleToggleAllTeams = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.checked) {
+            setDisplayedTeams(teamNames);
+        } else {
+            setDisplayedTeams([]);
+        }
+    };
+
+    const handleTeamToggle =
+        (teamName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+            setDisplayedTeams((prevTeams) => {
+                if (e.target.checked) {
+                    return prevTeams.includes(teamName)
+                        ? prevTeams
+                        : [...prevTeams, teamName];
+                }
+
+                return prevTeams.filter((team) => team !== teamName);
+            });
+        };
+
     return (
-        <FormControl component="fieldset" variant="standard">
-            <FormGroup>
-                <FormControlLabel
-                    label={
-                        <Typography variant="subtitle1" fontWeight={"bold"}>
-                            Teams
-                        </Typography>
-                    }
-                    control={
-                        <Checkbox
-                            checked={teamNames.length === displayedTeams.length}
-                            indeterminate={
-                                teamNames.length !== displayedTeams.length
-                            }
-                            onChange={() => {
-                                if (
-                                    teamNames.length === displayedTeams.length
-                                ) {
-                                    setDisplayedTeams([]);
-                                } else {
-                                    setDisplayedTeams(teamNames);
-                                }
-                            }}
-                            sx={{
-                                height: "28px",
-                            }}
-                        />
-                    }
-                />
-                {teamNames.map((teamName: string) => (
-                    <FormControlLabel
-                        key={teamName}
-                        control={
+        <Box>
+            <Typography
+                variant="subtitle1"
+                fontWeight="bold"
+                sx={{ marginBottom: theme.spacing(1.5), lineHeight: 1 }}
+            >
+                Filters
+            </Typography>
+            <DrawerAccordion summaryText={summaryText}>
+                <FormControl component="fieldset" variant="standard">
+                    <FormGroup>
+                        <Stack spacing={0.5} sx={{ padding: theme.spacing(1) }}>
                             <Checkbox
-                                checked={displayedTeams.includes(teamName)}
-                                // Toggle team in displayedTeams
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        setDisplayedTeams([
-                                            ...displayedTeams,
-                                            teamName,
-                                        ]);
-                                    } else {
-                                        setDisplayedTeams(
-                                            displayedTeams.filter(
-                                                (team: string) =>
-                                                    team !== teamName,
-                                            ),
-                                        );
-                                    }
-                                }}
-                                name={teamName}
+                                indeterminate={someTeamsSelected}
+                                checked={allTeamsSelected}
+                                onChange={handleToggleAllTeams}
                                 size="small"
                                 sx={{
-                                    height: "28px",
+                                    height: "22px",
+                                    width: "22px",
                                 }}
                             />
-                        }
-                        sx={{ paddingLeft: "15px" }}
-                        label={
-                            <Typography variant="subtitle2">
-                                {teamName}
-                            </Typography>
-                        }
-                    />
-                ))}
-            </FormGroup>
-        </FormControl>
+                            {teamNames.map((teamName: string) => (
+                                <FormControlLabel
+                                    key={teamName}
+                                    id={`team-filter-${teamName}`}
+                                    control={
+                                        <Checkbox
+                                            checked={displayedTeams.includes(
+                                                teamName,
+                                            )}
+                                            onChange={handleTeamToggle(
+                                                teamName,
+                                            )}
+                                            name={teamName}
+                                            size="small"
+                                            sx={{
+                                                height: "22px",
+                                                width: "22px",
+                                                marginRight: theme.spacing(0.5),
+                                            }}
+                                        />
+                                    }
+                                    label={
+                                        <Typography variant="subtitle2">
+                                            {teamName}
+                                        </Typography>
+                                    }
+                                    sx={{ paddingLeft: theme.spacing(1) }}
+                                />
+                            ))}
+                        </Stack>
+                    </FormGroup>
+                </FormControl>
+            </DrawerAccordion>
+        </Box>
     );
 };
 

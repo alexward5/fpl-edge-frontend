@@ -59,9 +59,9 @@ export default function DrawerContent(props: Props) {
                 />
             </Toolbar>
             <Stack
-                spacing={1.5}
+                spacing={2.5}
                 sx={{
-                    padding: theme.spacing(1.5, 2),
+                    padding: theme.spacing(2.5, 2),
                     // On small screens, make the entire drawer scrollable
                     flexGrow: { xs: 0, md: 1 },
                     overflowY: { xs: "visible", md: "auto" },
