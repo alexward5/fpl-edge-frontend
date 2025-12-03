@@ -4,8 +4,14 @@ const drawerWidth = "240px";
 const appBarHeightXs = "52px";
 const appBarHeightMd = "56px";
 
-const themeMainColor = "#49e688";
 const themeMainTextColor = "#FFFFFF";
+
+const themeMainColor = "#49e688";
+const themeMainColor_2 = "#67e995";
+const themeMainColor_3 = "#7feda2";
+const themeMainColor_4 = "#94f0af";
+const themeMainColor_5 = "#a8f3bd";
+const themeMainColor_6 = "#baf6ca";
 
 const darkThemeSurfaceColor_1 = "#191924";
 const darkThemeSurfaceColor_2 = "#2e2e39";
@@ -21,8 +27,14 @@ declare module "@mui/material/styles" {
         appBarHeightXs: string;
         appBarHeightMd: string;
 
-        themeMainColor: string;
         themeMainTextColor: string;
+
+        themeMainColor: string;
+        themeMainColor_2: string;
+        themeMainColor_3: string;
+        themeMainColor_4: string;
+        themeMainColor_5: string;
+        themeMainColor_6: string;
 
         darkThemeSurfaceColor_1: string;
         darkThemeSurfaceColor_2: string;
@@ -38,8 +50,14 @@ declare module "@mui/material/styles" {
         appBarHeightXs: string;
         appBarHeightMd: string;
 
-        themeMainColor: string;
         themeMainTextColor: string;
+
+        themeMainColor: string;
+        themeMainColor_2: string;
+        themeMainColor_3: string;
+        themeMainColor_4: string;
+        themeMainColor_5: string;
+        themeMainColor_6: string;
 
         darkThemeSurfaceColor_1: string;
         darkThemeSurfaceColor_2: string;
@@ -57,8 +75,14 @@ const theme = createTheme({
     appBarHeightXs: appBarHeightXs,
     appBarHeightMd: appBarHeightMd,
 
-    themeMainColor: themeMainColor,
     themeMainTextColor: themeMainTextColor,
+
+    themeMainColor: themeMainColor,
+    themeMainColor_2: themeMainColor_2,
+    themeMainColor_3: themeMainColor_3,
+    themeMainColor_4: themeMainColor_4,
+    themeMainColor_5: themeMainColor_5,
+    themeMainColor_6: themeMainColor_6,
 
     darkThemeSurfaceColor_1: darkThemeSurfaceColor_1,
     darkThemeSurfaceColor_2: darkThemeSurfaceColor_2,
@@ -117,7 +141,7 @@ const theme = createTheme({
         MuiInputBase: {
             styleOverrides: {
                 root: {
-                    height: 50,
+                    height: 46,
                 },
             },
         },
@@ -199,14 +223,19 @@ const theme = createTheme({
         MuiOutlinedInput: {
             styleOverrides: {
                 notchedOutline: {
-                    borderColor: darkThemeSurfaceColor_5,
+                    borderColor: "transparent",
                 },
                 root: {
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: darkThemeSurfaceColor_6,
+                    backgroundColor: darkThemeSurfaceColor_2,
+                    "&:hover": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: darkThemeSurfaceColor_3,
+                        },
                     },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                        borderColor: darkThemeSurfaceColor_6,
+                    "&.Mui-focused": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: darkThemeSurfaceColor_3,
+                        },
                     },
                 },
             },
