@@ -27,12 +27,6 @@ export default function StickyTableCell({
     return (
         <TableCell
             sx={{
-                // Let the column config control width; fall back to a sensible
-                // default if nothing is provided.
-                minWidth:
-                    columnConfig.sx?.minWidth ??
-                    columnConfig.sx?.width ??
-                    "135px",
                 position: "sticky",
                 left: stickyLeft,
                 // Optional right border for sticky cells

@@ -10,17 +10,11 @@ export interface StickyMeta {
 }
 
 export type ColumnWithStickyMeta = ColumnConfig & {
-    // We intentionally allow arbitrary extra fields here (e.g. headerConfig)
-    // because this type is applied on top of the JSON table config.
-    [key: string]: any;
     stickyMeta?: StickyMeta;
 };
 
-const DEFAULT_STICKY_WIDTH = 135;
-
 // Convert a width/minWidth string like "125px" into its numeric pixel value.
-const parsePx = (value: unknown): number => {
-    if (typeof value !== "string") return 0;
+const parsePx = (value: string): number => {
     const match = value.match(/^(\d+)\s*px$/);
     return match ? parseInt(match[1], 10) : 0;
 };
@@ -31,7 +25,7 @@ const parsePx = (value: unknown): number => {
  * so we only have to maintain the layout logic in one place.
  */
 export const withStickyMeta = (
-    columns: ColumnWithStickyMeta[],
+    columns: ColumnConfig[],
 ): ColumnWithStickyMeta[] => {
     const stickyColumns = columns.filter((c) => c.sticky);
     const lastStickyId = stickyColumns[stickyColumns.length - 1]?.id;
@@ -43,10 +37,9 @@ export const withStickyMeta = (
             return column;
         }
 
+        // width and minWidth are now required in the config
         const widthPx =
-            parsePx(column.sx?.minWidth) ||
-            parsePx(column.sx?.width) ||
-            DEFAULT_STICKY_WIDTH;
+            parsePx(column.sx.minWidth) || parsePx(column.sx.width);
 
         const columnWithMeta: ColumnWithStickyMeta = {
             ...column,
@@ -60,5 +53,3 @@ export const withStickyMeta = (
         return columnWithMeta;
     });
 };
-
-

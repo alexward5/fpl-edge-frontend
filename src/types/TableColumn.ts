@@ -6,7 +6,17 @@ export interface ColumnConfig {
      * separate it from the non-sticky portion of the table.
      */
     stickyRightBorder?: boolean;
-    sx?: Record<string, any>;
+    sx: {
+        width: string;
+        minWidth: string;
+        [key: string]: any;
+    };
+    headerConfig: {
+        label: string;
+        numeric: boolean;
+        disablePadding?: boolean;
+        sx?: Record<string, any>;
+    };
 }
 
 export interface TableConfig {

@@ -11,12 +11,10 @@ import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
 import EnhancedTableCell from "./EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "./StickyTableCell/StickyTableCell";
 import EmptyTableRow from "./EmptyTableRow/EmptyTableRow";
-import tableConfigJson from "../PlayerDataTableConfig.json";
-import { withStickyMeta, ColumnWithStickyMeta } from "./stickyColumns";
+import tableConfig from "../PlayerDataTableConfig";
+import { withStickyMeta } from "./stickyColumns";
 
 import type DisplayedData from "../../../types/DisplayedData";
-
-const tableConfig = tableConfigJson as { columns: any[] };
 
 type Order = "asc" | "desc";
 
@@ -37,10 +35,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
     const [selected, setSelected] = useState<readonly number[]>([]);
 
     // Pre-process columns with sticky meta data
-    const columns = useMemo(
-        () => withStickyMeta(tableConfig.columns as ColumnWithStickyMeta[]),
-        [],
-    );
+    const columns = useMemo(() => withStickyMeta(tableConfig.columns), []);
 
     const handleRequestSort = (
         _event: React.MouseEvent<unknown>,
