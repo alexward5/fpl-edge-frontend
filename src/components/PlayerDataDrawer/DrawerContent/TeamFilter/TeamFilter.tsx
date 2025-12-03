@@ -23,6 +23,9 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
 
     const theme = useTheme();
 
+    const selectedCount = displayedTeams.length;
+    const summaryText = `Teams${selectedCount > 0 ? ` (${selectedCount})` : ""}`;
+
     return (
         <Box>
             <Typography
@@ -32,7 +35,7 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
             >
                 Filters
             </Typography>
-            <DrawerAccordion summaryText="Teams">
+            <DrawerAccordion summaryText={summaryText}>
                 <FormControl component="fieldset" variant="standard">
                     <FormGroup>
                         <Stack
