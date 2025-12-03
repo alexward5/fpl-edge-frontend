@@ -35,6 +35,29 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
         useState<keyof DisplayedData>("sumPoints");
     const [selected, setSelected] = useState<readonly number[]>([]);
 
+    // Helper to convert a width/minWidth string like "125px" into a number
+    // of pixels. Falls back to 0 if parsing fails.
+    const parsePx = (value: unknown): number => {
+        if (typeof value !== "string") return 0;
+        const match = value.match(/^(\d+)\s*px$/);
+        return match ? parseInt(match[1], 10) : 0;
+    };
+
+    // Pre-compute horizontal offsets for each sticky column so we can support
+    // multiple sticky columns without them overlapping.
+    const stickyOffsets: Record<string, number> = {};
+    {
+        let currentOffset = 0;
+        tableConfig.columns.forEach((column) => {
+            if (column.sticky) {
+                stickyOffsets[column.id] = currentOffset;
+                const widthPx =
+                    parsePx(column.sx?.minWidth) || parsePx(column.sx?.width) || 135;
+                currentOffset += widthPx;
+            }
+        });
+    }
+
     const handleRequestSort = (
         _event: React.MouseEvent<unknown>,
         property: keyof DisplayedData,
@@ -182,6 +205,14 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                                 key={column.id}
                                                 columnConfig={
                                                     enhancedColumnConfig
+                                                }
+                                                stickyLeft={
+                                                    stickyOffsets[column.id] ??
+                                                    0
+                                                }
+                                                hasRightBorder={
+                                                    column.stickyRightBorder ===
+                                                    true
                                                 }
                                                 component="th"
                                                 id={cellId}

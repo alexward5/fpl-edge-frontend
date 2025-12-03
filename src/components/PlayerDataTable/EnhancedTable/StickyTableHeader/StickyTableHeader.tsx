@@ -44,13 +44,18 @@ export default function StickyTableHeader({
             onRequestSort(event, property);
         };
 
+    // If a specific left offset is provided via sx (for multiple sticky
+    // columns), prefer that over the default of 0.
+    const stickyLeft =
+        isSticky && (sx.left === undefined || sx.left === null) ? 0 : sx.left;
+
     return (
         <TableCell
             sx={{
                 fontWeight: theme.typography.fontWeightBold,
                 position: isVerticalSticky || isSticky ? "sticky" : "relative",
                 top: isVerticalSticky || isSticky ? 0 : undefined,
-                left: isSticky ? 0 : undefined,
+                left: isSticky ? stickyLeft : undefined,
                 paddingLeft: "4px",
                 paddingRight: "4px",
                 backgroundColor: theme.darkThemeSurfaceColor_1,
