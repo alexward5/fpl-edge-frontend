@@ -60,7 +60,7 @@ export default function DrawerAccordion(props: Props) {
                     backgroundColor: theme.darkThemeSurfaceColor_2,
                     borderBottomLeftRadius: "4px",
                     borderBottomRightRadius: "4px",
-                    boxShadow: `inset 0 4px 6px -4px rgba(0, 0, 0, 0.4)`,
+                    boxShadow: `inset 0 4px 6px -2px rgba(0, 0, 0, 0.5)`,
                 }}
             >
                 {children}
