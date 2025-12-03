@@ -190,9 +190,6 @@ const theme = createTheme({
                         // "linear-gradient(90deg, #4af792 0%, #00c6ff 100%)",
                         "linear-gradient(90deg,rgba(73, 230, 136, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(76, 230, 137, 1) 100%)",
                 },
-                rail: {
-                    backgroundColor: themeMainColor_3,
-                },
                 thumb: {
                     backgroundColor: themeMainTextColor,
                     border: `2px solid ${darkThemeSurfaceColor_1}`,
