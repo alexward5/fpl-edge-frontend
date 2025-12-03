@@ -23,7 +23,7 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
         .sort((a, b) => a.localeCompare(b));
 
     const selectedCount = displayedTeams.length;
-    const summaryText = `Teams${selectedCount > 0 ? ` (${selectedCount})` : ""}`;
+    const summaryText = `Teams (${selectedCount})`;
     const allTeamsSelected =
         teamNames.length > 0 && displayedTeams.length === teamNames.length;
     const someTeamsSelected =
