@@ -6,34 +6,38 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import type DisplayedData from "../../../../types/DisplayedData";
+import type { ColumnWithStickyMeta } from "../stickyColumns";
 
 interface StickyTableHeaderProps {
-    headCell: {
-        disablePadding: boolean;
-        id: keyof DisplayedData;
-        label: string;
-        numeric: boolean;
-    };
-    isSticky?: boolean;
+    columnConfig: ColumnWithStickyMeta;
     order: "asc" | "desc";
     orderBy: string;
     onRequestSort: (
         event: React.MouseEvent<unknown>,
         property: keyof DisplayedData,
     ) => void;
-    sx?: Record<string, any>;
 }
 
 export default function StickyTableHeader({
-    headCell,
-    isSticky = false,
+    columnConfig,
     order,
     orderBy,
     onRequestSort,
-    sx = {},
 }: StickyTableHeaderProps) {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+    const { headerConfig, id, sticky, stickyMeta, sx } = columnConfig;
+    const isSticky = sticky ?? false;
+    const stickyLeft = stickyMeta?.left ?? 0;
+
+    // Create headCell object to match existing logic structure
+    const headCell = {
+        id: id as keyof DisplayedData,
+        label: headerConfig.label,
+        numeric: headerConfig.numeric,
+        disablePadding: headerConfig.disablePadding,
+    };
 
     const isVerticalSticky = !isSmallScreen;
     const baseZIndex = theme.zIndex.appBar;
@@ -44,10 +48,11 @@ export default function StickyTableHeader({
             onRequestSort(event, property);
         };
 
-    // If a specific left offset is provided via sx (for multiple sticky
-    // columns), prefer that over the default of 0.
-    const stickyLeft =
-        isSticky && (sx.left === undefined || sx.left === null) ? 0 : sx.left;
+    // Combine sx from props/config with calculated sticky styles
+    const mergedSx = {
+        ...(headerConfig.sx || {}),
+        ...sx,
+    };
 
     return (
         <TableCell
@@ -99,7 +104,7 @@ export default function StickyTableHeader({
                     : isSticky
                       ? 2
                       : undefined,
-                ...sx, // Allow config to override any of these styles
+                ...mergedSx, // Allow config to override any of these styles
             }}
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}

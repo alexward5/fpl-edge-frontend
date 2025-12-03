@@ -1,21 +1,10 @@
 import TableCell, { TableCellProps } from "@mui/material/TableCell";
 import { useTheme } from "@mui/material/styles";
-import type { ColumnConfig } from "../../../../types/TableColumn";
+import type { ColumnWithStickyMeta } from "../stickyColumns";
 
 interface StickyTableCellProps {
     children: React.ReactNode;
-    columnConfig: ColumnConfig;
-    /**
-     * Horizontal offset (in px) from the left edge of the table for this
-     * sticky column. This lets us support multiple sticky columns without
-     * them overlapping.
-     */
-    stickyLeft?: number;
-    /**
-     * Whether this sticky column should render a right-hand border to
-     * visually separate it from the scrollable columns.
-     */
-    hasRightBorder?: boolean;
+    columnConfig: ColumnWithStickyMeta;
     component?: TableCellProps["component"];
     id?: string;
     scope?: string;
@@ -24,13 +13,16 @@ interface StickyTableCellProps {
 export default function StickyTableCell({
     children,
     columnConfig,
-    stickyLeft = 0,
-    hasRightBorder = false,
     component,
     id,
     scope,
 }: StickyTableCellProps) {
     const theme = useTheme();
+    const { stickyMeta, stickyRightBorder } = columnConfig;
+    const stickyLeft = stickyMeta?.left ?? 0;
+    // Use explicit config if present, otherwise fallback to "last sticky column" logic
+    const hasRightBorder =
+        stickyRightBorder ?? stickyMeta?.isLastSticky ?? false;
 
     return (
         <TableCell

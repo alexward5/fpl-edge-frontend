@@ -1,20 +1,20 @@
 import TableRow from "@mui/material/TableRow";
 import EnhancedTableCell from "../EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "../StickyTableCell/StickyTableCell";
-import type { TableConfig } from "../../../../types/TableColumn";
+import type { ColumnWithStickyMeta } from "../stickyColumns";
 
 interface EmptyTableRowProps {
-    config: TableConfig;
+    columns: ColumnWithStickyMeta[];
 }
 
-export default function EmptyTableRow({ config }: EmptyTableRowProps) {
+export default function EmptyTableRow({ columns }: EmptyTableRowProps) {
     return (
         <TableRow
             sx={{
                 opacity: 0,
             }}
         >
-            {config.columns.map((column) => {
+            {columns.map((column) => {
                 return column.sticky ? (
                     <StickyTableCell
                         key={column.id}

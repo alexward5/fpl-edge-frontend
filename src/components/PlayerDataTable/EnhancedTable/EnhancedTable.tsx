@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useMemo } from "react";
 import { orderBy } from "natural-orderby";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,6 +12,7 @@ import EnhancedTableCell from "./EnhancedTableCell/EnhancedTableCell";
 import StickyTableCell from "./StickyTableCell/StickyTableCell";
 import EmptyTableRow from "./EmptyTableRow/EmptyTableRow";
 import tableConfigJson from "../PlayerDataTableConfig.json";
+import { withStickyMeta, ColumnWithStickyMeta } from "./stickyColumns";
 
 import type DisplayedData from "../../../types/DisplayedData";
 
@@ -35,28 +36,11 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
         useState<keyof DisplayedData>("sumPoints");
     const [selected, setSelected] = useState<readonly number[]>([]);
 
-    // Helper to convert a width/minWidth string like "125px" into a number
-    // of pixels. Falls back to 0 if parsing fails.
-    const parsePx = (value: unknown): number => {
-        if (typeof value !== "string") return 0;
-        const match = value.match(/^(\d+)\s*px$/);
-        return match ? parseInt(match[1], 10) : 0;
-    };
-
-    // Pre-compute horizontal offsets for each sticky column so we can support
-    // multiple sticky columns without them overlapping.
-    const stickyOffsets: Record<string, number> = {};
-    {
-        let currentOffset = 0;
-        tableConfig.columns.forEach((column) => {
-            if (column.sticky) {
-                stickyOffsets[column.id] = currentOffset;
-                const widthPx =
-                    parsePx(column.sx?.minWidth) || parsePx(column.sx?.width) || 135;
-                currentOffset += widthPx;
-            }
-        });
-    }
+    // Pre-process columns with sticky meta data
+    const columns = useMemo(
+        () => withStickyMeta(tableConfig.columns as ColumnWithStickyMeta[]),
+        [],
+    );
 
     const handleRequestSort = (
         _event: React.MouseEvent<unknown>,
@@ -131,6 +115,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                     onSelectAllClick={handleSelectAllClick}
                     onRequestSort={handleRequestSort}
                     rowCount={rows.length}
+                    columns={columns}
                 />
                 <TableBody>
                     {visibleRows.map((row, index) => {
@@ -170,69 +155,51 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     name={`${row.fplPlayerCode.toString()}-checkbox`}
                                 />
                             </TableCell> */}
-                                {tableConfig.columns.map(
-                                    (column, columnIndex) => {
-                                        const cellValue =
-                                            row[
-                                                column.id as keyof DisplayedData
-                                            ];
+                                {columns.map((column, columnIndex) => {
+                                    const cellValue =
+                                        row[column.id as keyof DisplayedData];
 
-                                        // Only first column gets id for accessibility/row identification
-                                        const cellId =
-                                            columnIndex === 0
-                                                ? rowId
-                                                : undefined;
+                                    // Only first column gets id for accessibility/row identification
+                                    const cellId =
+                                        columnIndex === 0 ? rowId : undefined;
 
-                                        // Check if this column is currently selected for sorting
-                                        const isSelectedColumn =
-                                            column.id === orderColumn;
+                                    // Check if this column is currently selected for sorting
+                                    const isSelectedColumn =
+                                        column.id === orderColumn;
 
-                                        // Create enhanced column config with styling for selected column
-                                        const enhancedColumnConfig = {
-                                            ...column,
-                                            sx: {
-                                                ...column.sx,
-                                                ...(isSelectedColumn && {
-                                                    fontWeight:
-                                                        theme.typography
-                                                            .fontWeightBold,
-                                                }),
-                                            },
-                                        };
+                                    // Create enhanced column config with styling for selected column
+                                    const enhancedColumnConfig = {
+                                        ...column,
+                                        sx: {
+                                            ...column.sx,
+                                            ...(isSelectedColumn && {
+                                                fontWeight:
+                                                    theme.typography
+                                                        .fontWeightBold,
+                                            }),
+                                        },
+                                    };
 
-                                        return column.sticky ? (
-                                            <StickyTableCell
-                                                key={column.id}
-                                                columnConfig={
-                                                    enhancedColumnConfig
-                                                }
-                                                stickyLeft={
-                                                    stickyOffsets[column.id] ??
-                                                    0
-                                                }
-                                                hasRightBorder={
-                                                    column.stickyRightBorder ===
-                                                    true
-                                                }
-                                                component="th"
-                                                id={cellId}
-                                                scope="row"
-                                            >
-                                                {cellValue}
-                                            </StickyTableCell>
-                                        ) : (
-                                            <EnhancedTableCell
-                                                key={column.id}
-                                                columnConfig={
-                                                    enhancedColumnConfig
-                                                }
-                                                id={cellId}
-                                            >
-                                                {cellValue}
-                                            </EnhancedTableCell>
-                                        );
-                                    },
-                                )}
+                                    return column.sticky ? (
+                                        <StickyTableCell
+                                            key={column.id}
+                                            columnConfig={enhancedColumnConfig}
+                                            component="th"
+                                            id={cellId}
+                                            scope="row"
+                                        >
+                                            {cellValue}
+                                        </StickyTableCell>
+                                    ) : (
+                                        <EnhancedTableCell
+                                            key={column.id}
+                                            columnConfig={enhancedColumnConfig}
+                                            id={cellId}
+                                        >
+                                            {cellValue}
+                                        </EnhancedTableCell>
+                                    );
+                                })}
                             </TableRow>
                         );
                     })}
@@ -240,7 +207,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                         Array.from({ length: emptyRows }).map((_, index) => (
                             <EmptyTableRow
                                 key={`empty-${index}`}
-                                config={tableConfig}
+                                columns={columns}
                             />
                         ))}
                 </TableBody>
