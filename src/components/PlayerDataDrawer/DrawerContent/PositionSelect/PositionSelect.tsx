@@ -47,7 +47,7 @@ export default function PositionSelect(props: Props) {
                 <Typography
                     variant="subtitle1"
                     fontWeight={"bold"}
-                    sx={{ marginBottom: theme.spacing(1.5), lineHeight: 1 }}
+                    sx={{ marginBottom: theme.spacing(1.25), lineHeight: 1 }}
                 >
                     Positions
                 </Typography>
