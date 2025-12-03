@@ -112,8 +112,7 @@ const theme = createTheme({
                 root: ({ theme }) => ({
                     height: appBarHeightXs,
                     minHeight: appBarHeightXs,
-                    // Explicitly set for sm breakpoint (600px-900px) to prevent Material-UI defaults
-                    [theme.breakpoints.only("sm")]: {
+                    [theme.breakpoints.up("xs")]: {
                         height: appBarHeightXs,
                         minHeight: appBarHeightXs,
                     },
@@ -129,8 +128,7 @@ const theme = createTheme({
                 root: ({ theme }) => ({
                     minHeight: appBarHeightXs,
                     height: appBarHeightXs,
-                    // Explicitly set for sm breakpoint (600px-900px) to prevent Material-UI defaults
-                    [theme.breakpoints.only("sm")]: {
+                    [theme.breakpoints.up("xs")]: {
                         minHeight: appBarHeightXs,
                         height: appBarHeightXs,
                     },
@@ -168,17 +166,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: ({ theme }) => ({
                     // Ensure consistent spacing across all breakpoints
-                    [theme.breakpoints.only("xs")]: {
-                        marginBottom: "18px",
-                        paddingTop: "0px",
-                        paddingBottom: "0px",
-                    },
-                    [theme.breakpoints.only("sm")]: {
-                        marginBottom: "18px",
-                        paddingTop: "0px",
-                        paddingBottom: "0px",
-                    },
-                    [theme.breakpoints.up("md")]: {
+                    [theme.breakpoints.up("xs")]: {
                         marginBottom: "18px",
                         paddingTop: "0px",
                         paddingBottom: "0px",
@@ -197,13 +185,7 @@ const theme = createTheme({
                     height: 18,
                 },
                 markLabel: ({ theme }) => ({
-                    [theme.breakpoints.only("xs")]: {
-                        top: 14,
-                    },
-                    [theme.breakpoints.only("sm")]: {
-                        top: 14,
-                    },
-                    [theme.breakpoints.up("md")]: {
+                    [theme.breakpoints.up("xs")]: {
                         top: 14,
                     },
                 }),
