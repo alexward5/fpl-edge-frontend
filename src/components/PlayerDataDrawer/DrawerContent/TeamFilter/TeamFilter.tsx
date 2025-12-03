@@ -29,7 +29,7 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
                     <Stack
                         spacing={0.5}
                         sx={{
-                            padding: theme.spacing(0, 1.5, 1.5, 1.5),
+                            padding: theme.spacing(1),
                         }}
                     >
                         {teamNames.map((teamName: string) => (
