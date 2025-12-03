@@ -16,21 +16,31 @@ type Props = {
 
 const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
     const { teams } = useData();
+    const theme = useTheme();
 
     const teamNames = teams
         .map((team) => team.fbref_team)
         .sort((a, b) => a.localeCompare(b));
 
-    const theme = useTheme();
-
     const selectedCount = displayedTeams.length;
     const summaryText = `Teams${selectedCount > 0 ? ` (${selectedCount})` : ""}`;
+
+    const handleTeamToggle =
+        (teamName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+            if (e.target.checked) {
+                setDisplayedTeams([...displayedTeams, teamName]);
+            } else {
+                setDisplayedTeams(
+                    displayedTeams.filter((team) => team !== teamName),
+                );
+            }
+        };
 
     return (
         <Box>
             <Typography
                 variant="subtitle1"
-                fontWeight={"bold"}
+                fontWeight="bold"
                 sx={{ marginBottom: theme.spacing(1.5), lineHeight: 1 }}
             >
                 Filters
@@ -38,52 +48,34 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
             <DrawerAccordion summaryText={summaryText}>
                 <FormControl component="fieldset" variant="standard">
                     <FormGroup>
-                        <Stack
-                            spacing={0.5}
-                            sx={{
-                                padding: theme.spacing(1),
-                            }}
-                        >
+                        <Stack spacing={0.5} sx={{ padding: theme.spacing(1) }}>
                             {teamNames.map((teamName: string) => (
                                 <FormControlLabel
-                                    id={`team-filter-${teamName}`}
                                     key={teamName}
-                                    sx={{ marginLeft: 0 }}
-                                    label={
-                                        <Typography variant="subtitle2">
-                                            {teamName}
-                                        </Typography>
-                                    }
+                                    id={`team-filter-${teamName}`}
                                     control={
                                         <Checkbox
                                             checked={displayedTeams.includes(
                                                 teamName,
                                             )}
-                                            // Toggle team in displayedTeams
-                                            onChange={(e) => {
-                                                if (e.target.checked) {
-                                                    setDisplayedTeams([
-                                                        ...displayedTeams,
-                                                        teamName,
-                                                    ]);
-                                                } else {
-                                                    setDisplayedTeams(
-                                                        displayedTeams.filter(
-                                                            (team: string) =>
-                                                                team !==
-                                                                teamName,
-                                                        ),
-                                                    );
-                                                }
-                                            }}
+                                            onChange={handleTeamToggle(
+                                                teamName,
+                                            )}
                                             name={teamName}
                                             size="small"
                                             sx={{
                                                 height: "22px",
                                                 width: "22px",
+                                                marginRight: theme.spacing(0.5),
                                             }}
                                         />
                                     }
+                                    label={
+                                        <Typography variant="subtitle2">
+                                            {teamName}
+                                        </Typography>
+                                    }
+                                    sx={{ marginLeft: 0 }}
                                 />
                             ))}
                         </Stack>
