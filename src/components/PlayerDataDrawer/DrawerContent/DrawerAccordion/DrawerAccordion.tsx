@@ -58,7 +58,8 @@ export default function DrawerAccordion({ summaryText, children }: Props) {
             <AccordionDetails
                 sx={{
                     padding: 0,
-                    backgroundColor: theme.darkThemeSurfaceColor_2,
+                    border: `1px solid ${theme.darkThemeSurfaceColor_2}`,
+                    borderTop: "none",
                     borderBottomLeftRadius: BORDER_RADIUS,
                     borderBottomRightRadius: BORDER_RADIUS,
                     boxShadow: "inset 0 4px 6px -2px rgba(0, 0, 0, 0.5)",
