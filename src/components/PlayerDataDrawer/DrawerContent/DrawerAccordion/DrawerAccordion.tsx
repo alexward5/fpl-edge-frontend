@@ -50,7 +50,7 @@ export default function DrawerAccordion(props: Props) {
                     },
                 }}
             >
-                <Typography variant="subtitle1" fontWeight={"bold"}>
+                <Typography variant="subtitle1" fontWeight="normal">
                     {summaryText}
                 </Typography>
             </AccordionSummary>
