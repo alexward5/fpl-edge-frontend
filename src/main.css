@@ -23,10 +23,10 @@
   }
 
   /* Global scrollbar styling */
-  /* Thumb: theme.darkThemeSurfaceColor_5 (#76757d) */
+  /* Thumb: theme.darkThemeSurfaceColor_6 (#8f8f96) */
   /* Track: transparent - remains invisible even on hover */
   * {
-    scrollbar-color: #76757d transparent;
+    scrollbar-color: #8f8f96 transparent;
   }
 
   *::-webkit-scrollbar {
@@ -35,7 +35,7 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #76757d;
+    background-color: #8f8f96;
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
