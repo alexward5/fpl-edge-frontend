@@ -24,16 +24,30 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
 
     const selectedCount = displayedTeams.length;
     const summaryText = `Teams${selectedCount > 0 ? ` (${selectedCount})` : ""}`;
+    const allTeamsSelected =
+        teamNames.length > 0 && displayedTeams.length === teamNames.length;
+    const someTeamsSelected =
+        displayedTeams.length > 0 && displayedTeams.length < teamNames.length;
+
+    const handleToggleAllTeams = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.checked) {
+            setDisplayedTeams(teamNames);
+        } else {
+            setDisplayedTeams([]);
+        }
+    };
 
     const handleTeamToggle =
         (teamName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-            if (e.target.checked) {
-                setDisplayedTeams([...displayedTeams, teamName]);
-            } else {
-                setDisplayedTeams(
-                    displayedTeams.filter((team) => team !== teamName),
-                );
-            }
+            setDisplayedTeams((prevTeams) => {
+                if (e.target.checked) {
+                    return prevTeams.includes(teamName)
+                        ? prevTeams
+                        : [...prevTeams, teamName];
+                }
+
+                return prevTeams.filter((team) => team !== teamName);
+            });
         };
 
     return (
@@ -49,6 +63,16 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
                 <FormControl component="fieldset" variant="standard">
                     <FormGroup>
                         <Stack spacing={0.5} sx={{ padding: theme.spacing(1) }}>
+                            <Checkbox
+                                indeterminate={someTeamsSelected}
+                                checked={allTeamsSelected}
+                                onChange={handleToggleAllTeams}
+                                size="small"
+                                sx={{
+                                    height: "22px",
+                                    width: "22px",
+                                }}
+                            />
                             {teamNames.map((teamName: string) => (
                                 <FormControlLabel
                                     key={teamName}
@@ -75,7 +99,7 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
                                             {teamName}
                                         </Typography>
                                     }
-                                    sx={{ marginLeft: 0 }}
+                                    sx={{ paddingLeft: theme.spacing(1) }}
                                 />
                             ))}
                         </Stack>
