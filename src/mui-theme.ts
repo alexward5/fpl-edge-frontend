@@ -143,6 +143,10 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     height: 46,
+                    "&.MuiTablePagination-select": {
+                        marginRight: "12px",
+                        marginLeft: 0,
+                    },
                 },
             },
         },
@@ -269,6 +273,15 @@ const theme = createTheme({
                         "&:hover": {
                             backgroundColor: darkThemeSurfaceColor_2,
                         },
+                    },
+                },
+            },
+        },
+        MuiTablePagination: {
+            styleOverrides: {
+                toolbar: {
+                    "& .MuiTablePagination-actions": {
+                        marginLeft: "8px",
                     },
                 },
             },
