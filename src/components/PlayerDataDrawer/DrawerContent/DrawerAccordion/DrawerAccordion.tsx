@@ -10,8 +10,9 @@ type Props = {
     children: React.ReactNode;
 };
 
-export default function DrawerAccordion(props: Props) {
-    const { summaryText, children } = props;
+const BORDER_RADIUS = "4px";
+
+export default function DrawerAccordion({ summaryText, children }: Props) {
     const theme = useTheme();
 
     return (
@@ -22,7 +23,7 @@ export default function DrawerAccordion(props: Props) {
             square
             sx={{
                 backgroundColor: theme.darkThemeSurfaceColor_1,
-                borderRadius: "4px",
+                borderRadius: BORDER_RADIUS,
                 "&:before": {
                     display: "none",
                 },
@@ -36,7 +37,7 @@ export default function DrawerAccordion(props: Props) {
                     margin: 0,
                     padding: theme.spacing(0, 1),
                     backgroundColor: theme.darkThemeSurfaceColor_2,
-                    borderRadius: "4px",
+                    borderRadius: BORDER_RADIUS,
                     border: "1px solid transparent",
                     "&:hover": {
                         borderColor: theme.darkThemeSurfaceColor_3,
@@ -58,9 +59,9 @@ export default function DrawerAccordion(props: Props) {
                 sx={{
                     padding: 0,
                     backgroundColor: theme.darkThemeSurfaceColor_2,
-                    borderBottomLeftRadius: "4px",
-                    borderBottomRightRadius: "4px",
-                    boxShadow: `inset 0 4px 6px -2px rgba(0, 0, 0, 0.5)`,
+                    borderBottomLeftRadius: BORDER_RADIUS,
+                    borderBottomRightRadius: BORDER_RADIUS,
+                    boxShadow: "inset 0 4px 6px -2px rgba(0, 0, 0, 0.5)",
                 }}
             >
                 {children}
