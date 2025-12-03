@@ -36,11 +36,10 @@ export default function DrawerAccordion({ summaryText, children }: Props) {
                     minHeight: "unset",
                     margin: 0,
                     padding: theme.spacing(0, 1),
-                    backgroundColor: theme.darkThemeSurfaceColor_2,
                     borderRadius: BORDER_RADIUS,
-                    border: "1px solid transparent",
+                    border: `1px solid ${theme.darkThemeSurfaceColor_4}`,
                     "&:hover": {
-                        borderColor: theme.darkThemeSurfaceColor_3,
+                        borderColor: theme.darkThemeSurfaceColor_5,
                     },
                     "&.Mui-expanded": {
                         borderBottomLeftRadius: 0,
@@ -58,7 +57,8 @@ export default function DrawerAccordion({ summaryText, children }: Props) {
             <AccordionDetails
                 sx={{
                     padding: 0,
-                    border: `1px solid ${theme.darkThemeSurfaceColor_2}`,
+                    backgroundColor: theme.darkThemeSurfaceColor_2,
+                    border: `1px solid ${theme.darkThemeSurfaceColor_4}`,
                     borderTop: "none",
                     borderBottomLeftRadius: BORDER_RADIUS,
                     borderBottomRightRadius: BORDER_RADIUS,

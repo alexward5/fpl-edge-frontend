@@ -212,18 +212,17 @@ const theme = createTheme({
         MuiOutlinedInput: {
             styleOverrides: {
                 notchedOutline: {
-                    borderColor: "transparent",
+                    borderColor: darkThemeSurfaceColor_4,
                 },
                 root: {
-                    backgroundColor: darkThemeSurfaceColor_2,
                     "&:hover": {
                         "& .MuiOutlinedInput-notchedOutline": {
-                            borderColor: darkThemeSurfaceColor_3,
+                            borderColor: darkThemeSurfaceColor_5,
                         },
                     },
                     "&.Mui-focused": {
                         "& .MuiOutlinedInput-notchedOutline": {
-                            borderColor: darkThemeSurfaceColor_3,
+                            borderColor: darkThemeSurfaceColor_5,
                         },
                     },
                 },
