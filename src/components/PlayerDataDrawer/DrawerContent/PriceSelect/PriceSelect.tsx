@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 type Props = {
     playerPriceRange: string[];
@@ -35,6 +36,8 @@ const PriceSelect: React.FC<Props> = ({
         }
     };
 
+    const theme = useTheme();
+
     return (
         <Box
             sx={{
@@ -44,7 +47,7 @@ const PriceSelect: React.FC<Props> = ({
             <Typography
                 variant="subtitle1"
                 fontWeight={"bold"}
-                sx={{ marginBottom: "6px" }}
+                sx={{ marginBottom: theme.spacing(1), lineHeight: 1 }}
             >
                 Price
             </Typography>

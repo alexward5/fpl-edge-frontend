@@ -6,6 +6,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 const PLAYER_POSITIONS = ["DEF", "MID", "FWD"];
 
@@ -38,13 +39,15 @@ export default function PositionSelect(props: Props) {
         );
     };
 
+    const theme = useTheme();
+
     return (
         <Box>
             <FormControl sx={{ width: "100%" }}>
                 <Typography
                     variant="subtitle1"
                     fontWeight={"bold"}
-                    sx={{ marginBottom: "6px" }}
+                    sx={{ marginBottom: theme.spacing(1), lineHeight: 1 }}
                 >
                     Positions
                 </Typography>
