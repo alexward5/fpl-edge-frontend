@@ -21,21 +21,15 @@ const tableConfig: TableConfig = {
         },
         {
             id: "fbrefTeam",
-            sticky: true,
-            stickyRightBorder: true,
             sx: {
                 width: "125px",
                 minWidth: "125px",
                 textAlign: "right",
-                paddingRight: "12px",
             },
             headerConfig: {
                 label: "Team",
                 numeric: true,
                 disablePadding: false,
-                sx: {
-                    paddingRight: "12px",
-                },
             },
         },
         {
@@ -215,4 +209,3 @@ const tableConfig: TableConfig = {
 };
 
 export default tableConfig;
-
