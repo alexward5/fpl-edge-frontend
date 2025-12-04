@@ -1,12 +1,13 @@
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-// import Checkbox from "@mui/material/Checkbox";
-import StickyTableHeader from "../StickyTableHeader/StickyTableHeader";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import type DisplayedData from "../../../../types/DisplayedData";
-import type { ColumnWithStickyMeta } from "../stickyColumns";
+import type { ColumnConfig } from "../../../../types/TableColumn";
+import { createHeaderCells } from "../tableCellFactory";
 
 interface EnhancedTableHeadProps {
-    columns: ColumnWithStickyMeta[];
+    columns: ColumnConfig[];
     numSelected: number;
     onRequestSort: (
         event: React.MouseEvent<unknown>,
@@ -21,40 +22,25 @@ interface EnhancedTableHeadProps {
 export default function EnhancedTableHead(props: EnhancedTableHeadProps) {
     const {
         columns,
-        // onSelectAllClick,
         order,
         orderBy,
-        // numSelected,
-        // rowCount,
         onRequestSort,
     } = props;
+
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <TableHead>
             <TableRow>
-                {/* <TableCell padding="checkbox">
-                    <Checkbox
-                        color="primary"
-                        size="small"
-                        indeterminate={
-                            numSelected > 0 && numSelected < rowCount
-                        }
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{
-                            "aria-label": "Select all displayed rows",
-                        }}
-                    />
-                </TableCell> */}
-                {columns.map((column) => (
-                    <StickyTableHeader
-                        key={column.id}
-                        columnConfig={column}
-                        order={order}
-                        orderBy={orderBy}
-                        onRequestSort={onRequestSort}
-                    />
-                ))}
+                {createHeaderCells(
+                    columns,
+                    order,
+                    orderBy,
+                    onRequestSort,
+                    theme,
+                    isSmallScreen
+                )}
             </TableRow>
         </TableHead>
     );
