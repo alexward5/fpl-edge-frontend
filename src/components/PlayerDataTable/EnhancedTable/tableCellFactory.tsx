@@ -11,7 +11,7 @@ const parsePx = (value: string): number => {
     return match ? parseInt(match[1], 10) : 0;
 };
 
-const getTeamLogoPath = (teamName: string): string => {
+const getTeamLogoMapping = (teamName: string): string => {
     const map: Record<string, string> = {
         Arsenal: "Arsenal-FC-logo.png",
         "Aston Villa": "Aston-Villa-FC-logo.png",
@@ -132,11 +132,11 @@ export const createRowCells = (
                 {column.id === "fplWebName" ? (
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <img
-                            src={getTeamLogoPath(row.fbrefTeam)}
+                            src={getTeamLogoMapping(row.fbrefTeam)}
                             alt={row.fbrefTeam}
                             style={{
-                                width: "24px",
-                                height: "24px",
+                                width: "22px",
+                                height: "22px",
                                 marginRight: "6px",
                             }}
                         />
