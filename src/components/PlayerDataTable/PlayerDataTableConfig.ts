@@ -27,8 +27,8 @@ const tableConfig: TableConfig = {
             sticky: true,
             stickyRightBorder: true,
             sx: {
-                width: "130px",
-                minWidth: "130px",
+                width: "136px",
+                minWidth: "136px",
                 paddingLeft: "6px",
             },
             headerConfig: {
