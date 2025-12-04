@@ -1,5 +1,4 @@
 import { useState, forwardRef } from "react";
-import { orderBy } from "natural-orderby";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -19,26 +18,20 @@ type Props = {
     rows: DisplayedData[];
     page: number;
     rowsPerPage: number;
+    order: Order;
+    orderBy: keyof DisplayedData;
+    onRequestSort: (
+        event: React.MouseEvent<unknown>,
+        property: keyof DisplayedData,
+    ) => void;
 };
 
 // Use forwardRef to pass ref of TableContainer to the parent component
 // so that we can scroll to the top of the table when user changes page
 const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
-    const { rows, page, rowsPerPage } = props;
+    const { rows, page, rowsPerPage, order, orderBy, onRequestSort } = props;
 
-    const [order, setOrder] = useState<Order>("desc");
-    const [orderColumn, setOrderBy] =
-        useState<keyof DisplayedData>("sumPoints");
     const [selected, setSelected] = useState<readonly number[]>([]);
-
-    const handleRequestSort = (
-        _event: React.MouseEvent<unknown>,
-        property: keyof DisplayedData,
-    ) => {
-        const isDesc = orderColumn === property && order === "desc";
-        setOrder(isDesc ? "asc" : "desc");
-        setOrderBy(property);
-    };
 
     const handleSelectAllClick = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -70,9 +63,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
         setSelected(newSelected);
     };
 
-    const orderedRows = orderBy(rows, [orderColumn], order);
-
-    const visibleRows = [...orderedRows].slice(
+    const visibleRows = rows.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
     );
@@ -100,9 +91,9 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                 <EnhancedTableHead
                     numSelected={selected.length}
                     order={order}
-                    orderBy={orderColumn}
+                    orderBy={orderBy}
                     onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
+                    onRequestSort={onRequestSort}
                     rowCount={rows.length}
                     columns={tableConfig.columns}
                 />
@@ -133,7 +124,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                     row,
                                     tableConfig.columns,
                                     rowId,
-                                    orderColumn,
+                                    orderBy,
                                     theme,
                                 )}
                             </TableRow>

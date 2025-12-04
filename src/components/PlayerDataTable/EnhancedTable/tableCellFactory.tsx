@@ -154,10 +154,6 @@ export const createHeaderCells = (
         const baseZIndex = theme.zIndex.appBar;
 
         const headerSx = {
-            // Base styles first
-            ...(headerConfig.sx || {}),
-            ...sx,
-
             // Default header styles
             paddingLeft: "4px",
             paddingRight: "4px",
@@ -165,6 +161,10 @@ export const createHeaderCells = (
             paddingTop: 0,
             paddingBottom: 0,
             whiteSpace: "nowrap",
+
+            // Base styles (overrides)
+            ...sx,
+            ...(headerConfig.sx || {}),
 
             // Sticky behavior (Horizontal AND/OR Vertical)
             position: isVerticalSticky || isSticky ? "sticky" : "relative",
@@ -213,6 +213,13 @@ export const createHeaderCells = (
             };
         }
 
+        const isSortable = headerConfig.sortable !== false;
+
+        if (!isSortable) {
+            headerSx.cursor = "default";
+            headerSx.userSelect = "none";
+        }
+
         return (
             <TableCell
                 key={headCell.id}
@@ -220,35 +227,39 @@ export const createHeaderCells = (
                 sortDirection={orderBy === headCell.id ? order : false}
                 sx={headerSx}
             >
-                <TableSortLabel
-                    active={orderBy === headCell.id}
-                    direction={orderBy === headCell.id ? order : "desc"}
-                    onClick={createSortHandler(headCell.id)}
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        height: "38px",
-                        "&:hover": {
-                            color: theme.themeMainTextColor,
-                        },
-                        "&.Mui-active .MuiTableSortLabel-icon": {
-                            color: theme.themeMainColor,
-                            marginRight: "2px",
-                        },
-                        "& .MuiTableSortLabel-icon": {
-                            marginRight: "2px",
-                        },
-                    }}
-                >
-                    {headCell.label}
-                    {orderBy === headCell.id ? (
-                        <Box component="span" sx={visuallyHidden}>
-                            {order === "asc"
-                                ? "sorted ascending"
-                                : "sorted descending"}
-                        </Box>
-                    ) : null}
-                </TableSortLabel>
+                {isSortable ? (
+                    <TableSortLabel
+                        active={orderBy === headCell.id}
+                        direction={orderBy === headCell.id ? order : "desc"}
+                        onClick={createSortHandler(headCell.id)}
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            height: "38px",
+                            "&:hover": {
+                                color: theme.themeMainTextColor,
+                            },
+                            "&.Mui-active .MuiTableSortLabel-icon": {
+                                color: theme.themeMainColor,
+                                marginRight: "2px",
+                            },
+                            "& .MuiTableSortLabel-icon": {
+                                marginRight: "2px",
+                            },
+                        }}
+                    >
+                        {headCell.label}
+                        {orderBy === headCell.id ? (
+                            <Box component="span" sx={visuallyHidden}>
+                                {order === "asc"
+                                    ? "sorted ascending"
+                                    : "sorted descending"}
+                            </Box>
+                        ) : null}
+                    </TableSortLabel>
+                ) : (
+                    headCell.label
+                )}
             </TableCell>
         );
     });

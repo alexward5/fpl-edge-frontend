@@ -3,6 +3,26 @@ import { TableConfig } from "../../types/TableColumn";
 const tableConfig: TableConfig = {
     columns: [
         {
+            id: "rank",
+            sticky: true,
+            stickyRightBorder: true,
+            sx: {
+                width: "30px",
+                minWidth: "30px",
+                textAlign: "center",
+                padding: "0px",
+            },
+            headerConfig: {
+                label: "#",
+                numeric: true,
+                sortable: false,
+                sx: {
+                    fontSize: "15px",
+                    textAlign: "center",
+                },
+            },
+        },
+        {
             id: "fplWebName",
             sticky: true,
             stickyRightBorder: true,
