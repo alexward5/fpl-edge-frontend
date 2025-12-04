@@ -204,6 +204,7 @@ export const createHeaderCells = (
             paddingTop: 0,
             paddingBottom: 0,
             whiteSpace: "nowrap",
+            fontWeight: theme.typography.fontWeightBold,
 
             // Base styles (overrides)
             ...sx,
