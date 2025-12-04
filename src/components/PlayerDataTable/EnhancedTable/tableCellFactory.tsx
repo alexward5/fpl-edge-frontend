@@ -215,6 +215,11 @@ export const createHeaderCells = (
 
         const isSortable = headerConfig.sortable !== false;
 
+        if (!isSortable) {
+            headerSx.cursor = "default";
+            headerSx.userSelect = "none";
+        }
+
         return (
             <TableCell
                 key={headCell.id}
