@@ -29,7 +29,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Team",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -42,7 +41,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Position",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -55,7 +53,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Price",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -68,7 +65,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Points",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -81,7 +77,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Games",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -94,7 +89,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Minutes",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -107,7 +101,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Goals",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -120,7 +113,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Assists",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -133,7 +125,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "NPxG",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -146,7 +137,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "xA",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -159,7 +149,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "NPxGAP",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -172,7 +161,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "DC",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -185,7 +173,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "BPS",
                 numeric: true,
-                disablePadding: false,
             },
         },
         {
@@ -199,7 +186,6 @@ const tableConfig: TableConfig = {
             headerConfig: {
                 label: "Selected %",
                 numeric: true,
-                disablePadding: false,
                 sx: {
                     paddingRight: "12px",
                 },

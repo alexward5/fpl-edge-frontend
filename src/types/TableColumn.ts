@@ -10,7 +10,6 @@ export interface ColumnConfig {
     headerConfig: {
         label: string;
         numeric: boolean;
-        disablePadding?: boolean;
         sx?: Record<string, any>;
     };
 }

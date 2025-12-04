@@ -144,7 +144,6 @@ export const createHeaderCells = (
             id: id as keyof DisplayedData,
             label: headerConfig.label,
             numeric: headerConfig.numeric,
-            disablePadding: headerConfig.disablePadding,
         };
 
         const stickyStyle = isSticky
@@ -219,7 +218,6 @@ export const createHeaderCells = (
             <TableCell
                 key={headCell.id}
                 align={headCell.numeric ? "right" : "left"}
-                padding={headCell.disablePadding ? "none" : "normal"}
                 sortDirection={orderBy === headCell.id ? order : false}
                 sx={headerSx}
             >
