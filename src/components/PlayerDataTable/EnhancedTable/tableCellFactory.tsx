@@ -11,6 +11,34 @@ const parsePx = (value: string): number => {
     return match ? parseInt(match[1], 10) : 0;
 };
 
+const getTeamLogoPath = (teamName: string): string => {
+    const map: Record<string, string> = {
+        Arsenal: "Arsenal-FC-logo-300x300.png",
+        "Aston Villa": "Aston-Villa-FC-logo-300x300.png",
+        Bournemouth: "AFC-Bournemouth-logo-300x300.png",
+        Brentford: "Brentford-FC-logo-300x300.png",
+        Brighton: "Brighton-Hove-Albion-logo-300x300.png",
+        Burnley: "Burnley-FC-logo-1-300x300.png",
+        Chelsea: "Chelsea-FC-logo-300x300.png",
+        "Crystal Palace": "Crystal-Palace-FC-logo-300x300.png",
+        Everton: "Everton-FC-logo-300x300.png",
+        Fulham: "Fulham-FC-logo-300x300.png",
+        Leeds: "Leeds-United-FC-logo-300x300.png",
+        Liverpool: "Liverpool-FC-logo-300x300.png",
+        "Manchester City": "Manchester-City-FC-logo-300x300.png",
+        "Manchester Utd": "Manchester-United-FC-logo-300x300.png",
+        "Newcastle Utd": "Newcastle-United-logo-300x300.png",
+        "Nott'ham Forest": "Nottingham-Forest-FC-logo-300x300.png",
+        Sunderland: "Sunderland-logo-300x300.png",
+        Tottenham: "Tottenham-Hotspur-logo-300x300.png",
+        "West Ham": "West-Ham-United-FC-logo-300x300.png",
+        Wolves: "Wolverhampton-Wanderers-logo-300x300.png",
+    };
+
+    const filename = map[teamName] || "Premier-League-Logo-300x300.png";
+    return `/team-crests/${filename}`;
+};
+
 const getStickyStyle = (
     column: ColumnConfig,
     left: number,
@@ -101,7 +129,22 @@ export const createRowCells = (
                 padding="none"
                 sx={sx}
             >
-                {cellValue}
+                {column.id === "fplWebName" ? (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <img
+                            src={getTeamLogoPath(row.fbrefTeam)}
+                            alt={row.fbrefTeam}
+                            style={{
+                                width: "24px",
+                                height: "24px",
+                                marginRight: "6px",
+                            }}
+                        />
+                        {cellValue}
+                    </Box>
+                ) : (
+                    cellValue
+                )}
             </TableCell>
         );
     });
