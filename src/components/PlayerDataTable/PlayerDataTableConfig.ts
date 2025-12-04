@@ -7,8 +7,8 @@ const tableConfig: TableConfig = {
             sticky: true,
             stickyRightBorder: true,
             sx: {
-                width: "30px",
-                minWidth: "30px",
+                width: "34px",
+                minWidth: "34px",
                 textAlign: "center",
                 padding: "0px",
             },
