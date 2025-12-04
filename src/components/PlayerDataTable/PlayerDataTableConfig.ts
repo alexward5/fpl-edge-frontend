@@ -27,15 +27,15 @@ const tableConfig: TableConfig = {
             sticky: true,
             stickyRightBorder: true,
             sx: {
-                width: "136px",
-                minWidth: "136px",
-                paddingLeft: "6px",
+                width: "138px",
+                minWidth: "138px",
+                paddingLeft: "8px",
             },
             headerConfig: {
                 label: "Player",
                 numeric: false,
                 sx: {
-                    paddingLeft: "6px",
+                    paddingLeft: "8px",
                 },
             },
         },
