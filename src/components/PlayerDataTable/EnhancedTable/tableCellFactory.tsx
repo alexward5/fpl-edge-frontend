@@ -33,7 +33,7 @@ const getStickyStyle = (
     return {
         position: "sticky",
         left,
-        // Optional right border for sticky cells
+        // Set border using gradient (needed for sticky cells)
         ...(hasRightBorder && {
             "&::after": {
                 content: '""',
@@ -139,7 +139,6 @@ export const createHeaderCells = (
 
         const isLastSticky = id === lastStickyId;
 
-        // Create headCell object to match existing logic structure
         const headCell = {
             id: id as keyof DisplayedData,
             label: headerConfig.label,
@@ -148,7 +147,7 @@ export const createHeaderCells = (
 
         const stickyStyle = isSticky
             ? getStickyStyle(column, currentLeft, isLastSticky, theme, true)
-            : {}; // No sticky style needed if not sticky (handled in headerSx construction)
+            : {};
 
         // Additional header specific styles
         const isVerticalSticky = !isSmallScreen;
