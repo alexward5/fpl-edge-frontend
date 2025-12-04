@@ -10,6 +10,7 @@ export interface ColumnConfig {
     headerConfig: {
         label: string;
         numeric: boolean;
+        sortable?: boolean;
         sx?: Record<string, any>;
     };
 }

@@ -1,4 +1,5 @@
 type DisplayedData = {
+    rank: number;
     fplPlayerCode: number;
     fplWebName: string;
     fbrefTeam: string;
