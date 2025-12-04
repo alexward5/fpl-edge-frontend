@@ -54,8 +54,8 @@ const tableConfig: TableConfig = {
         {
             id: "fplPlayerPosition",
             sx: {
-                width: "90px",
-                minWidth: "90px",
+                width: "88px",
+                minWidth: "88px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -66,8 +66,8 @@ const tableConfig: TableConfig = {
         {
             id: "fplPlayerCost",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -78,8 +78,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumPoints",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -90,8 +90,8 @@ const tableConfig: TableConfig = {
         {
             id: "gamesPlayed",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -114,8 +114,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumGoals",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -138,8 +138,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumNPxG",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -150,8 +150,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumxA",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -174,8 +174,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumDefensiveContributions",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -186,8 +186,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumBPS",
             sx: {
-                width: "80px",
-                minWidth: "80px",
+                width: "78px",
+                minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
