@@ -42,8 +42,8 @@ const tableConfig: TableConfig = {
         {
             id: "fbrefTeam",
             sx: {
-                width: "125px",
-                minWidth: "125px",
+                width: "120px",
+                minWidth: "120px",
                 textAlign: "right",
             },
             headerConfig: {
