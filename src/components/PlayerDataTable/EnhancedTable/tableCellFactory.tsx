@@ -23,7 +23,7 @@ const getTeamLogoMapping = (teamName: string): string => {
         "Crystal Palace": "Crystal-Palace-FC-logo.png",
         Everton: "Everton-FC-logo.png",
         Fulham: "Fulham-FC-logo.png",
-        Leeds: "Leeds-United-FC-logo.png",
+        "Leeds United": "Leeds-United-FC-logo.png",
         Liverpool: "Liverpool-FC-logo.png",
         "Manchester City": "Manchester-City-FC-logo.png",
         "Manchester Utd": "Manchester-United-FC-logo.png",
