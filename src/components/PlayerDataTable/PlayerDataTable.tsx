@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { orderBy } from "natural-orderby";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
@@ -35,6 +35,12 @@ export default function PlayerDataTable(props: Props) {
     const scrollToTop = () => {
         tableRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    // Reset to first page of table when any filter changes
+    useEffect(() => {
+        setPage(0);
+        scrollToTop();
+    }, [displayedPositions, displayedTeams, playerPriceRange, gameweekRange]);
 
     const { players } = useData();
     const theme = useTheme();
