@@ -72,9 +72,10 @@ export const createRowCells = (
         const cellId = columnIndex === 0 ? rowId : undefined;
         const isSelectedColumn = column.id === orderColumn;
         const isLastSticky = column.id === lastStickyId;
+        const isSticky = column.sticky ?? false;
 
         const currentLeft = stickyLeft;
-        if (column.sticky) {
+        if (isSticky) {
             stickyLeft += parsePx(column.sx.width);
         }
 
@@ -94,9 +95,9 @@ export const createRowCells = (
         return (
             <TableCell
                 key={column.id}
-                component={column.sticky ? "th" : "td"}
+                component={isSticky ? "th" : "td"}
                 id={cellId}
-                scope={column.sticky ? "row" : undefined}
+                scope={isSticky ? "row" : undefined}
                 padding="none"
                 sx={sx}
             >
@@ -129,10 +130,13 @@ export const createHeaderCells = (
 
     return columns.map((column) => {
         const { headerConfig, id, sticky, sx } = column;
+        const isSticky = sticky ?? false;
         const currentLeft = stickyLeft;
-        if (sticky) {
+
+        if (isSticky) {
             stickyLeft += parsePx(column.sx.width);
         }
+
         const isLastSticky = id === lastStickyId;
 
         // Create headCell object to match existing logic structure
@@ -143,28 +147,20 @@ export const createHeaderCells = (
             disablePadding: headerConfig.disablePadding,
         };
 
-        const stickyStyle = getStickyStyle(
-            column,
-            currentLeft,
-            isLastSticky,
-            theme,
-            true,
-        );
+        const stickyStyle = isSticky
+            ? getStickyStyle(column, currentLeft, isLastSticky, theme, true)
+            : {}; // No sticky style needed if not sticky (handled in headerSx construction)
 
         // Additional header specific styles
         const isVerticalSticky = !isSmallScreen;
         const baseZIndex = theme.zIndex.appBar;
 
-        const isStickyColumn = sticky ?? false;
-
         const headerSx = {
-            ...stickyStyle,
-            fontWeight: theme.typography.fontWeightBold,
-            position:
-                isVerticalSticky || isStickyColumn ? "sticky" : "relative",
-            top: isVerticalSticky || isStickyColumn ? 0 : undefined,
+            // Base styles first
+            ...(headerConfig.sx || {}),
+            ...sx,
 
-            // Overrides from original StickyTableHeader
+            // Default header styles
             paddingLeft: "4px",
             paddingRight: "4px",
             backgroundColor: theme.darkThemeSurfaceColor_1,
@@ -172,22 +168,24 @@ export const createHeaderCells = (
             paddingBottom: 0,
             whiteSpace: "nowrap",
 
+            // Sticky behavior (Horizontal AND/OR Vertical)
+            position: isVerticalSticky || isSticky ? "sticky" : "relative",
+            top: isVerticalSticky || isSticky ? 0 : undefined,
+
+            // If horizontal sticky, add sticky styles from helper
+            ...(isSticky ? stickyStyle : {}),
+
             zIndex: isVerticalSticky
-                ? isStickyColumn
+                ? isSticky
                     ? baseZIndex + 2
                     : baseZIndex + 1
-                : isStickyColumn
+                : isSticky
                   ? 2
                   : undefined,
-
-            ...(headerConfig.sx || {}),
-            ...sx,
-            // Explicit left needed if sticky
-            ...(isStickyColumn ? { left: currentLeft } : {}),
         };
 
-        // Custom gradient border for sticky headers (re-implementing old StickyTableHeader logic)
-        if (isStickyColumn) {
+        // Set border using gradient (needed for sticky cells)
+        if (isSticky) {
             headerSx["&::after"] = {
                 content: '""',
                 position: "absolute",
