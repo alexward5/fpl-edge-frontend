@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
@@ -26,10 +25,6 @@ export default function PositionSelect(props: Props) {
     PLAYER_POSITIONS.forEach((listItem: string, index: number) => {
         listOrder[listItem] = index;
     });
-
-    useEffect(() => {
-        setSelectedList(PLAYER_POSITIONS);
-    }, []);
 
     const handleChange = (event: SelectChangeEvent<typeof selectedList>) => {
         const value = event.target.value;
