@@ -29,13 +29,13 @@ const tableConfig: TableConfig = {
             sx: {
                 width: "130px",
                 minWidth: "130px",
-                paddingLeft: "8px",
+                paddingLeft: "6px",
             },
             headerConfig: {
                 label: "Player",
                 numeric: false,
                 sx: {
-                    paddingLeft: "8px",
+                    paddingLeft: "6px",
                 },
             },
         },

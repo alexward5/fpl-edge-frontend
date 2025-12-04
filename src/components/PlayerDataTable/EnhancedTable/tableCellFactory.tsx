@@ -137,7 +137,7 @@ export const createRowCells = (
                             style={{
                                 width: "22px",
                                 height: "22px",
-                                marginRight: "6px",
+                                marginRight: "5px",
                             }}
                         />
                         {cellValue}
