@@ -51,8 +51,15 @@ const getStickyStyle = (
     // Use explicit config if present, otherwise fallback to "last sticky column" logic
     const hasRightBorder = column.stickyRightBorder ?? isLastSticky ?? false;
 
+    // Default padding for cells (matches header default)
+    const defaultPadding = {
+        paddingLeft: "4px",
+        paddingRight: "4px",
+    };
+
     if (!isSticky) {
         return {
+            ...defaultPadding,
             ...column.sx,
             ...additionalSx,
         };
@@ -79,6 +86,7 @@ const getStickyStyle = (
             xs: 1,
             md: theme.zIndex.appBar + (isHeader ? 2 : 1),
         },
+        ...defaultPadding,
         ...column.sx,
         ...additionalSx,
     };
