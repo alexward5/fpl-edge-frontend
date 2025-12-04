@@ -64,6 +64,7 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
                     <FormGroup>
                         <Stack spacing={0.5} sx={{ padding: theme.spacing(1) }}>
                             <Checkbox
+                                name="team-filter-select-all"
                                 indeterminate={someTeamsSelected}
                                 checked={allTeamsSelected}
                                 onChange={handleToggleAllTeams}

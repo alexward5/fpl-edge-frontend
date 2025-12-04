@@ -49,6 +49,7 @@ export default function PositionSelect(props: Props) {
                 <Select
                     labelId={"position-select"}
                     id={"position-select"}
+                    name={"position-select"}
                     multiple
                     value={selectedList}
                     onChange={handleChange}

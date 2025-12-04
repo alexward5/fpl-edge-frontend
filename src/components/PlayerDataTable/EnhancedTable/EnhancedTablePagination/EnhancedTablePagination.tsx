@@ -49,6 +49,9 @@ export default function EnhancedTablePagination(props: Props) {
                             color: theme.themeMainTextColor,
                         },
                     },
+                    inputProps: {
+                        name: "rows-per-page-select",
+                    },
                 },
             }}
         />
