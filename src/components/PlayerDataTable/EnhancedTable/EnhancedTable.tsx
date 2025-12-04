@@ -4,18 +4,14 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-// import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import EnhancedTableHead from "./EnhancedTableHead/EnhancedTableHead";
-import EnhancedTableCell from "./EnhancedTableCell/EnhancedTableCell";
-import StickyTableCell from "./StickyTableCell/StickyTableCell";
 import EmptyTableRow from "./EmptyTableRow/EmptyTableRow";
-import tableConfigJson from "../PlayerDataTableConfig.json";
+import tableConfig from "../PlayerDataTableConfig";
+import { createRowCells } from "./tableCellFactory";
 
 import type DisplayedData from "../../../types/DisplayedData";
-
-const tableConfig = tableConfigJson as { columns: any[] };
 
 type Order = "asc" | "desc";
 
@@ -108,6 +104,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                     onSelectAllClick={handleSelectAllClick}
                     onRequestSort={handleRequestSort}
                     rowCount={rows.length}
+                    columns={tableConfig.columns}
                 />
                 <TableBody>
                     {visibleRows.map((row, index) => {
@@ -118,17 +115,13 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
                         return (
                             <TableRow
-                                // hover
                                 onClick={(event) =>
                                     handleClick(event, row.fplPlayerCode)
                                 }
-                                // role="checkbox"
                                 aria-checked={isItemSelected}
                                 tabIndex={-1}
                                 key={row.fplPlayerCode}
-                                // selected={isItemSelected}
                                 selected={false}
-                                // sx={{ cursor: "pointer" }}
                                 sx={{
                                     backgroundColor:
                                         index % 2 === 0
@@ -136,71 +129,12 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                                             : theme.darkThemeSurfaceColor_3,
                                 }}
                             >
-                                {/* <TableCell padding="checkbox">
-                                <Checkbox
-                                    color="primary"
-                                    size="small"
-                                    checked={isItemSelected}
-                                    inputProps={{
-                                        "aria-labelledby": rowId,
-                                    }}
-                                    name={`${row.fplPlayerCode.toString()}-checkbox`}
-                                />
-                            </TableCell> */}
-                                {tableConfig.columns.map(
-                                    (column, columnIndex) => {
-                                        const cellValue =
-                                            row[
-                                                column.id as keyof DisplayedData
-                                            ];
-
-                                        // Only first column gets id for accessibility/row identification
-                                        const cellId =
-                                            columnIndex === 0
-                                                ? rowId
-                                                : undefined;
-
-                                        // Check if this column is currently selected for sorting
-                                        const isSelectedColumn =
-                                            column.id === orderColumn;
-
-                                        // Create enhanced column config with styling for selected column
-                                        const enhancedColumnConfig = {
-                                            ...column,
-                                            sx: {
-                                                ...column.sx,
-                                                ...(isSelectedColumn && {
-                                                    fontWeight:
-                                                        theme.typography
-                                                            .fontWeightBold,
-                                                }),
-                                            },
-                                        };
-
-                                        return column.sticky ? (
-                                            <StickyTableCell
-                                                key={column.id}
-                                                columnConfig={
-                                                    enhancedColumnConfig
-                                                }
-                                                component="th"
-                                                id={cellId}
-                                                scope="row"
-                                            >
-                                                {cellValue}
-                                            </StickyTableCell>
-                                        ) : (
-                                            <EnhancedTableCell
-                                                key={column.id}
-                                                columnConfig={
-                                                    enhancedColumnConfig
-                                                }
-                                                id={cellId}
-                                            >
-                                                {cellValue}
-                                            </EnhancedTableCell>
-                                        );
-                                    },
+                                {createRowCells(
+                                    row,
+                                    tableConfig.columns,
+                                    rowId,
+                                    orderColumn,
+                                    theme,
                                 )}
                             </TableRow>
                         );
@@ -209,7 +143,7 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                         Array.from({ length: emptyRows }).map((_, index) => (
                             <EmptyTableRow
                                 key={`empty-${index}`}
-                                config={tableConfig}
+                                columns={tableConfig.columns}
                             />
                         ))}
                 </TableBody>
