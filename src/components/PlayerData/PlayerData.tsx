@@ -19,7 +19,6 @@ const GET_PLAYER_DATA = gql(`
             fpl_player_cost
             fpl_selected_by_percent
             player_gameweek_data {
-                fbref_round
                 fbref_minutes
                 fbref_npxg
                 fpl_gameweek
