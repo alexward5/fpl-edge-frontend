@@ -19,7 +19,7 @@ const TeamFilter: React.FC<Props> = ({ displayedTeams, setDisplayedTeams }) => {
     const theme = useTheme();
 
     const teamNames = teams
-        .map((team) => team.fbref_team)
+        .map((team) => team.name)
         .sort((a, b) => a.localeCompare(b));
 
     const selectedCount = displayedTeams.length;

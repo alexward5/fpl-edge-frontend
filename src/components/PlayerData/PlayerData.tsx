@@ -12,28 +12,32 @@ import { useQuery } from "@apollo/client";
 const GET_PLAYER_DATA = gql(`
     query GetData {
         players {
-            fpl_player_code
+            fpl_player_id
             fpl_web_name
-            fbref_team
+            fpl_team_name
             fpl_player_position
             fpl_player_cost
             fpl_selected_by_percent
             player_gameweek_data {
-                fbref_minutes
-                fbref_npxg
-                fpl_gameweek
+                fpl_minutes
+                fpl_round
                 fpl_total_points
                 fpl_goals_scored
                 fpl_assists
                 fpl_bps
                 fpl_clean_sheet
                 fpl_defensive_contribution
-                calc_fpl_npxp
-                fbref_xg_assist
+                fpl_expected_goals
+                fpl_expected_assists
+                fpl_xgi
+                sm_shots_on_target
+                sm_big_chances_created
+                sm_key_passes
+                calc_xgap
             }
         }
         teams {
-            fbref_team
+            name
         }
         events {
             id
@@ -79,7 +83,7 @@ export default function PlayerData(props: Props) {
             playersLoaded = true;
         }
         if (data?.teams) {
-            const teamNames = data.teams.map((team) => team.fbref_team);
+            const teamNames = data.teams.map((team) => team.name);
             setDisplayedTeams(teamNames);
             teamsLoaded = true;
         }

@@ -16,8 +16,8 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Events = {
-  __typename?: 'Events';
+export type Event = {
+  __typename?: 'Event';
   finished: Scalars['Boolean']['output'];
   id: Scalars['Int']['output'];
   is_current: Scalars['Boolean']['output'];
@@ -25,56 +25,50 @@ export type Events = {
 
 export type Player = {
   __typename?: 'Player';
-  fbref_team: Scalars['String']['output'];
-  fpl_player_code: Scalars['Int']['output'];
   fpl_player_cost: Scalars['Float']['output'];
   fpl_player_id: Scalars['String']['output'];
   fpl_player_position: Scalars['String']['output'];
   fpl_selected_by_percent: Scalars['Float']['output'];
+  fpl_team_name: Scalars['String']['output'];
   fpl_web_name: Scalars['String']['output'];
   player_gameweek_data: Array<PlayerGameweekData>;
 };
 
 export type PlayerGameweekData = {
   __typename?: 'PlayerGameweekData';
-  calc_fpl_npxp: Scalars['Float']['output'];
-  fbref_minutes: Scalars['Int']['output'];
-  fbref_npxg: Scalars['Float']['output'];
-  fbref_round: Scalars['Int']['output'];
-  fbref_xg_assist: Scalars['Float']['output'];
+  calc_xgap: Scalars['Float']['output'];
   fpl_assists: Scalars['Int']['output'];
   fpl_bps: Scalars['Int']['output'];
   fpl_clean_sheet: Scalars['Int']['output'];
   fpl_defensive_contribution: Scalars['Int']['output'];
-  fpl_gameweek: Scalars['Int']['output'];
+  fpl_expected_assists: Scalars['Float']['output'];
+  fpl_expected_goals: Scalars['Float']['output'];
   fpl_goals_scored: Scalars['Int']['output'];
+  fpl_minutes: Scalars['Int']['output'];
+  fpl_round: Scalars['Int']['output'];
   fpl_total_points: Scalars['Int']['output'];
+  fpl_xgi: Scalars['Float']['output'];
+  sm_big_chances_created: Scalars['Int']['output'];
+  sm_key_passes: Scalars['Int']['output'];
+  sm_shots_on_target: Scalars['Int']['output'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  events: Array<Events>;
+  events: Array<Event>;
   players: Array<Player>;
   teams: Array<Team>;
 };
 
 export type Team = {
   __typename?: 'Team';
-  fbref_team: Scalars['String']['output'];
-  fbref_team_matchlog: Array<TeamMatchlog>;
-};
-
-export type TeamMatchlog = {
-  __typename?: 'TeamMatchlog';
-  fbref_match_date: Scalars['String']['output'];
-  fbref_round: Scalars['Int']['output'];
-  match_number: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type GetDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetDataQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', fpl_player_code: number, fpl_web_name: string, fbref_team: string, fpl_player_position: string, fpl_player_cost: number, fpl_selected_by_percent: number, player_gameweek_data: Array<{ __typename?: 'PlayerGameweekData', fbref_minutes: number, fbref_npxg: number, fpl_gameweek: number, fpl_total_points: number, fpl_goals_scored: number, fpl_assists: number, fpl_bps: number, fpl_clean_sheet: number, fpl_defensive_contribution: number, calc_fpl_npxp: number, fbref_xg_assist: number }> }>, teams: Array<{ __typename?: 'Team', fbref_team: string }>, events: Array<{ __typename?: 'Events', id: number, is_current: boolean, finished: boolean }> };
+export type GetDataQuery = { __typename?: 'Query', players: Array<{ __typename?: 'Player', fpl_player_id: string, fpl_web_name: string, fpl_team_name: string, fpl_player_position: string, fpl_player_cost: number, fpl_selected_by_percent: number, player_gameweek_data: Array<{ __typename?: 'PlayerGameweekData', fpl_minutes: number, fpl_round: number, fpl_total_points: number, fpl_goals_scored: number, fpl_assists: number, fpl_bps: number, fpl_clean_sheet: number, fpl_defensive_contribution: number, fpl_expected_goals: number, fpl_expected_assists: number, fpl_xgi: number, sm_shots_on_target: number, sm_big_chances_created: number, sm_key_passes: number, calc_xgap: number }> }>, teams: Array<{ __typename?: 'Team', name: string }>, events: Array<{ __typename?: 'Event', id: number, is_current: boolean, finished: boolean }> };
 
 
-export const GetDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"players"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fpl_player_code"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_web_name"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_position"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_cost"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_selected_by_percent"}},{"kind":"Field","name":{"kind":"Name","value":"player_gameweek_data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_minutes"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_npxg"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_gameweek"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_total_points"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_goals_scored"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_assists"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_bps"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_clean_sheet"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_defensive_contribution"}},{"kind":"Field","name":{"kind":"Name","value":"calc_fpl_npxp"}},{"kind":"Field","name":{"kind":"Name","value":"fbref_xg_assist"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"teams"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbref_team"}}]}},{"kind":"Field","name":{"kind":"Name","value":"events"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"is_current"}},{"kind":"Field","name":{"kind":"Name","value":"finished"}}]}}]}}]} as unknown as DocumentNode<GetDataQuery, GetDataQueryVariables>;
+export const GetDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"players"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fpl_player_id"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_web_name"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_team_name"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_position"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_player_cost"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_selected_by_percent"}},{"kind":"Field","name":{"kind":"Name","value":"player_gameweek_data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fpl_minutes"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_round"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_total_points"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_goals_scored"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_assists"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_bps"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_clean_sheet"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_defensive_contribution"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_expected_goals"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_expected_assists"}},{"kind":"Field","name":{"kind":"Name","value":"fpl_xgi"}},{"kind":"Field","name":{"kind":"Name","value":"sm_shots_on_target"}},{"kind":"Field","name":{"kind":"Name","value":"sm_big_chances_created"}},{"kind":"Field","name":{"kind":"Name","value":"sm_key_passes"}},{"kind":"Field","name":{"kind":"Name","value":"calc_xgap"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"teams"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"events"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"is_current"}},{"kind":"Field","name":{"kind":"Name","value":"finished"}}]}}]}}]} as unknown as DocumentNode<GetDataQuery, GetDataQueryVariables>;

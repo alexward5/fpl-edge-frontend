@@ -1,8 +1,8 @@
 type DisplayedData = {
     rank: number;
-    fplPlayerCode: number;
+    fplPlayerId: string;
     fplWebName: string;
-    fbrefTeam: string;
+    fplTeamName: string;
     fplPlayerPosition: string;
     fplPlayerCost: string;
     fplSelectedByPercent: string;
@@ -10,7 +10,7 @@ type DisplayedData = {
     sumMinutes: number;
     sumNPxG: string;
     sumxA: string;
-    sumNPxP: string;
+    sumxGAP: string;
     sumPoints: number;
     sumGoals: number;
     sumAssists: number;

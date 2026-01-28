@@ -23,16 +23,28 @@ const getTeamLogoMapping = (teamName: string): string => {
         "Crystal Palace": "Crystal-Palace-FC-logo.png",
         Everton: "Everton-FC-logo.png",
         Fulham: "Fulham-FC-logo.png",
+        Leeds: "Leeds-United-FC-logo.png",
         "Leeds United": "Leeds-United-FC-logo.png",
         Liverpool: "Liverpool-FC-logo.png",
+        "Man City": "Manchester-City-FC-logo.png",
+        "Man Utd": "Manchester-United-FC-logo.png",
         "Manchester City": "Manchester-City-FC-logo.png",
         "Manchester Utd": "Manchester-United-FC-logo.png",
+        Newcastle: "Newcastle-United-logo.png",
         "Newcastle Utd": "Newcastle-United-logo.png",
+        "Nott'm Forest": "Nottingham-Forest-FC-logo.png",
         "Nott'ham Forest": "Nottingham-Forest-FC-logo.png",
+        "Nottingham Forest": "Nottingham-Forest-FC-logo.png",
         Sunderland: "Sunderland-logo.png",
+        Spurs: "Tottenham-Hotspur-logo.png",
         Tottenham: "Tottenham-Hotspur-logo.png",
         "West Ham": "West-Ham-United-FC-logo.png",
         Wolves: "Wolverhampton-Wanderers-logo.png",
+        // Possible variants from other sources
+        "Sheffield Utd": "Premier-League-Logo.png",
+        Luton: "Premier-League-Logo.png",
+        Ipswich: "Premier-League-Logo.png",
+        Southampton: "Premier-League-Logo.png",
     };
 
     const filename = map[teamName] || "Premier-League-Logo.png";
@@ -140,8 +152,8 @@ export const createRowCells = (
                 {column.id === "fplWebName" ? (
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <img
-                            src={getTeamLogoMapping(row.fbrefTeam)}
-                            alt={row.fbrefTeam}
+                            src={getTeamLogoMapping(row.fplTeamName)}
+                            alt={row.fplTeamName}
                             style={{
                                 width: "22px",
                                 height: "22px",

@@ -72,7 +72,7 @@ export default function PlayerDataTable(props: Props) {
             let sumMinutes = 0;
             let sumNPxG = 0;
             let sumxA = 0;
-            let sumNPxP = 0;
+            let sumxGAP = 0;
             let sumPoints = 0;
             let sumGoals = 0;
             let sumAssists = 0;
@@ -82,14 +82,14 @@ export default function PlayerDataTable(props: Props) {
 
             player.player_gameweek_data.forEach((playerGameweek) => {
                 if (
-                    playerGameweek.fpl_gameweek >= gameweekRange[0] &&
-                    playerGameweek.fpl_gameweek <= gameweekRange[1]
+                    playerGameweek.fpl_round >= gameweekRange[0] &&
+                    playerGameweek.fpl_round <= gameweekRange[1]
                 ) {
                     gamesPlayed++;
-                    sumMinutes += playerGameweek.fbref_minutes;
-                    sumNPxG += playerGameweek.fbref_npxg;
-                    sumxA += playerGameweek.fbref_xg_assist;
-                    sumNPxP += playerGameweek.calc_fpl_npxp;
+                    sumMinutes += playerGameweek.fpl_minutes;
+                    sumNPxG += playerGameweek.fpl_expected_goals;
+                    sumxA += playerGameweek.fpl_expected_assists;
+                    sumxGAP += playerGameweek.calc_xgap;
 
                     sumPoints += playerGameweek.fpl_total_points;
                     sumGoals += playerGameweek.fpl_goals_scored;
@@ -103,9 +103,9 @@ export default function PlayerDataTable(props: Props) {
 
             return {
                 rank: 0, // Placeholder, will be set later on
-                fplPlayerCode: player.fpl_player_code,
+                fplPlayerId: player.fpl_player_id,
                 fplWebName: player.fpl_web_name,
-                fbrefTeam: player.fbref_team,
+                fplTeamName: player.fpl_team_name,
                 fplPlayerPosition: player.fpl_player_position,
                 fplPlayerCost: player.fpl_player_cost.toFixed(1),
                 fplSelectedByPercent: player.fpl_selected_by_percent.toFixed(1),
@@ -113,7 +113,7 @@ export default function PlayerDataTable(props: Props) {
                 sumMinutes: sumMinutes,
                 sumNPxG: sumNPxG.toFixed(1),
                 sumxA: sumxA.toFixed(1),
-                sumNPxP: sumNPxP.toFixed(1),
+                sumxGAP: sumxGAP.toFixed(1),
                 sumPoints: sumPoints,
                 sumGoals: sumGoals,
                 sumAssists: sumAssists,
@@ -136,7 +136,7 @@ export default function PlayerDataTable(props: Props) {
     // Filter by Team and Price
     const displayedData = useMemo(() => {
         return rankedData.filter((player) => {
-            const isDisplayedTeam = displayedTeams.includes(player.fbrefTeam);
+            const isDisplayedTeam = displayedTeams.includes(player.fplTeamName);
             const cost = parseFloat(player.fplPlayerCost);
             const min = parseFloat(
                 playerPriceRange[0] ? playerPriceRange[0] : "0",

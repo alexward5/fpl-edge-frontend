@@ -31,22 +31,22 @@ type Props = {
 const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
     const { rows, page, rowsPerPage, order, orderBy, onRequestSort } = props;
 
-    const [selected, setSelected] = useState<readonly number[]>([]);
+    const [selected, setSelected] = useState<readonly string[]>([]);
 
     const handleSelectAllClick = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         if (event.target.checked) {
-            const newSelected = rows.map((n: DisplayedData) => n.fplPlayerCode);
+            const newSelected = rows.map((n: DisplayedData) => n.fplPlayerId);
             setSelected(newSelected);
             return;
         }
         setSelected([]);
     };
 
-    const handleClick = (_: React.MouseEvent<unknown>, id: number) => {
+    const handleClick = (_: React.MouseEvent<unknown>, id: string) => {
         const selectedIndex = selected.indexOf(id);
-        let newSelected: readonly number[] = [];
+        let newSelected: readonly string[] = [];
 
         if (selectedIndex === -1) {
             newSelected = newSelected.concat(selected, id);
@@ -100,18 +100,18 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
                 <TableBody>
                     {visibleRows.map((row, index) => {
                         const isItemSelected = selected.includes(
-                            row.fplPlayerCode,
+                            row.fplPlayerId,
                         );
                         const rowId = `enhanced-table-row-${index}`;
 
                         return (
                             <TableRow
                                 onClick={(event) =>
-                                    handleClick(event, row.fplPlayerCode)
+                                    handleClick(event, row.fplPlayerId)
                                 }
                                 aria-checked={isItemSelected}
                                 tabIndex={-1}
-                                key={row.fplPlayerCode}
+                                key={row.fplPlayerId}
                                 selected={false}
                                 sx={{
                                     backgroundColor:

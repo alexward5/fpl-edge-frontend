@@ -40,7 +40,7 @@ const tableConfig: TableConfig = {
             },
         },
         {
-            id: "fbrefTeam",
+            id: "fplTeamName",
             sx: {
                 width: "120px",
                 minWidth: "120px",
@@ -160,14 +160,14 @@ const tableConfig: TableConfig = {
             },
         },
         {
-            id: "sumNPxP",
+            id: "sumxGAP",
             sx: {
                 width: "92px",
                 minWidth: "92px",
                 textAlign: "right",
             },
             headerConfig: {
-                label: "NPxGAP",
+                label: "xGAP",
                 numeric: true,
             },
         },
