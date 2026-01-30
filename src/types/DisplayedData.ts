@@ -8,7 +8,7 @@ type DisplayedData = {
     fplSelectedByPercent: string;
     gamesPlayed: number;
     sumMinutes: number;
-    sumNPxG: string;
+    sumxG: string;
     sumxA: string;
     sumxGAP: string;
     sumPoints: number;

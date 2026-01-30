@@ -70,7 +70,7 @@ export default function PlayerDataTable(props: Props) {
             // Sum player expected stats from gameweek range
             let gamesPlayed = 0;
             let sumMinutes = 0;
-            let sumNPxG = 0;
+            let sumxG = 0;
             let sumxA = 0;
             let sumxGAP = 0;
             let sumPoints = 0;
@@ -87,7 +87,7 @@ export default function PlayerDataTable(props: Props) {
                 ) {
                     gamesPlayed++;
                     sumMinutes += playerGameweek.fpl_minutes;
-                    sumNPxG += playerGameweek.fpl_expected_goals;
+                    sumxG += playerGameweek.fpl_expected_goals;
                     sumxA += playerGameweek.fpl_expected_assists;
                     sumxGAP += playerGameweek.calc_xgap;
 
@@ -111,7 +111,7 @@ export default function PlayerDataTable(props: Props) {
                 fplSelectedByPercent: player.fpl_selected_by_percent.toFixed(1),
                 gamesPlayed: gamesPlayed,
                 sumMinutes: sumMinutes,
-                sumNPxG: sumNPxG.toFixed(1),
+                sumxG: sumxG.toFixed(1),
                 sumxA: sumxA.toFixed(1),
                 sumxGAP: sumxGAP.toFixed(1),
                 sumPoints: sumPoints,

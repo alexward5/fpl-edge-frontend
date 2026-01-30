@@ -136,14 +136,14 @@ const tableConfig: TableConfig = {
             },
         },
         {
-            id: "sumNPxG",
+            id: "sumxG",
             sx: {
                 width: "78px",
                 minWidth: "78px",
                 textAlign: "right",
             },
             headerConfig: {
-                label: "NPxG",
+                label: "xG",
                 numeric: true,
             },
         },
