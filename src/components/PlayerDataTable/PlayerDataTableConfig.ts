@@ -54,8 +54,8 @@ const tableConfig: TableConfig = {
         {
             id: "fplPlayerPosition",
             sx: {
-                width: "88px",
-                minWidth: "88px",
+                width: "90px",
+                minWidth: "90px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -90,8 +90,8 @@ const tableConfig: TableConfig = {
         {
             id: "gamesPlayed",
             sx: {
-                width: "78px",
-                minWidth: "78px",
+                width: "82px",
+                minWidth: "82px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -126,8 +126,8 @@ const tableConfig: TableConfig = {
         {
             id: "sumAssists",
             sx: {
-                width: "85px",
-                minWidth: "85px",
+                width: "82px",
+                minWidth: "82px",
                 textAlign: "right",
             },
             headerConfig: {
@@ -160,14 +160,62 @@ const tableConfig: TableConfig = {
             },
         },
         {
+            id: "sumxGI",
+            sx: {
+                width: "78px",
+                minWidth: "78px",
+                textAlign: "right",
+            },
+            headerConfig: {
+                label: "xGI",
+                numeric: true,
+            },
+        },
+        {
             id: "sumxGAP",
             sx: {
-                width: "92px",
-                minWidth: "92px",
+                width: "88px",
+                minWidth: "88px",
                 textAlign: "right",
             },
             headerConfig: {
                 label: "xGAP",
+                numeric: true,
+            },
+        },
+        {
+            id: "sumShotsOnTarget",
+            sx: {
+                width: "78px",
+                minWidth: "78px",
+                textAlign: "right",
+            },
+            headerConfig: {
+                label: "SoT",
+                numeric: true,
+            },
+        },
+        {
+            id: "sumBigChancesCreated",
+            sx: {
+                width: "78px",
+                minWidth: "78px",
+                textAlign: "right",
+            },
+            headerConfig: {
+                label: "BCC",
+                numeric: true,
+            },
+        },
+        {
+            id: "sumKeyPasses",
+            sx: {
+                width: "78px",
+                minWidth: "78px",
+                textAlign: "right",
+            },
+            headerConfig: {
+                label: "KP",
                 numeric: true,
             },
         },

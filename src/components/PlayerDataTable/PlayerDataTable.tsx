@@ -72,7 +72,11 @@ export default function PlayerDataTable(props: Props) {
             let sumMinutes = 0;
             let sumxG = 0;
             let sumxA = 0;
+            let sumxGI = 0;
             let sumxGAP = 0;
+            let sumShotsOnTarget = 0;
+            let sumBigChancesCreated = 0;
+            let sumKeyPasses = 0;
             let sumPoints = 0;
             let sumGoals = 0;
             let sumAssists = 0;
@@ -89,8 +93,12 @@ export default function PlayerDataTable(props: Props) {
                     sumMinutes += playerGameweek.fpl_minutes;
                     sumxG += playerGameweek.fpl_expected_goals;
                     sumxA += playerGameweek.fpl_expected_assists;
+                    sumxGI += playerGameweek.fpl_xgi;
                     sumxGAP += playerGameweek.calc_xgap;
-
+                    sumShotsOnTarget += playerGameweek.sm_shots_on_target;
+                    sumBigChancesCreated +=
+                        playerGameweek.sm_big_chances_created;
+                    sumKeyPasses += playerGameweek.sm_key_passes;
                     sumPoints += playerGameweek.fpl_total_points;
                     sumGoals += playerGameweek.fpl_goals_scored;
                     sumAssists += playerGameweek.fpl_assists;
@@ -113,7 +121,11 @@ export default function PlayerDataTable(props: Props) {
                 sumMinutes: sumMinutes,
                 sumxG: sumxG.toFixed(1),
                 sumxA: sumxA.toFixed(1),
+                sumxGI: sumxGI.toFixed(1),
                 sumxGAP: sumxGAP.toFixed(1),
+                sumShotsOnTarget: sumShotsOnTarget,
+                sumBigChancesCreated: sumBigChancesCreated,
+                sumKeyPasses: sumKeyPasses,
                 sumPoints: sumPoints,
                 sumGoals: sumGoals,
                 sumAssists: sumAssists,

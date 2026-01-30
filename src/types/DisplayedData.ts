@@ -10,7 +10,11 @@ type DisplayedData = {
     sumMinutes: number;
     sumxG: string;
     sumxA: string;
+    sumxGI: string;
     sumxGAP: string;
+    sumShotsOnTarget: number;
+    sumBigChancesCreated: number;
+    sumKeyPasses: number;
     sumPoints: number;
     sumGoals: number;
     sumAssists: number;
