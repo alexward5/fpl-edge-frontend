@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useMemo, useEffect, useDeferredValue } from "react";
 import { orderBy } from "natural-orderby";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
@@ -60,6 +60,10 @@ export default function PlayerDataTable(props: Props) {
         setOrderBy(property);
     };
 
+    // Defer gameweek range so the slider stays responsive while the
+    // table recalculates in a lower-priority background render
+    const deferredGameweekRange = useDeferredValue(gameweekRange);
+
     // Filter by Position and calculate stats
     const positionFilteredData = useMemo(() => {
         const filtered = players.filter((player) =>
@@ -67,7 +71,6 @@ export default function PlayerDataTable(props: Props) {
         );
 
         return filtered.map((player) => {
-            // Sum player expected stats from gameweek range
             let gamesPlayed = 0;
             let sumMinutes = 0;
             let sumxG = 0;
@@ -86,8 +89,8 @@ export default function PlayerDataTable(props: Props) {
 
             player.player_gameweek_data.forEach((playerGameweek) => {
                 if (
-                    playerGameweek.fpl_round >= gameweekRange[0] &&
-                    playerGameweek.fpl_round <= gameweekRange[1]
+                    playerGameweek.fpl_round >= deferredGameweekRange[0] &&
+                    playerGameweek.fpl_round <= deferredGameweekRange[1]
                 ) {
                     gamesPlayed++;
                     sumMinutes += playerGameweek.fpl_minutes;
@@ -117,24 +120,24 @@ export default function PlayerDataTable(props: Props) {
                 fplPlayerPosition: player.fpl_player_position,
                 fplPlayerCost: player.fpl_player_cost.toFixed(1),
                 fplSelectedByPercent: player.fpl_selected_by_percent.toFixed(1),
-                gamesPlayed: gamesPlayed,
-                sumMinutes: sumMinutes,
+                gamesPlayed,
+                sumMinutes,
                 sumxG: sumxG.toFixed(1),
                 sumxA: sumxA.toFixed(1),
                 sumxGI: sumxGI.toFixed(1),
                 sumxGAP: sumxGAP.toFixed(1),
-                sumShotsOnTarget: sumShotsOnTarget,
-                sumBigChancesCreated: sumBigChancesCreated,
-                sumKeyPasses: sumKeyPasses,
-                sumPoints: sumPoints,
-                sumGoals: sumGoals,
-                sumAssists: sumAssists,
-                sumDefensiveContributions: sumDefensiveContributions,
-                sumBPS: sumBPS,
-                sumCleansheets: sumCleansheets,
+                sumShotsOnTarget,
+                sumBigChancesCreated,
+                sumKeyPasses,
+                sumPoints,
+                sumGoals,
+                sumAssists,
+                sumDefensiveContributions,
+                sumBPS,
+                sumCleansheets,
             };
         });
-    }, [players, displayedPositions, gameweekRange]);
+    }, [players, displayedPositions, deferredGameweekRange]);
 
     // Sort and Rank
     const rankedData = useMemo(() => {

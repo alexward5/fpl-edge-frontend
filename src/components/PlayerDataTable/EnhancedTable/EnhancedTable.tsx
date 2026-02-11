@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, memo } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -28,7 +28,7 @@ type Props = {
 
 // Use forwardRef to pass ref of TableContainer to the parent component
 // so that we can scroll to the top of the table when user changes page
-const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
+const EnhancedTable = memo(forwardRef<HTMLDivElement, Props>((props, ref) => {
     const { rows, page, rowsPerPage, order, orderBy, onRequestSort } = props;
 
     const [selected, setSelected] = useState<readonly string[]>([]);
@@ -141,6 +141,6 @@ const EnhancedTable = forwardRef<HTMLDivElement, Props>((props, ref) => {
             </Table>
         </TableContainer>
     );
-});
+}));
 
 export default EnhancedTable;
