@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import {
+    useState,
+    useEffect,
+    startTransition,
+    type Dispatch,
+    type SetStateAction,
+} from "react";
 import { gql } from "../../__generated__/gql";
 import { DataProvider } from "../../contexts/DataContext";
 import Box from "@mui/material/Box";
@@ -53,57 +59,95 @@ type Props = {
     mobileOpen: boolean;
 };
 
+type DerivedState = {
+    playerPriceRange: [string, string];
+    displayedTeams: string[];
+    gameweekRange: [number, number];
+};
+
 export default function PlayerData(props: Props) {
     const { handleDrawerClose, handleDrawerTransitionEnd, mobileOpen } = props;
 
-    const [gameweekRange, setGameweekRange] = useState<number[]>([1, 1]);
     const [displayedPositions, setDisplayedPositions] = useState<string[]>([
         "DEF",
         "MID",
         "FWD",
     ]);
-    const [displayedTeams, setDisplayedTeams] = useState<string[]>([]);
-    const [playerPriceRange, setPlayerPriceRange] = useState<string[]>([
-        "",
-        "",
-    ]);
+    const [derivedState, setDerivedState] = useState<DerivedState | null>(null);
 
-    const dataLoaded = useRef(false);
     const { loading, data } = useQuery(GET_PLAYER_DATA);
     useEffect(() => {
-        let playersLoaded = false;
-        let teamsLoaded = false;
-        let gameweeksLoaded = false;
+        if (!data?.players || !data?.teams || !data?.events) return;
 
-        if (data?.players) {
-            const playerCosts = data.players.map((p) => p.fpl_player_cost);
-            const maxPrice = Math.max(...playerCosts).toFixed(1);
-            const minPrice = Math.min(...playerCosts).toFixed(1);
-            setPlayerPriceRange([String(minPrice), String(maxPrice)]);
-            playersLoaded = true;
-        }
-        if (data?.teams) {
-            const teamNames = data.teams.map((team) => team.name);
-            setDisplayedTeams(teamNames);
-            teamsLoaded = true;
-        }
-        if (data?.events) {
-            const numGameweeks = data.events.filter(
-                (event) => event.finished || event.is_current,
-            ).length;
-            setGameweekRange([1, numGameweeks]);
-            gameweeksLoaded = true;
-        }
+        const playerCosts = data.players.map((p) => p.fpl_player_cost);
+        const maxPrice = Math.max(...playerCosts).toFixed(1);
+        const minPrice = Math.min(...playerCosts).toFixed(1);
+        const teamNames = data.teams.map((team) => team.name);
+        const numGameweeks = data.events.filter(
+            (event) => event.finished || event.is_current,
+        ).length;
 
-        if (playersLoaded && teamsLoaded && gameweeksLoaded) {
-            dataLoaded.current = true;
-        }
+        startTransition(() => {
+            setDerivedState({
+                playerPriceRange: [String(minPrice), String(maxPrice)],
+                displayedTeams: teamNames,
+                gameweekRange: [1, numGameweeks],
+            });
+        });
     }, [data]);
 
     const theme = useTheme();
 
-    if (loading || !data?.players || !dataLoaded.current)
-        return <LoadingIndicator />;
+    if (loading || !data?.players || !derivedState) return <LoadingIndicator />;
+
+    const {
+        playerPriceRange,
+        displayedTeams,
+        gameweekRange,
+    } = derivedState;
+
+    const setDisplayedTeams: Dispatch<SetStateAction<string[]>> = (value) =>
+        setDerivedState((prev) =>
+            prev
+                ? {
+                      ...prev,
+                      displayedTeams:
+                          typeof value === "function"
+                              ? value(prev.displayedTeams)
+                              : value,
+                  }
+                : prev,
+        );
+    const setPlayerPriceRange: Dispatch<SetStateAction<string[]>> = (value) =>
+        setDerivedState((prev) =>
+            prev
+                ? {
+                      ...prev,
+                      playerPriceRange:
+                          typeof value === "function"
+                              ? (value(prev.playerPriceRange) as [
+                                    string,
+                                    string,
+                                ])
+                              : (value as [string, string]),
+                  }
+                : prev,
+        );
+    const setGameweekRange: Dispatch<SetStateAction<number[]>> = (value) =>
+        setDerivedState((prev) =>
+            prev
+                ? {
+                      ...prev,
+                      gameweekRange:
+                          typeof value === "function"
+                              ? (value(prev.gameweekRange) as [
+                                    number,
+                                    number,
+                                ])
+                              : (value as [number, number]),
+                  }
+                : prev,
+        );
 
     return (
         <DataProvider value={data}>
