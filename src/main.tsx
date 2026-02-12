@@ -12,7 +12,10 @@ const apiUrl =
 
 const client = new ApolloClient({
     uri: apiUrl,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        // Slightly reduces cache work on write; helps on slower (e.g. mobile) devices
+        resultCaching: false,
+    }),
     connectToDevTools: import.meta.env.DEV,
 });
 
