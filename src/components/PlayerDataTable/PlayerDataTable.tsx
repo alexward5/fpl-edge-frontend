@@ -92,7 +92,9 @@ export default function PlayerDataTable(props: Props) {
                     playerGameweek.fpl_round >= deferredGameweekRange[0] &&
                     playerGameweek.fpl_round <= deferredGameweekRange[1]
                 ) {
-                    gamesPlayed++;
+                    if (playerGameweek.fpl_minutes > 0) {
+                        gamesPlayed++;
+                    }
                     sumMinutes += playerGameweek.fpl_minutes;
                     sumxG += playerGameweek.fpl_expected_goals;
                     sumxA += playerGameweek.fpl_expected_assists;
