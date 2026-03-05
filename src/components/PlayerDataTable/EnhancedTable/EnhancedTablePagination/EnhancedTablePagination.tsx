@@ -25,7 +25,6 @@ export default function EnhancedTablePagination(props: Props) {
     ) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
-        scrollToTop(); // Scroll to top of table
     };
 
     const theme = useTheme();

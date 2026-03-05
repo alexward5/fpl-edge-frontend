@@ -42,10 +42,6 @@ export default function PlayerDataTable(props: Props) {
         scrollToTop();
     }, [displayedPositions, displayedTeams, playerPriceRange, gameweekRange]);
 
-    // Scroll to top when page changes
-    useEffect(() => {
-        scrollToTop();
-    }, [page]);
 
     const { players } = useData();
     const theme = useTheme();
