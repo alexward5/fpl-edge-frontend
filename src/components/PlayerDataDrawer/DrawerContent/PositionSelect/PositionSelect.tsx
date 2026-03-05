@@ -41,7 +41,7 @@ export default function PositionSelect(props: Props) {
             <FormControl sx={{ width: "100%" }}>
                 <Typography
                     variant="subtitle1"
-                    fontWeight={"bold"}
+                    fontWeight={650}
                     sx={{ marginBottom: theme.spacing(1.25), lineHeight: 1 }}
                 >
                     Positions

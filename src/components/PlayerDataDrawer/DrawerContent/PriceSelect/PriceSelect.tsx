@@ -46,7 +46,7 @@ const PriceSelect: React.FC<Props> = ({
         >
             <Typography
                 variant="subtitle1"
-                fontWeight={"bold"}
+                fontWeight={650}
                 sx={{ marginBottom: theme.spacing(1.25), lineHeight: 1 }}
             >
                 Price
